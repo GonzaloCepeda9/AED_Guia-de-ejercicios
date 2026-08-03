@@ -1,0 +1,11 @@
+sort() de Python (Timsort) necesita comparar elementos entre sí para decidir el orden. Cuando se le pasa una "key", no compara los objetos directamente — compara el resultado de aplicarles esa función. Paso a paso:
+
+Fase de extracción (una sola pasada): antes de ordenar, Python recorre la lista una vez y llama a criterion(elemento) para cada elemento, guardando el resultado (ej: cada .nombre) asociado a su elemento original. No lo hace "durante" cada comparación — lo hace una vez por elemento, al principio, para no recalcularlo tantas veces.
+
+Fase de comparación: con esos valores ya extraídos, Timsort empieza a comparar pares de valores (los nombres extraídos, no los objetos) para decidir cuál va antes o después — usa < entre esos valores.
+
+Fase de reordenamiento: a medida que decide el orden según esas comparaciones, va reacomodando los objetos originales en la lista (no los valores extraídos), respetando el orden que dieron sus keys.
+
+Resultado: la lista queda con los objetos originales, pero en el orden que corresponde según el atributo que la función key extrajo de cada uno.
+
+Por eso, es "una vez por elemento": la extracción del key es O(n) — se hace 1 vez por cada elemento, no una vez por cada comparación (que serían muchas más, tipo O(n log n) comparaciones).

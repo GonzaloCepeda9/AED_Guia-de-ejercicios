@@ -1,0 +1,113 @@
+# Ahsoka Tano
+maestros = List()
+maestros.append("Anakin Skywalker")
+sables = List()
+sables.append("Verde")
+sables.append("Azul")
+sables.append("Blanco")
+list_jedis.append(Jedi("Ahsoka Tano", maestros, sables, "Togruta"))
+
+# Kit Fisto
+maestros = List()
+sables = List()
+sables.append("Verde")
+list_jedis.append(Jedi("Kit Fisto", maestros, sables, "Nautolano"))
+
+# Yoda
+maestros = List()
+maestros.append("N'Kata Del Gormo")
+sables = List()
+sables.append("Verde")
+list_jedis.append(Jedi("Yoda", maestros, sables, "Desconocida"))
+
+# Luke Skywalker
+maestros = List()
+maestros.append("Obi-Wan Kenobi")
+maestros.append("Yoda")
+sables = List()
+sables.append("Azul")
+sables.append("Verde")
+list_jedis.append(Jedi("Luke Skywalker", maestros, sables, "Humano"))
+
+# Qui-Gon Jinn
+maestros = List()
+maestros.append("Conde Dooku")
+sables = List()
+sables.append("Verde")
+list_jedis.append(Jedi("Qui-Gon Jinn", maestros, sables, "Humano"))
+
+# Mace Windu
+maestros = List()
+sables = List()
+sables.append("Violeta")
+list_jedis.append(Jedi("Mace Windu", maestros, sables, "Humano"))
+
+# Aayla Secura
+maestros = List()
+maestros.append("Quinlan Vos")
+sables = List()
+sables.append("Azul")
+list_jedis.append(Jedi("Aayla Secura", maestros, sables, "Twi'lek"))
+
+# Quinlan Vos
+maestros = List()
+maestros.append("Tholme")
+sables = List()
+sables.append("Verde")
+sables.append("Azul")
+list_jedis.append(Jedi("Quinlan Vos", maestros, sables, "Kiffar"))
+
+# Cal Kestis
+maestros = List()
+maestros.append("Jaro Tapal")
+sables = List()
+sables.append("Azul")
+sables.append("Naranja")
+sables.append("Verde")
+list_jedis.append(Jedi("Cal Kestis", maestros, sables, "Humano"))
+
+# Satele Shan
+maestros = List()
+maestros.append("Bran")
+maestros.append("Kao Cen Darach")
+sables = List()
+sables.append("Azul")
+sables.append("Verde")
+sables.append("Amarillo")
+list_jedis.append(Jedi("Satele Shan", maestros, sables, "Humana"))
+
+# Ben Solo
+maestros = List()
+maestros.append("Luke Skywalker")
+sables = List()
+sables.append("Azul")
+list_jedis.append(Jedi("Ben Solo", maestros, sables, "Humano"))
+
+# Grogu
+maestros = List()
+maestros.append("Luke Skywalker")
+sables = List()
+list_jedis.append(Jedi("Grogu", maestros, sables, "Desconocida"))
+
+# Leia Organa
+maestros = List()
+maestros.append("Luke Skywalker")
+sables = List()
+sables.append("Azul")
+list_jedis.append(Jedi("Leia Organa", maestros, sables, "Humana"))
+
+# Agen Kolar
+maestros = List()
+sables = List()
+sables.append("Azul")
+list_jedis.append(Jedi("Agen Kolar", maestros, sables, "Zabrak"))
+
+# Adi Gallia
+maestros = List()
+sables = List()
+sables.append("Azul")
+list_jedis.append(Jedi("Adi Gallia", maestros, sables, "Tholothiana"))
+
+# Verificación (opcional)
+for jedi in list_jedis:
+    print(jedi)

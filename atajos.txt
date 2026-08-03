@@ -1,0 +1,1 @@
+alt + ctrl + flecha arriba >>> Copia la línea en la cuál está el cursor, debajo de ella.
