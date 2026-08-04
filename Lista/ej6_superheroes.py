@@ -52,8 +52,11 @@ lista_superheroes.add_criterion('biografia', order_by_biography)
 #################################################  Ejecución de pruebas del enunciado  #################################################
 # a. eliminar el nodo que contiene la información de Linterna Verde;
 print('\n--------------------------------- a. Eliminación de nodo/elemento con información específica ---------------------------------')
+criterio = 'nombre'
+elemento = 'Linterna Verde'
+print(f'Elemento ingresado: "{elemento}". \nCriterio ingresado: "{criterio}"')
 eliminado = lista_superheroes.delete_value('nombre', 'Linterna Verde')
-print(f'El superhéroe "{eliminado.nombre}" ha sido eliminado.')
+print(f'\nEl superhéroe "{eliminado.nombre}" ha sido eliminado.')
 print(f'\nLista de superhéroes actualizada: ')
 lista_superheroes.show()
 
@@ -116,13 +119,11 @@ for superheroe in lista_superheroes:
 
 # h. listar los superhéroes que comienzan con la letra B, M y S;
 print('\n---------------------------- h. Listado de superhéroes cuyo nombre comienza con letra específica -----------------------------')
-letra1 = 'B'
-letra2 = 'M'
-letra3 = 'S'
-print(f'Letras iniciales: "{letra1}", "{letra2}" ó "{letra3}": ')
+iniciales = ('B', 'M', 'S')
+print(f'Iniciales: {iniciales}')
 for superheroe in lista_superheroes:
-    if superheroe.nombre[0] == letra1 or superheroe.nombre[0] == letra2 or superheroe.nombre[0] == letra3:
-        print(superheroe)
+    if superheroe.nombre.startswith(iniciales):
+        print(f'{superheroe}')
 
 # i. determinar cuántos superhéroes hay de cada casa de comic.
 print('\n----------------------------- i. Determinación de cantidad de superhéroes por cada casa de comic -----------------------------')
