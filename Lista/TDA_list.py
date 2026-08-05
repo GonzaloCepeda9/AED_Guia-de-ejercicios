@@ -12,10 +12,17 @@ class List(list):
 
     def delete_value(self, key_value: str, value) -> Optional[Any]:
         position = self.search(key_value, value)
-        return self.pop(position) if position is not None else position
+        # return self.pop(position) if position is not None else position
+        if position is not None:
+            return self.pop(position)
+        else:
+            return position
 
-    def is_empty():
-        pass
+    def is_empty(self):
+        if self:
+            return False
+        else:
+            return True
 
     def search(self, search_key: str, search_value) -> int:
 
