@@ -1,3 +1,5 @@
+# Estructura de dato Lista
+
 from typing import Any, Optional
 
 class List(list):
