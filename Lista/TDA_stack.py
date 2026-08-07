@@ -14,7 +14,7 @@ class Stack:
         if self.__elements:
             return self.__elements.pop()
         else:
-            None
+            return None
         
     def size(self) -> int:
         return len(self.__elements)
