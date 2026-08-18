@@ -113,7 +113,7 @@ for cancion in lista_canciones:
         mayor_duracion = duracion_parcial
         cancion_mayor_duracion = cancion
 
-print(f'\nCanción más larga: \n{cancion_mayor_duracion}')
+print(f'Canción más larga: \n{cancion_mayor_duracion}')
 
 # lista_canciones.sort_by_criterion('duracion') # Menos líneas de códigos, pero más costosa porque ordena toda la lista antes.
 # print(f'\nCanción más larga: \n{lista_canciones[-1]}')
