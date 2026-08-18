@@ -60,7 +60,7 @@ al6.parciales.insert_value(Parcial("Base de datos", 3, "2020-11-05")) # Desaprob
 al6.parciales.insert_value(Parcial("Matemática Discreta", 6, "2020-06-22"))
 lista_alumnos.insert_value(al6)
 
-# Funciones para ordenar por criterio
+# Creación de funciones para ordenar por criterio
 def order_by_name(alumno):
     return alumno.nombre
 def order_by_surname(alumno):

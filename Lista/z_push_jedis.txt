@@ -1,0 +1,154 @@
+# Ahsoka Tano
+maestros = List()
+maestros.append("Anakin Skywalker")
+sables = List()
+sables.append("Verde")
+sables.append("Azul")
+sables.append("Blanco")
+ahsoka = Jedi("Ahsoka Tano", "Togruta")
+ahsoka.maestros = maestros
+ahsoka.sables_usados = sables
+list_jedis.append(ahsoka)
+
+# Kit Fisto
+maestros = List()
+sables = List()
+sables.append("Verde")
+kit = Jedi("Kit Fisto", "Nautolano")
+kit.maestros = maestros
+kit.sables_usados = sables
+list_jedis.append(kit)
+
+# Yoda
+maestros = List()
+maestros.append("N'Kata Del Gormo")
+sables = List()
+sables.append("Verde")
+yoda = Jedi("Yoda", "Desconocida")
+yoda.maestros = maestros
+yoda.sables_usados = sables
+list_jedis.append(yoda)
+
+# Luke Skywalker
+maestros = List()
+maestros.append("Obi-Wan Kenobi")
+maestros.append("Yoda")
+sables = List()
+sables.append("Azul")
+sables.append("Verde")
+luke = Jedi("Luke Skywalker", "Humano")
+luke.maestros = maestros
+luke.sables_usados = sables
+list_jedis.append(luke)
+
+# Qui-Gon Jinn
+maestros = List()
+maestros.append("Conde Dooku")
+sables = List()
+sables.append("Verde")
+qui_gon = Jedi("Qui-Gon Jinn", "Humano")
+qui_gon.maestros = maestros
+qui_gon.sables_usados = sables
+list_jedis.append(qui_gon)
+
+# Mace Windu
+maestros = List()
+sables = List()
+sables.append("Violeta")
+mace = Jedi("Mace Windu", "Humano")
+mace.maestros = maestros
+mace.sables_usados = sables
+list_jedis.append(mace)
+
+# Aayla Secura
+maestros = List()
+maestros.append("Quinlan Vos")
+sables = List()
+sables.append("Azul")
+aayla = Jedi("Aayla Secura", "Twi'lek")
+aayla.maestros = maestros
+aayla.sables_usados = sables
+list_jedis.append(aayla)
+
+# Quinlan Vos
+maestros = List()
+maestros.append("Tholme")
+sables = List()
+sables.append("Verde")
+sables.append("Azul")
+quinlan = Jedi("Quinlan Vos", "Kiffar")
+quinlan.maestros = maestros
+quinlan.sables_usados = sables
+list_jedis.append(quinlan)
+
+# Cal Kestis
+maestros = List()
+maestros.append("Jaro Tapal")
+sables = List()
+sables.append("Azul")
+sables.append("Naranja")
+sables.append("Verde")
+cal = Jedi("Cal Kestis", "Humano")
+cal.maestros = maestros
+cal.sables_usados = sables
+list_jedis.append(cal)
+
+# Satele Shan
+maestros = List()
+maestros.append("Bran")
+maestros.append("Kao Cen Darach")
+sables = List()
+sables.append("Azul")
+sables.append("Verde")
+sables.append("Amarillo")
+satele = Jedi("Satele Shan", "Humana")
+satele.maestros = maestros
+satele.sables_usados = sables
+list_jedis.append(satele)
+
+# Ben Solo
+maestros = List()
+maestros.append("Luke Skywalker")
+sables = List()
+sables.append("Azul")
+ben = Jedi("Ben Solo", "Humano")
+ben.maestros = maestros
+ben.sables_usados = sables
+list_jedis.append(ben)
+
+# Grogu
+maestros = List()
+maestros.append("Luke Skywalker")
+sables = List()
+grogu = Jedi("Grogu", "Desconocida")
+grogu.maestros = maestros
+grogu.sables_usados = sables
+list_jedis.append(grogu)
+
+# Leia Organa
+maestros = List()
+maestros.append("Luke Skywalker")
+sables = List()
+sables.append("Azul")
+leia = Jedi("Leia Organa", "Humana")
+leia.maestros = maestros
+leia.sables_usados = sables
+list_jedis.append(leia)
+
+# Agen Kolar
+maestros = List()
+sables = List()
+sables.append("Azul")
+agen = Jedi("Agen Kolar", "Zabrak")
+agen.maestros = maestros
+agen.sables_usados = sables
+list_jedis.append(agen)
+
+# Adi Gallia
+maestros = List()
+sables = List()
+sables.append("Azul")
+adi = Jedi("Adi Gallia", "Tholothiana")
+adi.maestros = maestros
+adi.sables_usados = sables
+list_jedis.append(adi)
