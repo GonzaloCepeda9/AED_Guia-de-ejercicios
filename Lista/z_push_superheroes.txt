@@ -1,0 +1,11 @@
+lista_superheroes.append(Superheroe("Spider-Man", 1962, "Marvel", "Joven que obtiene poderes tras ser picado por una araña radiactiva."))
+lista_superheroes.append(Superheroe("Wolverine", 1974, "Marvel", "Mutante con garras de adamantium y factor de curación."))
+lista_superheroes.append(Superheroe("Dr. Strange", 1963, "DC", "Hechicero supremo que protege la Tierra de amenazas místicas."))  # Inicialmente DC para probar cambio
+lista_superheroes.append(Superheroe("Iron Man", 1963, "Marvel", "Genio multimillonario que construye un traje de alta tecnología."))
+lista_superheroes.append(Superheroe("Capitana Marvel", 1968, "Marvel", "Piloto que obtiene poderes cósmicos."))
+lista_superheroes.append(Superheroe("Mujer Maravilla", 1941, "DC", "Princesa amazona con fuerza sobrehumana."))
+lista_superheroes.append(Superheroe("Flash", 1940, "DC", "Posee velocidad sobrehumana gracias a la Fuerza de la Velocidad."))
+lista_superheroes.append(Superheroe("Star-Lord", 1976, "Marvel", "Líder de los Guardianes de la Galaxia, usa un traje espacial."))
+lista_superheroes.append(Superheroe("Batman", 1939, "DC", "Vigilante que usa una armadura y artilugios."))
+lista_superheroes.append(Superheroe("Superman", 1938, "DC", "Kryptoniano con poderes solares."))
+lista_superheroes.append(Superheroe("Linterna Verde", 1940, "DC", "Miembro del cuerpo de linternas verdes, usa un anillo de poder."))
