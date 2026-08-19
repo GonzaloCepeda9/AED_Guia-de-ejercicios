@@ -10,8 +10,8 @@ def potencia_enteros(base: int, exp: int):
     else:
         return base * potencia_enteros(base, exp - 1)
 
-# Prueba
-print('----------------------------------------------- Función: Potencia de dos números -----------------------------------------------')
+#################################################  Ejecución de pruebas del enunciado  #################################################
+print('\n---------------------------------------------- Potencia de dos números enteros -----------------------------------------------')
 base_prueba = 2
 exp_prueba = 9
 resultado = potencia_enteros(base_prueba, exp_prueba)

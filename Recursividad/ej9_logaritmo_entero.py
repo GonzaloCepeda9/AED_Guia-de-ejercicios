@@ -7,8 +7,8 @@ def logaritmo_entero(base, num):
     else:
         return 1 + logaritmo_entero(base, num // base)
     
-# Prueba
-print('--------------------------------------------- Función: Calcular logaritmo entero -----------------------------------------------')
+#################################################  Ejecución de pruebas del enunciado  #################################################
+print('\n--------------------------------------------- Cálculo del logaritmo de un número ---------------------------------------------')
 base = 2
 num = 256
 if base < 2:

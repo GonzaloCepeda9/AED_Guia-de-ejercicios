@@ -34,14 +34,17 @@ def conversion(romano: str):
 def romano_a_decimal(num_romano: str):
     romano = str(num_romano)
     if len(romano) == 0:
-        return 'Debe escribir un número romano.'
+        return None
     for i in range(len(romano)):
         if romano[i] not in equivalencias:
-            return 'No es un número romano válido.'
+            return None
     return conversion(romano)
     
-# Prueba
-print('------------------------------------------ Función: Convertir número romano a decimal ------------------------------------------')
+#################################################  Ejecución de pruebas del enunciado  #################################################
+print('\n------------------------------------------ Conversión de un número romano a decimal ------------------------------------------')
 num_romano = 'MCMXCIV'
 resultado = romano_a_decimal(num_romano)
-print(resultado)
+if resultado:
+    print(f'Número romano: {num_romano} | Número decimal equivalente: {resultado}.')
+else:
+    print(f'Debe ingresar un número romano válido.')

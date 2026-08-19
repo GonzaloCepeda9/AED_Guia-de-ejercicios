@@ -16,8 +16,8 @@ def decimal_a_binario(num: int):
     else:
         return decimal_a_binario(num // 2) + '1'
     
-# Prueba
-print('----------------------------------------- Función: Convertir número decimal a binario ------------------------------------------')
+#################################################  Ejecución de pruebas del enunciado  #################################################
+print('\n----------------------------------------- Conversión de un número decimal a binario ------------------------------------------')
 number = 9
 if number < 0:
     print('El número debe ser positivo.')

@@ -15,7 +15,8 @@ def invertir_entero(num: int, acum: int = 0):
         acum = acum * 10 + resto
         return invertir_entero(num // 10, acum)
 
-# Prueba
+#################################################  Ejecución de pruebas del enunciado  #################################################
+print('\n----------------------------------- Inversión de número entero (sin convertirlo a cadena) ------------------------------------')
 number = 1994
 if number and isinstance(number, int) and number > 0:
     resultado = (invertir_entero(number))

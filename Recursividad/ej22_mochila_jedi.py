@@ -11,7 +11,7 @@ c. Utilizar un vector para representar la mochila.
 ○ Algoritmo para resolver el problema:
   Crear un contador para saber cuántos elementos fue necesario sacar hasta encontrar el sable de luz.
   Siendo la mochila una lista, comparar:
-    Si la mochila está vacía, devolver mensaje.
+    Si la mochila está vacía:
       - Devolver mensaje 'La mochila está vacía. No se encontró el sable de luz'.
     
     Si el último elemento es 'sable de luz':
@@ -44,7 +44,7 @@ def usar_la_fuerza(mochila: list, sacados: int = 0):
     print(mochila)
     return f'\nJedi sacó su {mochila[-1]}.' + usar_la_fuerza((mochila[:-1]), (sacados + 1))
 
-
-print('\n--------------------------------------------- Función: Encontrar sable de luz ---------------------------------------------')
+#################################################  Ejecución de pruebas del enunciado  #################################################
+print('\n------------------------------------------- Solución al problema de la mochila Jedi ------------------------------------------')
 busqueda = usar_la_fuerza(mochila_Jedi)
 print(busqueda)

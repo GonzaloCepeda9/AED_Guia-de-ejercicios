@@ -1,48 +1,39 @@
-# Extra: Función factorial
+# Extra: Implementar una función que permita calcular el factorial de un número entero dado.
 
-print("--------- Función factorial recursiva ---------")   
-
-def factorial(n):
-    if n < 0:
-        return "El número debe ser positivo."
-    elif n == 0:
+# Factorial recursiva
+def factorial_recursivo(num: int) -> int:
+    if num < 0 or num - (int(num)) != 0:
+        return None
+    elif num == 0:
         return 1
     else:
-        return n * factorial(n-1)
+        return num * factorial_recursivo(num-1)
 
-resultado1 = factorial(-1)
-resultado2 = factorial(1)
-resultado3 = factorial(3)
-resultado4 = factorial(5)
-resultado5 = factorial(7)
-resultado6 = factorial(9)
-
-print(resultado1)
-print(resultado2)
-print(resultado3)
-print(resultado4)
-print(resultado5)
-print(resultado6)
-
-print("--------- Función factorial iterativa ---------")
-
+# Factorial iterativa
 def factorial_iterativa(num):
-    acumulador = 1
-    while num > 0:
-        acumulador = acumulador * num
-        num -= 1
-    return acumulador
+    if num < 0 or num - (int(num)) != 0:
+        return None
+    else:
+        acumulador = 1
+        while num > 0:
+            acumulador = acumulador * num
+            num -= 1
+        return acumulador
 
-resultado1 = factorial_iterativa(-1)
-resultado2 = factorial_iterativa(1)
-resultado3 = factorial_iterativa(3)
-resultado4 = factorial_iterativa(5)
-resultado5 = factorial_iterativa(7)
-resultado6 = factorial_iterativa(9)
+#################################################  Ejecución de pruebas del enunciado  #################################################
+print('\n--------------------------------------------- Factorial de un número entero dado ---------------------------------------------')
+numero = 4
+resultado = factorial_recursivo(numero)
+print(f'\nFactorial con función recursiva:')
+if resultado:
+    print(f'{numero}! = {resultado}')
+else:
+    print(f'Debe ingresar un número entero positivo.')
 
-print(resultado1)
-print(resultado2)
-print(resultado3)
-print(resultado4)
-print(resultado5)
-print(resultado6)
+numero = 5
+resultado = factorial_iterativa(numero)
+print(f'\nFactorial con función iterativa:')
+if resultado:
+    print(f'{numero}! = {resultado}')
+else:
+    print(f'Debe ingresar un número entero positivo.')

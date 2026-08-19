@@ -14,8 +14,8 @@ def cantidad_digitos(num: int):
     else:
         return 1 + cantidad_digitos(num//10)
     
-# Prueba
-print('--------------------------------------------- Función: Contar cantidad de dígitos ----------------------------------------------')
+#################################################  Ejecución de pruebas del enunciado  #################################################
+print('\n------------------------------------------- Conteo de dígitos de un número entero --------------------------------------------')
 number = -999
 resultado = cantidad_digitos(number)
 print(f'El número {number} tiene {resultado} dígitos.')

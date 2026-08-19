@@ -1,22 +1,19 @@
 # 1. Implementar una función que permita obtener el valor en la sucesión de Fibonacci para un número dado.
 
 # Fibonacci recursivo
-def fibonacci(num: int):
+def fibonacci_recursiva(num: int):
     if num < 0:
-        return "El número debe ser positivo."
+        return None
     elif num == 0 or num == 1:
         return num
     else:
-        return fibonacci(num-1) + fibonacci(num-2)
-
-# Prueba
-print('------------------------------------------------- Función: Fibonacci recursivo -------------------------------------------------')
-fib_prueba = 6
-result_recursivo = fibonacci(fib_prueba)
-print(f'Fibonacci de {fib_prueba} = {result_recursivo}.')
+        return fibonacci_recursiva(num-1) + fibonacci_recursiva(num-2)
 
 # Fibonacci iterativo
 def fibonacci_iterativa(num: int):
+    if num < 0 or num - (int(num)) != 0:
+        return None
+    
     if num == 0 or num == 1:
         return num
     else:
@@ -24,15 +21,27 @@ def fibonacci_iterativa(num: int):
         result2 = 1
         result = 0
 
-        for i in range(2, num+1):
+        for _ in range(2, num+1):
             result = result1 + result2
             result1 = result2
             result2 = result
 
         return result
 
-# Prueba
-print('------------------------------------------------- Función: Fibonacci iterativo -------------------------------------------------')
-fib_prueba = 7
+#################################################  Ejecución de pruebas del enunciado  #################################################
+print('\n-------------------------------------- Obtención de valores de la sucesión de Fibonacci --------------------------------------')
+fib_prueba = 6
+result_recursivo = fibonacci_recursiva(fib_prueba)
+print(f'Fibonacci con función recursiva:')
+if result_recursivo:
+    print(f'F({fib_prueba}) = {result_recursivo}')
+else:
+    print(f'Debe ingresar un número entero positivo.')
+
+fib_prueba = 9
 result_iterativo = fibonacci_iterativa(fib_prueba)
-print(f'Fibonacci de {fib_prueba} = {result_iterativo}.')
+print(f'\nFibonacci con función recursiva:')
+if result_iterativo:
+    print(f'F({fib_prueba}) = {result_iterativo}')
+else:
+    print(f'Debe ingresar un número entero positivo.')
