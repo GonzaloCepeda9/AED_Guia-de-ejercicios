@@ -1,0 +1,3 @@
+Ejercicio 1 --> Carga de 1000 números enteros.
+Ejercicio 5 --> Superhéroes y villanos de la saga Marvel Cinematic Universe. # Comenzar por este.
+Ejercicio 6 --> Jedis.
