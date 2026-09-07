@@ -13,9 +13,9 @@ h. indicar los nombre de los padawans de Qui-Gon Jin y Mace Windu, si los tuvier
 from jedi import Jedi
 from TDA_list import List
 
-lista_jedis = List()
 
-# --------- Carga de datos ---------
+# --------- CARGA DE DATOS --------- #
+lista_jedis = List()
 
 # Ahsoka Tano
 maestros = List()
@@ -172,18 +172,18 @@ adi.maestros = maestros
 adi.sables_usados = sables
 lista_jedis.append(adi)
 
-# Creación de funciones para ordenar por criterio
+# --------- CREACIÓN DE FUNCIONES PARA ORDENAR POR CRITERIO --------- #
 def order_by_name(jedi):
     return jedi.nombre
 
 def order_by_species(jedi):
     return jedi.especie
 
-# Agregación de criterios de búsqueda
+# --------- AGREGACIÓN DE CRITERIOS DE BÚSQUEDA --------- #
 lista_jedis.add_criterion('nombre', order_by_name)
 lista_jedis.add_criterion('especie', order_by_species)
 
-#################################################  Ejecución de pruebas del enunciado  #################################################
+#################################################  EJECUCIÓN DE PRUEBAS DEL ENUNCIADO  #################################################
 print(f'\nLista original de Jedis: ')
 lista_jedis.show()
 

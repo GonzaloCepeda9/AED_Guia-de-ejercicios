@@ -1,16 +1,7 @@
-##################################################  Ejecución de pruebas de listas   ###################################################
-
 from TDA_list import List
 from person import Person
 
-def order_by_name(elemento):
-    return elemento.nombre
-
-def order_by_surname(elemento):
-    return elemento.apellido
-
-def order_by_dni(elemento):
-    return elemento.dni
+# --------- CARGA DE DATOS --------- #
 
 list_people = List()
 
@@ -26,9 +17,22 @@ people = [
 for person in people:
     list_people.insert_value(person)
 
+# --------- CREACIÓN DE FUNCIONES DE ORDENAMIENTO --------- #
+
+def order_by_name(elemento):
+    return elemento.nombre
+
+def order_by_surname(elemento):
+    return elemento.apellido
+
+def order_by_dni(elemento):
+    return elemento.dni
+
 list_people.add_criterion('nombre', order_by_name)
 list_people.add_criterion('apellido', order_by_surname)
 list_people.add_criterion('dni', order_by_dni)
+
+###################################################  EJECUCIÓN DE PRUEBAS DE LISTA  ####################################################
 
 print(f'\nLista original: ')
 list_people.show()

@@ -9,7 +9,7 @@ d. mostrar los nombres de las bandas o artistas que solo son de una palabra.
 from cancion import Cancion
 from TDA_list import List
 
-# --- CARGA DE DATOS ---
+# --------- CARGA DE DATOS --------- #
 
 lista_canciones = List()
 # Patricio Rey y sus Redonditos de Ricota
@@ -88,7 +88,7 @@ lista_canciones.append(Cancion("Spaghetti del rock", "Divididos", 270, 9800))
 lista_canciones.append(Cancion("¿Qué ves?", "Divididos", 220, 9200))
 lista_canciones.append(Cancion("El arriero", "Divididos", 220, 9900))
 
-# --- AGREGACIÓN DE FUNCIONES DE ORDENAMIENTO ---
+# --------- CREACIÓN DE FUNCIONES DE ORDENAMIENTO --------- #
 
 def sort_by_duration(cancion):
     return cancion.duracion
@@ -99,7 +99,8 @@ def sort_by_reproductions(cancion):
 lista_canciones.add_criterion('duracion', sort_by_duration)
 lista_canciones.add_criterion('reproducciones', sort_by_reproductions)
 
-#################################################  Ejecución de pruebas del enunciado  #################################################
+#################################################  EJECUCIÓN DE PRUEBAS DEL ENUNCIADO  #################################################
+
 print(f'\nLista original de canciones: ')
 lista_canciones.show()
 

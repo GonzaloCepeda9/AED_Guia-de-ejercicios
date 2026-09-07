@@ -22,7 +22,7 @@ from TDA_list import List
 
 lista_alumnos = List()
 
-# --- CARGA DE DATOS ---
+# --------- CARGA DE DATOS --------- #
 
 # Alumno 1: Apellido con L, promedio > 8.89, rindió Algoritmos en 2020, sin desaprobados.
 al1 = Alumno("Lucas", "Lopez", 101)
@@ -60,7 +60,7 @@ al6.parciales.insert_value(Parcial("Base de datos", 3, "2020-11-05")) # Desaprob
 al6.parciales.insert_value(Parcial("Matemática Discreta", 6, "2020-06-22"))
 lista_alumnos.insert_value(al6)
 
-# Creación de funciones para ordenar por criterio
+# --------- CREACIÓN DE FUNCIONES DE ORDENAMIENTO --------- #
 def order_by_name(alumno):
     return alumno.nombre
 def order_by_surname(alumno):
@@ -68,12 +68,11 @@ def order_by_surname(alumno):
 def order_by_file(alumno):
     return alumno.legajo
 
-# Agregación de criterios de búsqueda
 lista_alumnos.add_criterion('nombre', order_by_name)
 lista_alumnos.add_criterion('apellido', order_by_surname)
 lista_alumnos.add_criterion('legajo', order_by_file)
 
-#################################################  Ejecución de pruebas del enunciado  #################################################
+#################################################  EJECUCIÓN DE PRUEBAS DEL ENUNCIADO  #################################################
 print(f'\nLista original de alumnos: ')
 lista_alumnos.show()
 
