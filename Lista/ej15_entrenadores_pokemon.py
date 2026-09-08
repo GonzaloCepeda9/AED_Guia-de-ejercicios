@@ -1,0 +1,296 @@
+# 15. Entrenadores Pókemon
+'''
+Se cuenta con una lista de entrenadores Pokémon. De cada uno de estos se conoce: nombre, cantidad de torneos ganados, cantidad de batallas perdidas y cantidad de batallas ganadas. Y además la lista de sus Pokémons, de los cuales se sabe: nombre, nivel, tipo y subtipo. Se pide resolver las siguientes actividades utilizando lista de lista implementando las funciones necesarias:
+a. obtener la cantidad de Pokémons de un determinado entrenador;
+b. listar los entrenadores que hayan ganado más de tres torneos;
+c. el Pokémon de mayor nivel del entrenador con mayor cantidad de torneos ganados;
+d. mostrar todos los datos de un entrenador y sus Pokémos;
+e. mostrar los entrenadores cuyo porcentaje de batallas ganados sea mayor al 79%;
+f. los entrenadores que tengan Pokémons de tipo fuego y planta o agua/volador (tipo y subtipo);
+g. el promedio de nivel de los Pokémons de un determinado entrenador;
+h. determinar cuántos entrenadores tienen a un determinado Pokémon;
+i. mostrar los entrenadores que tienen Pokémons repetidos;
+j. determinar los entrenadores que tengan uno de los siguientes Pokémons: Tyrantrum, Terrakion o Wingull;
+k. determinar si un entrenador “X” tiene al Pokémon “Y”, tanto el nombre del entrenador como del Pokémon deben ser ingresados; además si el entrenador tiene al Pokémon se deberán mostrar los datos de ambos;
+'''
+
+from TDA_list import List
+from TDA_queue import Queue
+from ej15_class_entrenador_pokemon import Entrenador_Pokemon
+from ej15_class_pokemon import Pokemon
+
+# --------- CREACIÓN DE LISTA --------- #
+lista_entrenadores = List()
+
+# --------- CREACIÓN DE FUNCIONES PARA ORDENAR POR CRITERIO --------- # BAJAR AL TERMINAR
+def order_by_name(entrenador):
+    return entrenador.nombre
+
+# --------- AGREGACIÓN DE CRITERIOS DE BÚSQUEDA --------- #
+lista_entrenadores.add_criterion('nombre', order_by_name)
+
+# --------- CARGA DE DATOS EN LA LISTA --------- #
+
+# Entrenadores
+lista_entrenadores.insert_value(Entrenador_Pokemon('Ash Ketchum', 8, 15, 85))
+lista_entrenadores.insert_value(Entrenador_Pokemon('Misty', 4, 8, 42))
+lista_entrenadores.insert_value(Entrenador_Pokemon('Brock', 6, 35, 25))
+lista_entrenadores.insert_value(Entrenador_Pokemon('Gary Oak', 5, 10, 70))
+lista_entrenadores.insert_value(Entrenador_Pokemon('Cynthia', 12, 5, 95))
+lista_entrenadores.insert_value(Entrenador_Pokemon('Leon', 10, 7, 83))
+lista_entrenadores.insert_value(Entrenador_Pokemon('Iris', 3, 30, 20))
+lista_entrenadores.insert_value(Entrenador_Pokemon('Steven Stone', 7, 6, 64))
+lista_entrenadores.insert_value(Entrenador_Pokemon('Diantha', 4, 4, 52))
+lista_entrenadores.insert_value(Entrenador_Pokemon('Red', 9, 20, 80))
+
+# Pókemons de Ash
+entrenador = 'Ash Ketchum'
+position = lista_entrenadores.search('nombre', entrenador)
+if position is not None:
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Pikachu', 80, 'Eléctrico', None))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Wingull', 32, 'Agua', 'Volador'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Charizard', 78, 'Fuego', 'Volador'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Sceptile', 75, 'Planta', None))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Wingull', 32, 'Agua', 'Volador'))
+else:
+    print(f'El entrenador {entrenador} no se encuentra en la lista de entrenadores.')
+
+# Pókemons de Misty
+entrenador = 'Misty'
+position = lista_entrenadores.search('nombre', entrenador)
+if position is not None:
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Starmie', 65, 'Agua', 'Psíquico'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Gyarados', 72, 'Agua', 'Volador'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Psyduck', 40, 'Agua', None))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Wingull', 35, 'Agua', 'Volador'))
+else:
+    print(f'El entrenador {entrenador} no se encuentra en la lista de entrenadores.')
+
+# Pókemons de Brock
+entrenador = 'Brock'
+position = lista_entrenadores.search('nombre', entrenador)
+if position is not None:
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Onix', 55, 'Roca', 'Tierra'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Geodude', 48, 'Roca', 'Tierra'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Tyrantrum', 72, 'Roca', 'Dragón'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Steelix', 68, 'Acero', 'Tierra'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Onix', 55, 'Roca', 'Tierra'))
+else:
+    print(f'El entrenador {entrenador} no se encuentra en la lista de entrenadores.')
+
+# Pókemons de Gary Oak
+entrenador = 'Gary Oak'
+position = lista_entrenadores.search('nombre', entrenador)
+if position is not None:
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Blastoise', 82, 'Agua', None))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Arcanine', 75, 'Fuego', None))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Umbreon', 70, 'Siniestro', None))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Tyrantrum', 68, 'Roca', 'Dragón'))
+else:
+    print(f'El entrenador {entrenador} no se encuentra en la lista de entrenadores.')
+
+# Pókemons de Cynthia
+entrenador = 'Cynthia'
+position = lista_entrenadores.search('nombre', entrenador)
+if position is not None:
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Garchomp', 95, 'Dragón', 'Tierra'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Lucario', 82, 'Lucha', 'Acero'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Roserade', 78, 'Planta', 'Veneno'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Spiritomb', 76, 'Fantasma', 'Siniestro'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Scovillain', 85, 'Planta', 'Fuego'))
+else:
+    print(f'El entrenador {entrenador} no se encuentra en la lista de entrenadores.')
+
+# Pókemons de Leon
+entrenador = 'Leon'
+position = lista_entrenadores.search('nombre', entrenador)
+if position is not None:
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Charizard', 96, 'Fuego', 'Volador'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Aegislash', 84, 'Acero', 'Fantasma'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Dragapult', 88, 'Dragón', 'Fantasma'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Rillaboom', 80, 'Planta', None))
+else:
+    print(f'El entrenador {entrenador} no se encuentra en la lista de entrenadores.')
+
+# Pókemons de Iris
+entrenador = 'Iris'
+position = lista_entrenadores.search('nombre', entrenador)
+if position is not None:
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Haxorus', 76, 'Dragón', None))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Dragonite', 81, 'Dragón', 'Volador'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Excadrill', 70, 'Tierra', 'Acero'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Wingull', 28, 'Agua', 'Volador'))
+else:
+    print(f'El entrenador {entrenador} no se encuentra en la lista de entrenadores.')
+
+# Pókemons de Steven Stone
+entrenador = 'Steven Stone'
+position = lista_entrenadores.search('nombre', entrenador)
+if position is not None:
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Metagross', 92, 'Acero', 'Psíquico'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Aggron', 78, 'Acero', 'Roca'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Terrakion', 80, 'Roca', 'Lucha'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Skarmory', 73, 'Acero', 'Volador'))
+else:
+    print(f'El entrenador {entrenador} no se encuentra en la lista de entrenadores.')
+
+# Pókemons de Diantha
+entrenador = 'Diantha'
+position = lista_entrenadores.search('nombre', entrenador)
+if position is not None:
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Gardevoir', 88, 'Psíquico', 'Hada'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Goodra', 79, 'Dragón', None))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Tyrantrum', 65, 'Roca', 'Dragón'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Aurorus', 67, 'Roca', 'Hielo'))
+else:
+    print(f'El entrenador {entrenador} no se encuentra en la lista de entrenadores.')
+
+# Pókemons de Red
+entrenador = 'Red'
+position = lista_entrenadores.search('nombre', entrenador)
+if position is not None:
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Pikachu', 90, 'Eléctrico', None))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Venusaur', 85, 'Planta', 'Veneno'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Blastoise', 84, 'Agua', None))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Charizard', 86, 'Fuego', 'Volador'))
+    lista_entrenadores[position].lista_pokemons.insert_value(Pokemon('Scovillain', 70, 'Planta', 'Fuego'))
+else:
+    print(f'El entrenador {entrenador} no se encuentra en la lista de entrenadores.')
+
+#################################################  EJECUCIÓN DE PRUEBAS DEL ENUNCIADO  #################################################
+print('\n----------------------------------------------- Lista original de entrenadores -----------------------------------------------')
+lista_entrenadores.show()
+
+# a. obtener la cantidad de Pokémons de un determinado entrenador;
+print('\n------------------------------ a. Obtención de cantidad de Pókemons de un determinado entrenador -----------------------------')
+entrenador = 'Ash Ketchum'
+entrenador_buscado = lista_entrenadores.search('nombre', entrenador)
+cantidad = lista_entrenadores[entrenador_buscado].lista_pokemons.size()
+if cantidad is not None:
+    print(f'El entrenador {entrenador} tiene {cantidad} Pókemons.')
+else:
+    print(f'El entrenador no se encuentra en la lista.')
+
+# b. listar los entrenadores que hayan ganado más de tres torneos;
+print('\n---------------------------------------- b. Listado de entrenadores con más victorias ----------------------------------------')
+lista_entrenadores_victoriosos = List()
+cantidad = 3
+for entrenador in lista_entrenadores:
+    if entrenador.torneos_ganados > cantidad:
+        lista_entrenadores_victoriosos.insert_value(entrenador)
+
+if not lista_entrenadores_victoriosos.is_empty():
+    lista_entrenadores_victoriosos.show()
+else:
+    print(f'No se encontraron entrenadores con más de {cantidad} torneos ganados.')
+
+# c. el Pokémon de mayor nivel del entrenador con mayor cantidad de torneos ganados;
+print('\n---------------- c. Muestreo del Pókemon de mayor nivel del entrenador con mayor cantidad de torneos ganados -----------------')
+cantidad_mayor_torneos = 0
+for entrenador in lista_entrenadores:
+    if entrenador.torneos_ganados > cantidad_mayor_torneos:
+        cantidad_mayor_torneos = entrenador.torneos_ganados
+        entrenador_mas_ganador = entrenador
+
+mayor_nivel = -1
+for pokemon in entrenador_mas_ganador.lista_pokemons:
+    if pokemon.nivel > mayor_nivel:
+        pokemon_mayor_nivel = pokemon
+
+if pokemon_mayor_nivel.nivel > -1:
+    print(f'Pókemon de mayor nivel: {pokemon.nombre}.')
+    print(f'Entrenador al que pertenece: {entrenador_mas_ganador.nombre}.')
+
+# d. mostrar todos los datos de un entrenador y sus Pokémos;
+print('\n------------------------------------ d. Muestreo de datos de un entrenador y sus Pókemons ------------------------------------')
+entrenador = 'Misty'
+entrenador_buscado = lista_entrenadores.search('nombre', entrenador)
+if entrenador_buscado is not None:
+    print(f'Datos del entrenador: ')
+    print(f'{lista_entrenadores[entrenador_buscado]}')
+    print(f'\nPókemons de {entrenador}: ')
+    lista_entrenadores[entrenador_buscado].lista_pokemons.show()
+
+# e. mostrar los entrenadores cuyo porcentaje de batallas ganados sea mayor al 79%;
+print('\n------------------------- e. Muestreo de entrenadores con porcentaje específico de batallas ganadas --------------------------')
+porcentaje_buscado = 79
+for entrenador in lista_entrenadores:
+    total_batallas = entrenador.batallas_ganadas + entrenador.batallas_perdidas
+    porcentaje_batallas_ganadas = entrenador.batallas_ganadas * 100 / total_batallas
+    if porcentaje_batallas_ganadas > porcentaje_buscado:
+        print(f'Entrenador: {entrenador.nombre} | Porcentaje de batallas ganadas: {round(porcentaje_batallas_ganadas, 1)}%')
+
+# f. los entrenadores que tengan Pokémons de tipo fuego/planta o agua/volador (tipo/subtipo);
+print('\n---------------------------- f. Muestreo de entrenadores con Pókemos de tipo y subtipo específico ----------------------------')
+lista_entrenadores_buscados = List()
+tipo_1 = 'Planta'
+subtipo_1 = 'Fuego'
+tipo_2 = 'Agua'
+subtipo_2 = 'Volador'
+for entrenador in lista_entrenadores:
+    for pokemon in entrenador.lista_pokemons:
+        if (pokemon.tipo == tipo_1 and pokemon.subtipo == subtipo_1) or (pokemon.tipo == tipo_2 and pokemon.subtipo == subtipo_2):
+            lista_entrenadores_buscados.insert_value(entrenador.nombre)
+
+if not lista_entrenadores_buscados.is_empty():
+    print(f'Entrenadores que tengan Pókemon de tipo {tipo_1}/{subtipo_1} ó de tipo {tipo_2}/{subtipo_2}: ')
+    lista_entrenadores_buscados.show()
+else:
+    print(f'No se encontraron entrenadores que tengan Pókemons de tipo {tipo_1}/{subtipo_1} ó de tipo {tipo_2}/{subtipo_2}.')
+
+# g. el promedio de nivel de los Pokémons de un determinado entrenador;
+print('\n-------------------------------- g. Muestreo del promedio de nivel de pókemons del entrenador --------------------------------')
+entrenador_buscado = 'Ash Ketchum'
+position = lista_entrenadores.search('nombre', entrenador_buscado)
+suma_niveles = 0
+
+if position is not None:
+    for pokemon in lista_entrenadores[position].lista_pokemons:
+        suma_niveles += pokemon.nivel
+    promedio_niveles = suma_niveles / entrenador.lista_pokemons.size()
+
+if suma_niveles > 0:
+    print(f'El promedio de niveles de los Pókemons de {entrenador_buscado} es de {round(promedio_niveles, 1)}.')
+
+# h. determinar cuántos entrenadores tienen a un determinado Pokémon;
+print('\n---------------------- h. Determinación de cantidad de entrenadores que tienen a un pókemon específico -----------------------')
+lista_entrenadores_pokemon = List()
+pokemon_determinado = 'Charizard'
+for entrenador in lista_entrenadores:
+    for pokemon in entrenador.lista_pokemons:
+        if pokemon.nombre == pokemon_determinado:
+            lista_entrenadores_pokemon.insert_value(entrenador.nombre)
+
+if not lista_entrenadores_pokemon.is_empty():
+    print(f'Cantidad de entrenadores que poseen a "{pokemon_determinado}": {lista_entrenadores_pokemon.size()}.')
+else:
+    print(f'No se encontraron entrenadores que posean al Pókemon "{pokemon_determinado}".')
+
+# i. mostrar los entrenadores que tienen Pokémons repetidos;
+print('\n------------------------------------- i. Muestreo de entrenadores con Pókemons repetidos -------------------------------------')
+lista_entrenadores_pokemon = List()
+for entrenador in lista_entrenadores:
+    lista_pokemons = List()
+    for pokemon in entrenador.lista_pokemons:
+        lista_pokemons.insert_value(pokemon.nombre)
+    for pokemon_comparado in entrenador.lista_pokemons:
+        if pokemon_comparado.nombre in lista_pokemons:
+            repetido = True
+    if repetido == True:
+        lista_entrenadores_pokemon.insert_value(entrenador.nombre)
+
+if not lista_entrenadores_pokemon.is_empty():
+    print(f'Los entrenadores que tienen Pókemons repetidos son: ')
+    lista_entrenadores_pokemon.show()
+    # for entrenador in lista_entrenadores_pokemon:
+    #     print(f'{entrenador.nombre}')
+else:
+    print(f'No se encontraron entrenadores con Pókemons repetidos.')
+
+######### Tener en cuenta cola o pila, ir comparando y quitando elementos #########
+
+        
+# j. determinar los entrenadores que tengan uno de los siguientes Pokémons: Tyrantrum, Terrakion o Wingull;
+# print('\n---------------------------------------------- a. Listado ordenado por criterio ----------------------------------------------')
+# # k. determinar si un entrenador “X” tiene al Pokémon “Y”, tanto el nombre del entrenador como del Pokémon deben ser ingresados; además si el entrenador tiene al Pokémon se deberánmostrar los datos de ambos; 
+# print('\n---------------------------------------------- a. Listado ordenado por criterio ----------------------------------------------')
