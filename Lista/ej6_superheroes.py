@@ -49,7 +49,8 @@ lista_superheroes.add_criterion('anio_aparicion', order_by_year)
 lista_superheroes.add_criterion('casa_comic', order_by_house)
 lista_superheroes.add_criterion('biografia', order_by_biography)
 
-#################################################  Ejecución de pruebas del enunciado  #################################################
+#################################################  EJECUCIÓN DE PRUEBAS DEL ENUNCIADO  #################################################
+
 # a. eliminar el nodo que contiene la información de Linterna Verde;
 print('\n--------------------------------- a. Eliminación de nodo/elemento con información específica ---------------------------------')
 criterio = 'nombre'
