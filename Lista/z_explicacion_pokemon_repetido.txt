@@ -1,0 +1,45 @@
+print('\n------------------------------------- i. Muestreo de entrenadores con Pókemons repetidos -------------------------------------')
+lista_entrenadores_pokemon_repetidos = List()
+
+for entrenador in lista_entrenadores:
+    lista_pokemon_aux = List()
+    pokemon_repetido = False
+
+    # for pokemon in entrenador.lista_pokemons:
+    #         lista_pokemon_aux.insert_value(pokemon.nombre)
+    print(f'Entrenador: {entrenador.nombre}')
+    print(f'\nSu lista original de Pókemons es: ')
+    entrenador.lista_pokemons.show()
+    print(f'--------- # --------- # --------- # --------- # --------- # ---------')
+
+    for pokemon in entrenador.lista_pokemons:
+        print(f'Pókemon de la lista de entrenadores: {pokemon.nombre}')
+        if lista_pokemon_aux.is_empty():        
+            print(f'\nLista auxiliar de pokemons vacía. Agregando pókemon {pokemon.nombre}...')
+            lista_pokemon_aux.insert_value(pokemon.nombre)
+            print(f'\nLista auxiliar de Pókemons actualizada:')
+            lista_pokemon_aux.show()
+        else:
+            print(f'\nLista auxiliar de Pókemons actual:')
+            lista_pokemon_aux.show()
+            if pokemon.nombre in lista_pokemon_aux:
+                pokemon_repetido = True
+                print(f'\nEl Pókemon "{pokemon.nombre}" ya está en la lista (está repetido).')
+                lista_entrenadores_pokemon_repetidos.insert_value(entrenador.nombre)
+                print(f'--------- # --------- # --------- # --------- # --------- # ---------')
+                break
+            else:
+                print(f'\n{pokemon.nombre} no está en la lista auxiliar. Lo agregamos...')
+                lista_pokemon_aux.insert_value(pokemon.nombre)
+                print(f'\nLista auxiliar de Pókemons actualizada:')
+                lista_pokemon_aux.show()
+        print(f'--------- # --------- # --------- # --------- # --------- # ---------')
+    
+    print(f'********* ********* ********* ********* ********* ********* ********* ********* *********')
+
+if not lista_entrenadores_pokemon_repetidos.is_empty():
+    print(f'\nLos entrenadores que tienen Pókemons repetidos son los siguientes: ')
+    for entrenador in lista_entrenadores_pokemon_repetidos:
+        print(f'◘ {entrenador}')
+else:
+    print(f'\nNingún entrenador de la lista tiene Pókemons repetidos.')
