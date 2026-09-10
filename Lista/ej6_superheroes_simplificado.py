@@ -66,24 +66,26 @@ def print_seccion(titulo, ancho=140, relleno="-", color=Color.VERDE):
     print(f'\n{color}{f" {titulo} ".center(ancho, relleno)}{Color.RESET}')
 
 #################################################  EJECUCIÓN DE PRUEBAS DEL ENUNCIADO  #################################################
-print(f'\n{Color.CIAN}{f' {'EJERCICIO 6: SUPERHÉROES DE COMICS'} '.center(140, "=")}{Color.RESET}')
-print(f'{Color.AZUL}\nLista completa de superhéroes:{Color.RESET}')
+print(f'\n{Color.CIAN}{f' EJERCICIO 6: SUPERHÉROES DE COMICS '.center(140, "=")}{Color.RESET}')
+print_seccion('Información completa de superhéroes')
+print(f'{Color.AZUL}Lista original:{Color.RESET}')
 for superheroe in lista_superheroes:
     print(f'  → {superheroe}')
-# lista_superheroes.show()
 
+# a)
 print_seccion('a. eliminar el nodo que contiene la información de Linterna Verde;')
 nombre_elemento = 'Linterna Verde'
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 eliminado = lista_superheroes.delete_value('nombre', nombre_elemento)
 if eliminado is not None:
-    print(f'  → Elemento eliminado: {eliminado.nombre}.')
+    print(f'  → Nodo eliminado: {eliminado.nombre}.')
     print(f'{Color.AZUL}\nLista actualizada:{Color.RESET}')
     for superheroe in lista_superheroes:
         print(f'  → {superheroe.nombre}')
 else:
     print(f'  → El superhéroe "{nombre_elemento}" no se encuentra en la lista.')
 
+# b)
 print_seccion('b. mostrar el año de aparición de Wolverine;')
 nombre_superheroe = 'Wolverine'
 position = lista_superheroes.search('nombre', nombre_superheroe)
@@ -93,7 +95,7 @@ if position is not None:
 else:
     print(f'  → El superhéroe "{nombre_superheroe}" no se encuentra en la lista.')
 
-
+# c)
 print_seccion('c. cambiar la casa de Dr. Strange a Marvel;')
 nombre_superheroe = 'Dr. Strange'
 casa_nueva = 'Marvel'
@@ -101,13 +103,15 @@ print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 position = lista_superheroes.search('nombre', nombre_superheroe)
 if position is not None:
     lista_superheroes[position].casa_comic = casa_nueva
-    print(f'  → La casa del superheroe {nombre_superheroe} ha sido actualizada correctamente.')
+    print(f'  → La casa del superhéroe {nombre_superheroe} ha sido actualizada correctamente.')
     print(f'{Color.AZUL}\nLista actualizada:{Color.RESET}')
     for superheroe in lista_superheroes:
         print(f'  → {superheroe.nombre} | Casa: {superheroe.casa_comic}')
 else:
-    print(f'  → El superhéroe "{superheroe}" no se encuentra en la lista.')
+    print(f'  → El superhéroe "{nombre_superheroe}" no se encuentra en la lista.')
 
+
+# d)
 print_seccion('d. mostrar el nombre de aquellos superhéroes que en su biografía menciona la palabra "traje" o "armadura";')
 palabra1 = 'traje'
 palabra2 = 'armadura'
@@ -122,6 +126,7 @@ if not lista_superheroes_aux.is_empty():
 else:
     print(f'  → No se encontraron superhéroes cuya biografía incluya la palabra "{palabra1}" o "{palabra2}".')
 
+# e)
 print_seccion('e. mostrar el nombre y la casa de los superhéroes cuya fecha de aparición sea anterior a 1963;')
 anio = 1963
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
@@ -135,22 +140,24 @@ if not lista_superheroes_aux.is_empty():
 else:
     print(f'  → No se encontraron superhéroes cuya fecha de aparición sea anterior al año {anio}.')
 
+# f)
 print_seccion('f. mostrar la casa a la que pertenece Capitana Marvel y Mujer Maravilla;')
 superheroe1 = 'Capitana Marvel'
 superheroe2 = 'Mujer Maravilla'
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 position1 = lista_superheroes.search('nombre', superheroe1)
 if position1 is not None:
-    print(f'  → {superheroe1} | Casa a la que pertence: {lista_superheroes[position1].casa_comic}.')
+    print(f'  → {superheroe1} | Casa a la que pertenece: {lista_superheroes[position1].casa_comic}.')
 else:
     print(f'  → El superhéroe {superheroe1} no se encuentra en la lista.')
 
 position2 = lista_superheroes.search('nombre', superheroe2)
 if position2 is not None:
-    print(f'  → {superheroe2} | Casa a la que pertence: {lista_superheroes[position2].casa_comic}.')
+    print(f'  → {superheroe2} | Casa a la que pertenece: {lista_superheroes[position2].casa_comic}.')
 else:
     print(f'  → El superhéroe {superheroe2} no se encuentra en la lista.')
 
+# g)
 print_seccion('g. mostrar toda la información de Flash y Star-Lord;')
 superheroe1 = 'Flash'
 superheroe2 = 'Star-Lord'
@@ -168,6 +175,7 @@ if position is not None:
 else:
     print(f'  → El superhéroe {superheroe2} no se encuentra en la lista.')
 
+# h)
 print_seccion('h. listar los superhéroes que comienzan con la letra B, M y S;')
 inicial1 = 'B'
 inicial2 = 'M'
@@ -184,6 +192,7 @@ if not lista_superheroes_aux.is_empty():
 else:
     print(f'  → No se encontraron superhéroes cuyos nombres comienzan con las iniciales {inicial1}, {inicial2} o {inicial3}.')
 
+# i)
 print_seccion('i. determinar cuántos superhéroes hay de cada casa de comic.')
 casa_comic1 = 'Marvel'
 casa_comic2 = 'DC'
@@ -199,11 +208,11 @@ for superheroe in lista_superheroes:
 if cantidad_casa1 > 0:
     print(f'  → En la casa de comic {casa_comic1} hay {cantidad_casa1} superhéroes.')
 else:
-    print(f'  → No se encontraron superhéroes en la casa de comic {casa_comic1}')
+    print(f'  → No se encontraron superhéroes de la casa de comic {casa_comic1}')
 
 if cantidad_casa2 > 0:
     print(f'  → En la casa de comic {casa_comic2} hay {cantidad_casa2} superhéroes.')
 else:
-    print(f'  → No se encontraron superhéroes en la casa de comic {casa_comic2}')
+    print(f'  → No se encontraron superhéroes de la casa de comic {casa_comic2}')
 
-print(f'\n{Color.CIAN}{f' {'FIN DE EJECUCIÓN DEL PROGRAMA'} '.center(140, "=")}{Color.RESET}')
+print(f'\n{Color.CIAN}{f' FIN DE EJECUCIÓN DEL PROGRAMA '.center(140, "=")}{Color.RESET}')
