@@ -56,82 +56,62 @@ class Color:
     RESET   = '\033[0m'
     NEGRITA = '\033[1m'
     CIAN    = '\033[96m'
-    ROJO    = '\033[38;2;171;29;29m'    #AB1D1D
-    AMARILLO= '\033[38;2;227;187;45m'   #E3BB2D
-    AZUL    = '\033[38;2;0;48;176m'     #0030B0
-    VERDE   = '\033[38;2;12;120;0m'     #0C7800
-    VIOLETA = '\033[38;2;88;31;122m'    #581F7A
-    NARANJA = '\033[38;2;173;85;0m'     #AD5500
-    MARRON = '\033[38;2;92;54;23m'      #5C3617
+    ROJO    = '\033[38;2;171;29;29m'     #AB1D1D
+    AMARILLO= '\033[38;2;227;187;45m'    #E3BB2D
+    AZUL    = '\033[38;2;0;48;176m'      #0030B0
+    VERDE   = '\033[38;2;12;120;0m'      #0C7800
+    VIOLETA = '\033[38;2;88;31;122m'     #581F7A
 
-def print_seccion(titulo, ancho=140, relleno="-", color=Color.CIAN):
+def print_seccion(titulo, ancho=140, relleno="-", color=Color.VERDE):
     print(f'\n{color}{f" {titulo} ".center(ancho, relleno)}{Color.RESET}')
 
 #################################################  EJECUCIÓN DE PRUEBAS DEL ENUNCIADO  #################################################
-print(f'\n{Color.NARANJA}{f' {'EJERCICIO 6: SUPERHÉROES DE COMICS'} '.center(140, "=")}{Color.RESET}')
-print(f'{Color.MARRON}\nLista completa de superhéroes:{Color.RESET}')
+print(f'\n{Color.CIAN}{f' {'EJERCICIO 6: SUPERHÉROES DE COMICS'} '.center(140, "=")}{Color.RESET}')
+print(f'{Color.AZUL}\nLista completa de superhéroes:{Color.RESET}')
 for superheroe in lista_superheroes:
     print(f'  → {superheroe}')
+# lista_superheroes.show()
 
-# a. eliminar el nodo que contiene la información de Linterna Verde;
-print_seccion('Eliminación de elemento con información específica')
-print(f'{Color.VERDE}Enunciado:{Color.RESET}\n  → a. eliminar el nodo que contiene la información de Linterna Verde;')
-print(f'\n{Color.AZUL}Datos ingresados:{Color.RESET}')
+print_seccion('a. eliminar el nodo que contiene la información de Linterna Verde;')
 nombre_elemento = 'Linterna Verde'
-print(f'  → Nombre del elemento: {nombre_elemento}')
-print(f'\n{Color.VIOLETA}Resultado:{Color.RESET}')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 eliminado = lista_superheroes.delete_value('nombre', nombre_elemento)
 if eliminado is not None:
-    print('  → Elemento eliminado:')
-    print(f'  → {eliminado}')
-    print(f'{Color.MARRON}\nLista actualizada:{Color.RESET}')
+    print(f'  → Elemento eliminado: {eliminado.nombre}.')
+    print(f'{Color.AZUL}\nLista actualizada:{Color.RESET}')
     for superheroe in lista_superheroes:
         print(f'  → {superheroe.nombre}')
 else:
     print(f'  → El superhéroe "{nombre_elemento}" no se encuentra en la lista.')
 
-# b. mostrar el año de aparición de Wolverine;
-print_seccion('Muestra del año de aparición de un superhéroe específico')
-print(f'{Color.VERDE}Enunciado:{Color.RESET}\n  → b. mostrar el año de aparición de Wolverine;')
-print(f'\n{Color.AZUL}Datos ingresados:{Color.RESET}')
+print_seccion('b. mostrar el año de aparición de Wolverine;')
 nombre_superheroe = 'Wolverine'
-print(f'  → Nombre del superhéroe: {nombre_superheroe}')
 position = lista_superheroes.search('nombre', nombre_superheroe)
-print(f'\n{Color.VIOLETA}Resultado:{Color.RESET}')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if position is not None:
-    print(f'  → Año de aparición: {lista_superheroes[position].anio_aparicion}')
+    print(f'  → Año de aparición de {nombre_superheroe}: {lista_superheroes[position].anio_aparicion}.')
 else:
     print(f'  → El superhéroe "{nombre_superheroe}" no se encuentra en la lista.')
 
 
-# c. cambiar la casa de Dr. Strange a Marvel;
-print_seccion('Modificación de casa de comic')
-print(f'{Color.VERDE}Enunciado:{Color.RESET}\n  → c. cambiar la casa de Dr. Strange a Marvel;')
-print(f'\n{Color.AZUL}Datos ingresados:{Color.RESET}')
+print_seccion('c. cambiar la casa de Dr. Strange a Marvel;')
 nombre_superheroe = 'Dr. Strange'
 casa_nueva = 'Marvel'
-print(f'  → Nombre del superhéroe: {nombre_superheroe}')
-print(f'  → Casa nueva: {casa_nueva}')
-print(f'\n{Color.VIOLETA}Resultado:{Color.RESET}')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 position = lista_superheroes.search('nombre', nombre_superheroe)
 if position is not None:
     lista_superheroes[position].casa_comic = casa_nueva
-    print(f'  → Casa actualizada correctamente.')
-    print(f'{Color.MARRON}\nLista actualizada:{Color.RESET}')
+    print(f'  → La casa del superheroe {nombre_superheroe} ha sido actualizada correctamente.')
+    print(f'{Color.AZUL}\nLista actualizada:{Color.RESET}')
     for superheroe in lista_superheroes:
         print(f'  → {superheroe.nombre} | Casa: {superheroe.casa_comic}')
 else:
     print(f'  → El superhéroe "{superheroe}" no se encuentra en la lista.')
 
-# d. mostrar el nombre de aquellos superhéroes que en su biografía menciona la palabra "traje" o "armadura";
-print_seccion('Muestra de nombre del superhéroe cuya biografía menciona una palabra específica')
-print(f'{Color.VERDE}Enunciado:{Color.RESET}\n  → d. mostrar el nombre de aquellos superhéroes que en su biografía menciona la palabra "traje" o "armadura";')
-print(f'\n{Color.AZUL}Datos ingresados:{Color.RESET}')
+print_seccion('d. mostrar el nombre de aquellos superhéroes que en su biografía menciona la palabra "traje" o "armadura";')
 palabra1 = 'traje'
 palabra2 = 'armadura'
-print(f'  → Palabra 1: {palabra1}')
-print(f'  → Palabra 2: {palabra2}')
-print(f'\n{Color.VIOLETA}Resultado:{Color.RESET}')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 lista_superheroes_aux = List()
 for superheroe in lista_superheroes:
     if palabra1 in superheroe.biografia or palabra2 in superheroe.biografia:
@@ -142,13 +122,9 @@ if not lista_superheroes_aux.is_empty():
 else:
     print(f'  → No se encontraron superhéroes cuya biografía incluya la palabra "{palabra1}" o "{palabra2}".')
 
-# e. mostrar el nombre y la casa de los superhéroes cuya fecha de aparición sea anterior a 1963;
-print_seccion('Muestra de nombre y casa de superhéroe según fecha de aparición')
-print(f'{Color.VERDE}Enunciado:{Color.RESET}\n  → e. mostrar el nombre y la casa de los superhéroes cuya fecha de aparición sea anterior a 1963;')
-print(f'\n{Color.AZUL}Datos ingresados:{Color.RESET}')
+print_seccion('e. mostrar el nombre y la casa de los superhéroes cuya fecha de aparición sea anterior a 1963;')
 anio = 1963
-print(f'  → Año de aparición anterior a: {anio}')
-print(f'\n{Color.VIOLETA}Resultado:{Color.RESET}')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 lista_superheroes_aux = List()
 for superheroe in lista_superheroes:
     if superheroe.anio_aparicion < anio:
@@ -159,36 +135,26 @@ if not lista_superheroes_aux.is_empty():
 else:
     print(f'  → No se encontraron superhéroes cuya fecha de aparición sea anterior al año {anio}.')
 
-# f. mostrar la casa a la que pertenece Capitana Marvel y Mujer Maravilla;
-print_seccion('Muestra de la casa a la que pertenece el superhéroe solicitado')
-print(f'{Color.VERDE}Enunciado:{Color.RESET}\n  → f. mostrar la casa a la que pertenece Capitana Marvel y Mujer Maravilla;')
-print(f'\n{Color.AZUL}Datos ingresados:{Color.RESET}')
+print_seccion('f. mostrar la casa a la que pertenece Capitana Marvel y Mujer Maravilla;')
 superheroe1 = 'Capitana Marvel'
 superheroe2 = 'Mujer Maravilla'
-print(f'  → Nombre de superhéroe 1: {superheroe1}')
-print(f'  → Nombre de superhéroe 2: {superheroe2}')
-print(f'\n{Color.VIOLETA}Resultado:{Color.RESET}')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 position1 = lista_superheroes.search('nombre', superheroe1)
 if position1 is not None:
-    print(f'  → {superheroe1} | Casa a la que pertence: {lista_superheroes[position1].casa_comic}')
+    print(f'  → {superheroe1} | Casa a la que pertence: {lista_superheroes[position1].casa_comic}.')
 else:
     print(f'  → El superhéroe {superheroe1} no se encuentra en la lista.')
 
 position2 = lista_superheroes.search('nombre', superheroe2)
 if position2 is not None:
-    print(f'  → {superheroe2} | Casa a la que pertence: {lista_superheroes[position2].casa_comic}')
+    print(f'  → {superheroe2} | Casa a la que pertence: {lista_superheroes[position2].casa_comic}.')
 else:
     print(f'  → El superhéroe {superheroe2} no se encuentra en la lista.')
 
-# g. mostrar toda la información de Flash y Star-Lord;
-print_seccion('Muestra de información completa del superhéroe solicitado')
-print(f'{Color.VERDE}Enunciado:{Color.RESET}\n  → g. mostrar toda la información de Flash y Star-Lord;')
-print(f'\n{Color.AZUL}Datos ingresados:{Color.RESET}')
+print_seccion('g. mostrar toda la información de Flash y Star-Lord;')
 superheroe1 = 'Flash'
 superheroe2 = 'Star-Lord'
-print(f'  → Nombre de superhéroe 1: {superheroe1}')
-print(f'  → Nombre de superhéroe 2: {superheroe2}')
-print(f'\n{Color.VIOLETA}Resultado:{Color.RESET}')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 
 position = lista_superheroes.search('nombre', superheroe1)
 if position is not None:
@@ -202,37 +168,28 @@ if position is not None:
 else:
     print(f'  → El superhéroe {superheroe2} no se encuentra en la lista.')
 
-# h. listar los superhéroes que comienzan con la letra B, M y S;
-print_seccion('Listado de superhéroes cuyo nombre comienza con letra específica')
-print(f'{Color.VERDE}Enunciado:{Color.RESET}\n  → h. listar los superhéroes que comienzan con la letra B, M y S;')
-print(f'\n{Color.AZUL}Datos ingresados:{Color.RESET}')
+print_seccion('h. listar los superhéroes que comienzan con la letra B, M y S;')
 inicial1 = 'B'
 inicial2 = 'M'
 inicial3 = 'S'
 iniciales = (inicial1, inicial2, inicial3)
-print(f'  → Iniciales: {iniciales}')
-print(f'\n{Color.VIOLETA}Resultado:{Color.RESET}')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 lista_superheroes_aux = List()
 for superheroe in lista_superheroes:
     if superheroe.nombre.startswith(iniciales):
         lista_superheroes_aux.insert_value(superheroe)
 if not lista_superheroes_aux.is_empty():
     for superheroe in lista_superheroes_aux:
-        print(f'  → {superheroe}')
+        print(f'  → {superheroe.nombre}')
 else:
     print(f'  → No se encontraron superhéroes cuyos nombres comienzan con las iniciales {inicial1}, {inicial2} o {inicial3}.')
 
-# i. determinar cuántos superhéroes hay de cada casa de comic.
-print_seccion('Determinación de cantidad de superhéroes por cada casa de comic')
-print(f'{Color.VERDE}Enunciado:{Color.RESET}\n  → i. determinar cuántos superhéroes hay de cada casa de comic.')
-print(f'\n{Color.AZUL}Datos ingresados:{Color.RESET}')
+print_seccion('i. determinar cuántos superhéroes hay de cada casa de comic.')
 casa_comic1 = 'Marvel'
 casa_comic2 = 'DC'
 cantidad_casa1 = 0
 cantidad_casa2 = 0
-print(f'  → Casa de comic 1: {casa_comic1}')
-print(f'  → Casa de comic 2: {casa_comic2}')
-print(f'\n{Color.VIOLETA}Resultado:{Color.RESET}')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 for superheroe in lista_superheroes:
     if superheroe.casa_comic == casa_comic1:
         cantidad_casa1 += 1
@@ -249,4 +206,4 @@ if cantidad_casa2 > 0:
 else:
     print(f'  → No se encontraron superhéroes en la casa de comic {casa_comic2}')
 
-print(f'\n{Color.NARANJA}{f' {'FIN DE EJECUCIÓN DEL PROGRAMA'} '.center(140, "=")}{Color.RESET}')
+print(f'\n{Color.CIAN}{f' {'FIN DE EJECUCIÓN DEL PROGRAMA'} '.center(140, "=")}{Color.RESET}')
