@@ -176,10 +176,12 @@ print_seccion('Información completa de entrenadores y sus pókemons')
 print(f'{Color.AZUL}Lista original:{Color.RESET}')
 for entrenador in lista_entrenadores:
     print(f'\n  → {entrenador}')
-    print(f'\n    Pókemons de {entrenador.nombre}:')
-    for pokemon in entrenador.lista_pokemons:
-        print(f'    - {pokemon}')
-
+    if not entrenador.lista_pokemons.is_empty():
+        print(f'\n    Pókemons de {entrenador.nombre}:')
+        for pokemon in entrenador.lista_pokemons:
+            print(f'    - {pokemon}')
+    else:
+        print(f'\n    {entrenador.nombre} no tiene Pókemons.')
 # a. obtener la cantidad de Pokémons de un determinado entrenador;
 print_seccion('a. obtener la cantidad de Pokémons de un determinado entrenador;')
 entrenador = 'Ash Ketchum'
