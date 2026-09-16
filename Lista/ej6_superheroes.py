@@ -72,7 +72,7 @@ print(f'{Color.AZUL}Lista original:{Color.RESET}')
 for superheroe in lista_superheroes:
     print(f'  → {superheroe}')
 
-# a)
+# a. eliminar el nodo que contiene la información de Linterna Verde;
 print_seccion('a. eliminar el nodo que contiene la información de Linterna Verde;')
 nombre_elemento = 'Linterna Verde'
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
@@ -85,7 +85,7 @@ if eliminado is not None:
 else:
     print(f'  → El superhéroe "{nombre_elemento}" no se encuentra en la lista.')
 
-# b)
+# b. mostrar el año de aparición de Wolverine;
 print_seccion('b. mostrar el año de aparición de Wolverine;')
 nombre_superheroe = 'Wolverine'
 position = lista_superheroes.search('nombre', nombre_superheroe)
@@ -95,7 +95,7 @@ if position is not None:
 else:
     print(f'  → El superhéroe "{nombre_superheroe}" no se encuentra en la lista.')
 
-# c)
+# c. cambiar la casa de Dr. Strange a Marvel;
 print_seccion('c. cambiar la casa de Dr. Strange a Marvel;')
 nombre_superheroe = 'Dr. Strange'
 casa_nueva = 'Marvel'
@@ -110,8 +110,7 @@ if position is not None:
 else:
     print(f'  → El superhéroe "{nombre_superheroe}" no se encuentra en la lista.')
 
-
-# d)
+# d. mostrar el nombre de aquellos superhéroes que en su biografía menciona la palabra “traje” o “armadura”;
 print_seccion('d. mostrar el nombre de aquellos superhéroes que en su biografía menciona la palabra "traje" o "armadura";')
 palabra1 = 'traje'
 palabra2 = 'armadura'
@@ -126,7 +125,7 @@ if not lista_superheroes_aux.is_empty():
 else:
     print(f'  → No se encontraron superhéroes cuya biografía incluya la palabra "{palabra1}" o "{palabra2}".')
 
-# e)
+# e. mostrar el nombre y la casa de los superhéroes cuya fecha de aparición sea anterior a 1963;
 print_seccion('e. mostrar el nombre y la casa de los superhéroes cuya fecha de aparición sea anterior a 1963;')
 anio = 1963
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
@@ -140,7 +139,7 @@ if not lista_superheroes_aux.is_empty():
 else:
     print(f'  → No se encontraron superhéroes cuya fecha de aparición sea anterior al año {anio}.')
 
-# f)
+# f. mostrar la casa a la que pertenece Capitana Marvel y Mujer Maravilla;
 print_seccion('f. mostrar la casa a la que pertenece Capitana Marvel y Mujer Maravilla;')
 superheroe1 = 'Capitana Marvel'
 superheroe2 = 'Mujer Maravilla'
@@ -157,7 +156,7 @@ if position2 is not None:
 else:
     print(f'  → El superhéroe {superheroe2} no se encuentra en la lista.')
 
-# g)
+# g. mostrar toda la información de Flash y Star-Lord;
 print_seccion('g. mostrar toda la información de Flash y Star-Lord;')
 superheroe1 = 'Flash'
 superheroe2 = 'Star-Lord'
@@ -175,7 +174,7 @@ if position is not None:
 else:
     print(f'  → El superhéroe {superheroe2} no se encuentra en la lista.')
 
-# h)
+# h. listar los superhéroes que comienzan con la letra B, M y S;
 print_seccion('h. listar los superhéroes que comienzan con la letra B, M y S;')
 inicial1 = 'B'
 inicial2 = 'M'
@@ -192,7 +191,7 @@ if not lista_superheroes_aux.is_empty():
 else:
     print(f'  → No se encontraron superhéroes cuyos nombres comienzan con las iniciales {inicial1}, {inicial2} o {inicial3}.')
 
-# i)
+# i. determinar cuántos superhéroes hay de cada casa de comic.
 print_seccion('i. determinar cuántos superhéroes hay de cada casa de comic.')
 casa_comic1 = 'Marvel'
 casa_comic2 = 'DC'
