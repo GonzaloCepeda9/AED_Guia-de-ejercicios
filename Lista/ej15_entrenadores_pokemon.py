@@ -21,10 +21,6 @@ from ej15_class_pokemon import Pokemon
 # --------- CREACIÓN DE LISTA --------- #
 lista_entrenadores = List()
 
-# --------- CREACIÓN DE FUNCIONES PARA SEPARAR SECCIONES --------- #
-def print_seccion(titulo, ancho=120):
-    print(f'\n{f' {titulo} '.center(ancho, "-")}')
-
 # --------- CREACIÓN DE FUNCIONES PARA ORDENAR POR CRITERIO --------- #
 def order_by_name(entrenador):
     return entrenador.nombre
@@ -160,40 +156,63 @@ if position is not None:
 else:
     print(f'El entrenador {entrenador} no se encuentra en la lista de entrenadores.')
 
+# --------- CREACIÓN DE FUNCIONES PARA FORMATO --------- #
+class Color:
+    RESET   = '\033[0m'
+    NEGRITA = '\033[1m'
+    CIAN    = '\033[96m'
+    ROJO    = '\033[38;2;171;29;29m'     #AB1D1D
+    AMARILLO= '\033[38;2;227;187;45m'    #E3BB2D
+    AZUL    = '\033[38;2;0;48;176m'      #0030B0
+    VERDE   = '\033[38;2;12;120;0m'      #0C7800
+    VIOLETA = '\033[38;2;88;31;122m'     #581F7A
+
+def print_seccion(titulo, ancho=140, relleno="-", color=Color.VERDE):
+    print(f'\n{color}{f" {titulo} ".center(ancho, relleno)}{Color.RESET}')
+
 #################################################  EJECUCIÓN DE PRUEBAS DEL ENUNCIADO  #################################################
-print('\n----------------------------------------------- Lista original de entrenadores -----------------------------------------------')
-lista_entrenadores.show()
+print(f'\n{Color.CIAN}{f' EJERCICIO 15: ENTRENADORES PÓKEMON '.center(140, "=")}{Color.RESET}')
+print_seccion('Información completa de entrenadores y sus pókemons')
+print(f'{Color.AZUL}Lista original:{Color.RESET}')
+for entrenador in lista_entrenadores:
+    print(f'\n  → {entrenador}')
+    if not entrenador.lista_pokemons.is_empty():
+        print(f'\n    Pókemons de {entrenador.nombre}:')
+        for pokemon in entrenador.lista_pokemons:
+            print(f'    - {pokemon}')
+    else:
+        print(f'\n    {entrenador.nombre} no tiene Pókemons.')
 
 # a. obtener la cantidad de Pokémons de un determinado entrenador;
-print_seccion('a. Obtención de cantidad de Pókemons de un determinado entrenador')
+print_seccion('a. obtener la cantidad de Pokémons de un determinado entrenador;')
 entrenador = 'Ash Ketchum'
 position = lista_entrenadores.search('nombre', entrenador)
-
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if position is not None:
     cantidad = lista_entrenadores[position].lista_pokemons.size()
     if cantidad > 0:
-        print(f'El entrenador {entrenador} tiene {cantidad} Pókemons.')
+        print(f'  → El entrenador {entrenador} tiene {cantidad} Pókemons.')
     else:      
-        print(f'El entrenador {entrenador} no tiene ningún Pókemon.')
+        print(f'  → El entrenador {entrenador} no tiene ningún Pókemon.')
 else:
-    print(f'El entrenador no se encuentra en la lista.')
+    print(f'  → El entrenador no se encuentra en la lista.')
 
 # b. listar los entrenadores que hayan ganado más de tres torneos;
-print_seccion('b. Listado de entrenadores con más victorias')
+print_seccion('b. listar los entrenadores que hayan ganado más de tres torneos;')
 lista_entrenadores_victoriosos = List()
 cantidad = 3
 for entrenador in lista_entrenadores:
     if entrenador.torneos_ganados > cantidad:
         lista_entrenadores_victoriosos.insert_value(entrenador)
-
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if not lista_entrenadores_victoriosos.is_empty():
-    print(f'Entrenadores que ganaron más de {cantidad} torneos: ')
-    lista_entrenadores_victoriosos.show()
+    for entrenador in lista_entrenadores_victoriosos:
+        print(f'  → {entrenador.nombre}')
 else:
-    print(f'No se encontraron entrenadores con más de {cantidad} torneos ganados.')
+    print(f'  → No se encontraron entrenadores con más de {cantidad} torneos ganados.')
 
 # c. el Pokémon de mayor nivel del entrenador con mayor cantidad de torneos ganados;
-print_seccion('c. Muestra del Pókemon de mayor nivel del entrenador con mayor cantidad de torneos ganados')
+print_seccion('c. el Pokémon de mayor nivel del entrenador con mayor cantidad de torneos ganados;')
 cantidad_mayor_torneos = 0
 entrenador_mas_ganador = None
 for entrenador in lista_entrenadores:
@@ -202,8 +221,8 @@ for entrenador in lista_entrenadores:
         entrenador_mas_ganador = entrenador
 
 mayor_nivel = 0
-pokemon_mayor_nivel = None
 lista_pokemons_mayor_nivel = List()
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if entrenador_mas_ganador is not None:
     if not entrenador_mas_ganador.lista_pokemons.is_empty():
         for pokemon in entrenador_mas_ganador.lista_pokemons:
@@ -215,33 +234,32 @@ if entrenador_mas_ganador is not None:
                 lista_pokemons_mayor_nivel.insert_value(pokemon)
 
         if not lista_pokemons_mayor_nivel.is_empty():
-            print(f'Pókemon/s de mayor nivel: ')
+            print(f'  → Entrenador: {entrenador_mas_ganador.nombre} | Torneos ganados: {entrenador_mas_ganador.torneos_ganados}')
             for pokemon in lista_pokemons_mayor_nivel:
-                print(f'Nombre: {pokemon.nombre} | Nivel: {pokemon.nivel}')
-            print(f'\nEntrenador al que pertenece: \nNombre: {entrenador_mas_ganador.nombre} | Torneos ganados: {entrenador_mas_ganador.torneos_ganados}.')
+                print(f'  → Pókemon: {pokemon.nombre} | Nivel: {pokemon.nivel}')
     else:
-        print(f'El entrenador {entrenador_mas_ganador.nombre} no tiene ningún Pókemon.')
+        print(f'  → El entrenador {entrenador_mas_ganador.nombre} no tiene ningún Pókemon.')
 else:
-    print(f'No se encontró ningún entrenador con torneos ganados.')
+    print(f'  → No se encontró ningún entrenador con torneos ganados.')
 
 # d. mostrar todos los datos de un entrenador y sus Pokémos;
-print('\n------------------------------------ d. Muestra de datos de un entrenador y sus Pókemons ------------------------------------')
+print_seccion('d. mostrar todos los datos de un entrenador y sus Pokémos;')
 entrenador = 'Misty'
 position = lista_entrenadores.search('nombre', entrenador)
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if position is not None:
-    print(f'Datos del entrenador: ')
-    print(f'{lista_entrenadores[position]}')
-
+    print(f'  → {lista_entrenadores[position]}')
     if not lista_entrenadores[position].lista_pokemons.is_empty():
-        print(f'\nPókemons de {entrenador}: ')
-        lista_entrenadores[position].lista_pokemons.show()
+        print(f'\n    Pókemons de {entrenador}')
+        for pokemon in lista_entrenadores[position].lista_pokemons:
+            print(f'    - {pokemon}')
     else:
-        print(f'El entrenador no tiene ningún Pókemon')
+        print(f'  → El entrenador no tiene ningún Pókemon')
 else:
-    print(f'El entrenador {entrenador} no se encuentra en la lista.')
+    print(f'  → El entrenador {entrenador} no se encuentra en la lista.')
 
 # e. mostrar los entrenadores cuyo porcentaje de batallas ganados sea mayor al 79%;
-print('\n------------------------- e. Muestra de entrenadores con porcentaje específico de batallas ganadas --------------------------')
+print_seccion('e. mostrar los entrenadores cuyo porcentaje de batallas ganados sea mayor al 79%;')
 porcentaje_buscado = 79
 entrenadores_mas_ganadores = List()
 
@@ -252,18 +270,17 @@ for entrenador in lista_entrenadores:
         if porcentaje_batallas_ganadas > porcentaje_buscado:
             entrenadores_mas_ganadores.insert_value(entrenador)
 
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if not entrenadores_mas_ganadores.is_empty():
-    print(f'Lista de entrenadores con porcentaje de batallas ganadas mayor a {porcentaje_buscado}%: ')
     for entrenador in entrenadores_mas_ganadores:
         total_batallas = entrenador.batallas_ganadas + entrenador.batallas_perdidas
         porcentaje_batallas_ganadas = entrenador.batallas_ganadas * 100 / total_batallas
-        print(f'- Entrenador: {entrenador.nombre} | Porcentaje de batallas ganadas: {round(porcentaje_batallas_ganadas, 1)}%')
+        print(f'  → {entrenador.nombre} | Porcentaje: {round(porcentaje_batallas_ganadas, 1)}%')
 else:
-    print(f'No se encontraron entrenadores cuyo porcentaje de batallas ganadas sea mayor a {porcentaje_buscado}%.')
+    print(f'  → No se encontraron entrenadores cuyo porcentaje de batallas ganadas sea mayor a {porcentaje_buscado}%.')
         
-# f. los entrenadores que tengan Pokémons de tipo fuego/planta o agua/volador (tipo/subtipo);
-# Aclaración: En el siguiente barrido se invirtió el tipo/subtipo fuego/planta por planta/fuego, simplemente para probar otra combinación existente.
-print('\n---------------------------- f. Muestra de entrenadores con Pókemos de tipo y subtipo específico ----------------------------')
+# f. los entrenadores que tengan Pokémons de tipo fuego y planta o agua/volador (tipo y subtipo);
+print_seccion('f. los entrenadores que tengan Pokémons de tipo fuego y planta o agua/volador (tipo y subtipo);')
 lista_entrenadores_buscados = List()
 tipo_1 = 'Planta'
 subtipo_1 = 'Fuego'
@@ -275,13 +292,11 @@ for entrenador in lista_entrenadores:
             lista_entrenadores_buscados.insert_value(entrenador)
             break
 
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if not lista_entrenadores_buscados.is_empty():
-    print(f'Entrenadores que tienen Pókemon de tipo {tipo_1} y subtipo {subtipo_1}; ó de tipo {tipo_2} y subtipo {subtipo_2}: ')
     for entrenador in lista_entrenadores_buscados:
-        print(f'\nEntrenador: {entrenador.nombre}')
-        print(f'Pókemons de tipo y subtipo buscado: ')
+        print(f'\n  → Entrenador: {entrenador.nombre}')
 
-        # Creación de lista auxiliar sin Pókemons repetidos
         lista_nombres_pokemons = List()
         lista_pokemons_no_repetidos = List()
         for pokemon in entrenador.lista_pokemons:
@@ -291,15 +306,18 @@ if not lista_entrenadores_buscados.is_empty():
 
         for pokemon in lista_pokemons_no_repetidos:
             if (pokemon.tipo == tipo_1 and pokemon.subtipo == subtipo_1) or (pokemon.tipo == tipo_2 and pokemon.subtipo == subtipo_2):
-                print(f'- Nombre: {pokemon.nombre} | Tipo: {pokemon.tipo} | Subtipo: {pokemon.subtipo}.')
+                print(f'    - {pokemon.nombre} | Tipo: {pokemon.tipo} | Subtipo: {pokemon.subtipo}')
 else:
-    print(f'No se encontraron entrenadores que tengan Pókemons de tipo {tipo_1} y subtipo {subtipo_1}; ó de tipo {tipo_2} y subtipo {subtipo_2}.')
+    print(f'  → No se encontraron entrenadores que tengan Pókemons de tipo {tipo_1}/{subtipo_1} ó {tipo_2}/{subtipo_2}.')
+
+print(f'\n# Aclaración: Se invirtió el tipo/subtipo fuego/planta por planta/fuego, simplemente para probar otra combinación existente. ')
 
 # g. el promedio de nivel de los Pokémons de un determinado entrenador;
-print('\n-------------------------------- g. Muestra del promedio de nivel de pókemons del entrenador --------------------------------')
+print_seccion('g. el promedio de nivel de los Pokémons de un determinado entrenador;')
 entrenador_buscado = 'Ash Ketchum'
 position = lista_entrenadores.search('nombre', entrenador_buscado)
 
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if position is not None:
     suma_niveles = 0
     for pokemon in lista_entrenadores[position].lista_pokemons:
@@ -307,14 +325,14 @@ if position is not None:
     cantidad_pokemons = lista_entrenadores[position].lista_pokemons.size()
     if cantidad_pokemons > 0:
         promedio_niveles = suma_niveles / cantidad_pokemons
-        print(f'El promedio de niveles de los Pókemons de {entrenador_buscado} es de {round(promedio_niveles, 1)}.')
+        print(f'  → El promedio de niveles de los Pókemons de {entrenador_buscado} es de {round(promedio_niveles, 1)}.')
     else:
-        print(f'El entrenador no tiene ningún Pókemon.')
+        print(f'  → El entrenador no tiene ningún Pókemon.')
 else:
-    print(f'El entrenador no se encuentra en la lista.')
+    print(f'  → El entrenador no se encuentra en la lista.')
 
 # h. determinar cuántos entrenadores tienen a un determinado Pokémon;
-print('\n---------------------- h. Determinación de cantidad de entrenadores que tienen a un pókemon específico -----------------------')
+print_seccion('h. determinar cuántos entrenadores tienen a un determinado Pokémon;')
 lista_entrenadores_pokemon = List()
 pokemon_determinado = 'Charizard'
 for entrenador in lista_entrenadores:
@@ -323,13 +341,14 @@ for entrenador in lista_entrenadores:
             lista_entrenadores_pokemon.insert_value(entrenador.nombre)
             break
 
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if not lista_entrenadores_pokemon.is_empty():
-    print(f'Cantidad de entrenadores que poseen a "{pokemon_determinado}": {lista_entrenadores_pokemon.size()}.')
+    print(f'  → Cantidad de entrenadores que poseen a {pokemon_determinado}: {lista_entrenadores_pokemon.size()}.')
 else:
-    print(f'No se encontraron entrenadores que posean al Pókemon "{pokemon_determinado}".')
+    print(f'  → No se encontraron entrenadores que posean al Pókemon "{pokemon_determinado}".')
 
 # i. mostrar los entrenadores que tienen Pokémons repetidos;
-print('\n------------------------------------- i. Muestra de entrenadores con Pókemons repetidos -------------------------------------')
+print_seccion('i. mostrar los entrenadores que tienen Pokémons repetidos;')
 lista_entrenadores_pokemon_repetidos = List()
 
 for entrenador in lista_entrenadores:
@@ -346,15 +365,15 @@ for entrenador in lista_entrenadores:
             else:
                 lista_pokemon_aux.insert_value(pokemon.nombre)
 
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if not lista_entrenadores_pokemon_repetidos.is_empty():
-    print(f'Entrenadores que tienen Pókemons repetidos: ')
     for entrenador in lista_entrenadores_pokemon_repetidos:
-        print(f'- {entrenador.nombre}')
+        print(f'  → {entrenador.nombre}')
 else:
-    print(f'Ningún entrenador de la lista tiene Pókemons repetidos.')
+    print(f'  → Ningún entrenador de la lista tiene Pókemons repetidos.')
         
 # j. determinar los entrenadores que tengan uno de los siguientes Pokémons: Tyrantrum, Terrakion o Wingull;
-print('\n------------------------------ j. Determinación de entrenadores que tengan Pókemons específicos ------------------------------')
+print_seccion('j. determinar los entrenadores que tengan uno de los siguientes Pokémons: Tyrantrum, Terrakion o Wingull;')
 lista_entrenadores_aux = List()
 pokemon_1 = 'Tyrantrum'
 pokemon_2 = 'Terrakion'
@@ -367,34 +386,40 @@ for entrenador in lista_entrenadores:
             lista_entrenadores_aux.insert_value(entrenador)
             break
 
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if not lista_entrenadores_aux.is_empty():
-    print(f'Los entrenadores que tienen a {pokemon_1}, {pokemon_2} o {pokemon_3}, son: ')
     for entrenador in lista_entrenadores_aux:
-        print(f'- {entrenador.nombre}')
+        print(f'  → {entrenador.nombre}')
 else:
-    print(f'No se encontraron entrenadores que tengan a los Pókemons {pokemon_1}, {pokemon_2} o {pokemon_3}.')
+    print(f'  → No se encontraron entrenadores que tengan a los Pókemons {pokemon_1}, {pokemon_2} o {pokemon_3}.')
 
-# k. determinar si un entrenador “X” tiene al Pokémon “Y”, tanto el nombre del entrenador como del Pokémon deben ser ingresados; además si el entrenador tiene al Pokémon se deberán mostrar los datos de ambos; 
-print('\n------------------------------------ k. Determinación de entrenador y Pókemon específicos ------------------------------------')
-print(f'Para determinar si un entrenador "X" tiene al Pókemon "Y", debe ingresar los siguientes datos: ')
-entrenador_buscado = input(f'Nombre del entrenador: ')
-pokemon_buscado = input(f'Nombre del Pókemon: ')
+# k. determinar si un entrenador "X" tiene al Pokémon "Y", tanto el nombre del entrenador como del Pokémon deben ser ingresados; además si el entrenador tiene al Pokémon se deberán mostrar los datos de ambos;
+print_seccion('k. determinar si un entrenador "X" tiene al Pokémon "Y"...')
 
+print(f'{Color.AZUL}Datos ingresados:{Color.RESET}')
+entrenador_buscado = input(f'  → Nombre del entrenador: ')
+pokemon_buscado = input(f'  → Nombre del Pókemon: ')
+
+print(f'\n{Color.VIOLETA}Resultado:{Color.RESET}')
 if entrenador_buscado == "":
-    print(f'Debe ingresar el nombre del entrenador.')
+    print(f'  → Debe ingresar el nombre del entrenador.')
 else:
     if pokemon_buscado == "":
-        print(f'Debe ingresar el nombre del Pókemon.')
+        print(f'  → Debe ingresar el nombre del Pókemon.')
     else:
         position_entrenador = lista_entrenadores.search('nombre', entrenador_buscado)
 
         if position_entrenador is not None:
             position_pokemon = lista_entrenadores[position_entrenador].lista_pokemons.search('nombre', pokemon_buscado)
             if position_pokemon is not None:
-                print(f'\nEl entrenador {entrenador_buscado} tiene al Pókemon {pokemon_buscado}.')
-                print(f'\nEntrenador:\n{lista_entrenadores[position_entrenador]}')
-                print(f'\nPókemon:\n{lista_entrenadores[position_entrenador].lista_pokemons[position_pokemon]}')
+                print(f'  → El entrenador {entrenador_buscado} tiene al Pókemon {pokemon_buscado}.')
+                print(f'\n  → Entrenador:')
+                print(f'    - {lista_entrenadores[position_entrenador]}')
+                print(f'\n  → Pókemon:')
+                print(f'    - {lista_entrenadores[position_entrenador].lista_pokemons[position_pokemon]}')
             else:
-                print(f'El entrenador {entrenador_buscado} no tiene al Pókemon {pokemon_buscado}.')
+                print(f'  → El entrenador {entrenador_buscado} no tiene al Pókemon {pokemon_buscado}.')
         else:
-            print(f'\nEl entrenador {entrenador_buscado} no se encuentra en la lista.')
+            print(f'  → El entrenador {entrenador_buscado} no se encuentra en la lista.')
+
+print(f'\n{Color.CIAN}{f" FIN DE EJECUCIÓN DEL PROGRAMA ".center(140, "=")}{Color.RESET}')
