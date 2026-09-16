@@ -182,6 +182,7 @@ for entrenador in lista_entrenadores:
             print(f'    - {pokemon}')
     else:
         print(f'\n    {entrenador.nombre} no tiene Pókemons.')
+
 # a. obtener la cantidad de Pokémons de un determinado entrenador;
 print_seccion('a. obtener la cantidad de Pokémons de un determinado entrenador;')
 entrenador = 'Ash Ketchum'
@@ -249,6 +250,7 @@ print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if position is not None:
     print(f'  → {lista_entrenadores[position]}')
     if not lista_entrenadores[position].lista_pokemons.is_empty():
+        print(f'\n    Pókemons de {entrenador}')
         for pokemon in lista_entrenadores[position].lista_pokemons:
             print(f'    - {pokemon}')
     else:
@@ -293,7 +295,7 @@ for entrenador in lista_entrenadores:
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if not lista_entrenadores_buscados.is_empty():
     for entrenador in lista_entrenadores_buscados:
-        print(f'  → Entrenador: {entrenador.nombre}')
+        print(f'\n  → Entrenador: {entrenador.nombre}')
 
         lista_nombres_pokemons = List()
         lista_pokemons_no_repetidos = List()
