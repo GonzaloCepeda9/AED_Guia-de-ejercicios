@@ -17,25 +17,25 @@ class BinaryTree:
         def __insert(root, value, other_values):
             if root is None:
                 nodo = BinaryTree.__nodeTree(value, other_values)
-                print(f'Nuevo nodo: {nodo.value}')
+                # print(f'Nuevo nodo: {nodo.value}')
                 return nodo
             elif value < root.value:
                 root.left = __insert(root.left, value, other_values)
-                print(f'Nodo izquierdo: {root.left.value}')
+                # print(f'Nodo izquierdo: {root.left.value}')
             else:
                 root.right = __insert(root.right, value, other_values)
-                print(f'Nodo derecho: {root.right.value}')
+                # print(f'Nodo derecho: {root.right.value}')
 
-            print(f'Nodo root: {root.value}')
+            # print(f'Nodo root: {root.value}')
             return root
-        print('----------------------------------------------------')
+        # print('----------------------------------------------------')
 
         self.root = __insert(self.root, value, other_values)
 
     def pre_order(self):
             def __pre_order(root):
                 if root is not None:
-                    print(root.value)           # Este print sería "procesar el nodo".
+                    print(f'  → {root.value}') 
                     __pre_order(root.left)
                     __pre_order(root.right)
     
@@ -45,7 +45,7 @@ class BinaryTree:
         def __in_order(root):
             if root is not None:
                 __in_order(root.left)
-                print(root.value)              # Este print sería "procesar el nodo".
+                print(f'  → {root.value}')            # Este print sería "procesar el nodo".
                 __in_order(root.right)
 
         if self.root is not None:
@@ -55,17 +55,20 @@ class BinaryTree:
         def __post_order(root):
             if root is not None:
                 __post_order(root.right)
-                print(root.value)               # Este print sería "procesar el nodo".
+                print(f'  → {root.value}')               # Este print sería "procesar el nodo".
                 __post_order(root.left)
 
         if self.root is not None:    
             __post_order(self.root)
 
-    def search(self, value: Any):
+    def by_level(self):
+        pass
+
+    def search(self, value: Any) -> __nodeTree:
         def __search(root, value):
             if root is not None:
                 if value == root.value:
-                    # print(f'Valor encontrado')
+                    # print(f'Valor encontrado')  # Este print sería "procesar el nodo".
                     return root
                 elif value < root.value:
                     # print(f'Me voy a buscar a la izquierda')
@@ -74,6 +77,6 @@ class BinaryTree:
                     # print(f'Me voy a buscar a la derecha')
                     return __search(root.right, value)
         aux = None
-        if self.root is not None:
+        if self.root is not None:                   # Antes de llamar a la función, verifica que la raíz no sea None.
             aux = __search(self.root, value)
         return aux
