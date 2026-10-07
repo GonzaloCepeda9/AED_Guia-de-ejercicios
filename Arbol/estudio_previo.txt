@@ -1,0 +1,52 @@
+================================================================================= AUTO BALANCE =================================================================================
+
+# Contexto:
+
+    Cuando inertamos elementos a un TDA árbol en forma ordenada, el árbol se convierte en una lista, y las búsquedas pasan a ser ineficientes.
+
+    Para evitar esto, utilizamos la función auto_balance, que sirve para mantener el árbol balanceado. Es decir, que la altura del subarbol izquierdo difiera de la altura del subarbol derecho como máximo en |1|. Cualquier factor de equilibrio > |1| indicaría que el árbol no está balanceado o no está equilibrado.
+
+    La idea general es que cada nodo sepa su propia altura, y con eso detectar desbalances y corregirlos con rotaciones.
+
+    En pocas palabras
+
+        → Obtener altura
+        → Detectar desbalances
+        → Corregir con rotaciones
+
+# Conceptos
+
+    • Factor de equilibrio
+
+        En primer lugar, en cada nodo, se calcula el factor de equilibrio, que es la diferencia entre la altura del subárbol derecho y la altura del subárbol izquierdo.
+
+            fe = altura derecho - altura izquierdo
+
+    • Rotaciones
+
+        En segundo lugar, si hay desbalance, se aplican rotaciones (simples o dobles). Las rotaciones reacomodan los punteros sin romper el orden del recorrido in-order:
+        
+            izquierda → nodo raíz → derecha.
+
+
+# Preguntas
+
+¿Por qué si un nodo es inexistente tiene altura -1? ¿Al atributo de qué nodo le asignarías el valor -1 si el nodo no existe?
+
+    Buena pregunta. La clave es que -1 no se le asigna a ningún nodo real. Es el valor que devuelve la función height(root) cuando root es None. Es una convención matemática para que las cuentas cierren.
+
+    Fijate:
+
+    • Si definimos que una hoja (nodo sin hijos) tiene altura 0, y queremos que la altura de un nodo sea:
+
+        altura = max(altura_izq, altura_der) + 1
+
+    Entonces, para una hoja, sus dos hijos son None. Si height(None) devolviera 0, la cuenta daría:
+
+        max(0, 0) + 1 = 1           # Pero una hoja debe tener altura 0.
+
+    En cambio, si height(None) devuelve -1:
+
+        max(-1, -1) + 1 = 0         # Altura correcta de una hoja.
+
+    

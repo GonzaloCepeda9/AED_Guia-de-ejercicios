@@ -67,6 +67,18 @@ if buscado is not None:
 else:
     print(f'  → No se encontró el número {numero}.')
 
+# Altura de un árbol o subárbol
+numero = 19
+nodo = arbol_numeros.search(numero)
+print(f'\nLa altura del nodo {numero} es {nodo.height}')
+
+arbol_auxiliar_asdf = BinaryTree()
+numero = 9
+nodo = arbol_auxiliar_asdf.search(numero)
+if nodo is not None:
+    print(f'\nLa altura del nodo {numero} es {nodo.height}')
+else:
+    print(f'El árbol no tiene raíz.')
 
 #########################################  EJECUCIÓN DE PRUEBAS DE ÁRBOL CON DATOS COMPLEJOS  ##########################################
 print(f'\n{Color.CIAN}{f' PRUEBA DE ÁRBOL CON DATOS COMPLEJOS '.center(140, "=")}{Color.RESET}')
