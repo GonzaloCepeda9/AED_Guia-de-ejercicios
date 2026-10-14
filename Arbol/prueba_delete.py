@@ -1,4 +1,4 @@
-from TDA_arbol import BinaryTree
+from TDA_tree import BinaryTree
 
 arbol = BinaryTree()
 arbol.insert(50)

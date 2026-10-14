@@ -1,3 +1,4 @@
+from TDA_queue import Queue
 from typing import Any, Optional
 
 class BinaryTree:
@@ -41,8 +42,9 @@ class BinaryTree:
                     print(f'  → {root.value}') 
                     __pre_order(root.left)
                     __pre_order(root.right)
-    
-            __pre_order(self.root)
+
+            if self.root is not None:
+                __pre_order(self.root)
 
     def in_order(self):
         def __in_order(root):
@@ -64,9 +66,6 @@ class BinaryTree:
         if self.root is not None:    
             __post_order(self.root)
 
-    def by_level(self):
-        pass
-
     def search(self, value: Any) -> __nodeTree:
         def __search(root, value):
             if root is not None:
@@ -84,8 +83,18 @@ class BinaryTree:
             aux = __search(self.root, value)
         return aux
 
-    def proximity_search():
-        pass
+    def proximity_search(self, value: Any) -> __nodeTree:
+        def __search(root, value):                  # Barrido con filtro (recorre todo el árbol, si cumple la condición, imprime)
+            if root is not None:
+                if root.value.startswith(value):
+                    print(root.value)
+                __search(root.left, value)
+                __search(root.right, value)
+
+        aux = None
+        if self.root is not None:
+            aux = __search(self.root, value)
+        return aux
 
     def delete(self, value):
         
@@ -98,6 +107,8 @@ class BinaryTree:
             # Caso 3B → El mayor del subárbol izquierdo NO es la raíz del subárbol izquierdo (debe buscar el último nodo de la derecha)
             else:
                 root.right, replace_node = __replace(root.right)
+                root = self.auto_balance(root)        # Balancea el subárbol del que se extrajo el mayor
+                self.update_height(root)              # Actualiza su altura tras la extracción y posible rotación
                 return root, replace_node
 
         def __delete(root, value):
@@ -123,13 +134,25 @@ class BinaryTree:
                     root.left, replace_node = __replace(root.left)
                     root.value = replace_node.value
                     root.other_values = replace_node.other_values
-                
+
+            root = self.auto_balance(root)
+            self.update_height(root)
             return root
 
         self.root = __delete(self.root, value)
 
     def by_level(self):
-        pass
+        tree_queue = Queue()
+        if self.root is not None:
+            tree_queue.arrive(self.root)
+
+            while tree_queue.size() > 0:
+                node = tree_queue.attention()
+                print(f'  → {node.value}') 
+                if node.left is not None:
+                    tree_queue.arrive(node.left)
+                if node.right is not None:
+                    tree_queue.arrive(node.right)
 
     def height(self, root):
         if root is None:
@@ -187,3 +210,62 @@ class BinaryTree:
         # Si control es True, quiere decir que está cargado a la izquierda, por lo tanto se realiza una rotación simple a la derecha.
 
         # Si control es False, quiere decir que está cargado a la derecha, por lo tanto se realiza una rotación simple a la izquierda.
+
+    def divide_tree():
+        pass
+
+    def in_order_height():
+        pass
+
+    def in_order_weight():
+        pass
+
+
+# arbol_numeros = BinaryTree()
+
+# arbol_numeros.insert(50)
+# arbol_numeros.insert(70)
+# arbol_numeros.insert(30)
+# arbol_numeros.insert(40)
+# arbol_numeros.insert(20)
+# arbol_numeros.insert(10)
+# arbol_numeros.insert(60)
+
+# print(f'Árbol original ordenado de menor a mayor: ')
+# arbol_numeros.in_order()
+
+
+# print(f'\nÁrbol original mostrado por nivel: ')
+
+
+# arbol_personajes = BinaryTree()
+
+# arbol_personajes.insert('Freljord Ashe')
+# arbol_personajes.insert('Caitlyn')
+# arbol_personajes.insert('Jinx')
+# arbol_personajes.insert('Jhin')
+# arbol_personajes.insert('Miss Fortune')
+# arbol_personajes.insert('Darius')
+# arbol_personajes.insert('Freljord Volibear')
+# arbol_personajes.insert('Freljord Aurora')
+# arbol_personajes.insert('Aatrox')
+
+
+# arbol_personajes.proximity_search('Freljord')
+
+
+# Página 139: Fórmulas para determinar:
+
+    # Número máximo de nodos en el nivel i de un árbol binario:
+
+        # 2^(i-1)
+
+        # Para el caso de este árbol sería:
+
+            # print(2^altura - 1)
+            
+            # print(2**(arbol_dado.root.height+1)-1)
+
+    # Número máximo de nodos en un árbol binario de altura k:
+
+        # 2^(k+1) - 1

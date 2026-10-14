@@ -1,0 +1,10 @@
+Auto-balance agregado en __replace:
+
+    root.right, replace_node = __replace(root.right)
+    root = self.auto_balance(root)        # Balancea el subárbol del que se extrajo el mayor
+    self.update_height(root)              # Actualiza su altura tras la extracción y posible rotación
+    return root, replace_node
+
+Justificación
+
+    Al extraer el mayor del subárbol izquierdo, ese subárbol pierde un nodo y puede desbalancearse. Como __replace no pasa por auto_balance (a diferencia de __delete), el desbalance quedaría sin corregir. Estas dos líneas balancean y actualizan la altura en el camino de vuelta de __replace, dejando el subárbol en condiciones AVL antes de que __delete continúe.

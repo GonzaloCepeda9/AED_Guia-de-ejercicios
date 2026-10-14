@@ -1,0 +1,31 @@
+Resumen de delete
+
+Caso 1
+
+    Si el nodo es hoja → Se elimina. El padre del nodo a borrar apunta a None.
+
+Caso 2
+
+    Si el nodo tiene un solo hijo → Se elimina. El padre del nodo a borrar apunta al hijo.
+
+Caso 3
+
+    Si el nodo tiene dos hijos → Se busca el mayor del subárbol izquierdo (el nodo más a la derecha de ese subárbol).
+
+
+        Subcaso 3A
+        
+        Si el mayor es la raíz del subárbol izquierdo → Se copia su valor y se asigna al nodo a eliminar.
+
+            Si esa raíz no tiene hijos, su padre apunta a None.
+        
+            Si esa raíz tiene hijo izquierdo, su padre apunta a ese hijo.
+
+
+        Subcaso 3B
+
+        Si el mayor no es la raíz del subárbol izquierdo → Se baja por la derecha hasta encontrarlo, se copia su valor y se asigna al nodo a eliminar.
+
+            Si el mayor no tiene hijos, su padre apunta a None.
+        
+            Si el mayor tiene hijo izquierdo, su padre apunta a ese hijo.

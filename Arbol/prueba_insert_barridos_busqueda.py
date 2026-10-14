@@ -1,4 +1,4 @@
-from TDA_arbol import BinaryTree
+from TDA_tree import BinaryTree
 from ej5_lista_superheroes import lista_superheroes
 
 # --------- CARGA DE DATOS --------- #

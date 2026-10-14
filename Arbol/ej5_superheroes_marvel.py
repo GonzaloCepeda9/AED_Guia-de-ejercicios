@@ -12,7 +12,7 @@ g. generar un bosque a partir de este árbol, un árbol debe contener a los supe
     II. realizar un barrido ordenado alfabéticamente de cada árbol.
 '''
 
-from TDA_arbol import BinaryTree
+from TDA_tree import BinaryTree
 from ej5_lista_superheroes import lista_superheroes
 from typing import Any, Optional
 
