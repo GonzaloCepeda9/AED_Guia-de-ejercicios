@@ -211,48 +211,23 @@ class BinaryTree:
 
         # Si control es False, quiere decir que está cargado a la derecha, por lo tanto se realiza una rotación simple a la izquierda.
 
-    def divide_tree():
-        pass
+    def divide_tree(self, arbol_v, arbol_f, condition):
+        def __divide_tree(root, arbol_v, arbol_f, condition):
+            if root is not None:
+                if root.other_values[condition] is True:        # Si la condición es verdadera, lo inserto en arbol_v; si la condición es falsa, lo inserto en arbol_f. De esta forma queda más genérico, y solo cambio la condición según el ejercicio.
+                    arbol_v.insert(root.value, root.other_values)
+                else:
+                    arbol_f.insert(root.value, root.other_values)
+                __divide_tree(root.left, arbol_v, arbol_f, condition)
+                __divide_tree(root.right, arbol_v, arbol_f, condition)
+
+        __divide_tree(self.root, arbol_v, arbol_f, condition)
 
     def in_order_height():
         pass
 
     def in_order_weight():
         pass
-
-
-# arbol_numeros = BinaryTree()
-
-# arbol_numeros.insert(50)
-# arbol_numeros.insert(70)
-# arbol_numeros.insert(30)
-# arbol_numeros.insert(40)
-# arbol_numeros.insert(20)
-# arbol_numeros.insert(10)
-# arbol_numeros.insert(60)
-
-# print(f'Árbol original ordenado de menor a mayor: ')
-# arbol_numeros.in_order()
-
-
-# print(f'\nÁrbol original mostrado por nivel: ')
-
-
-# arbol_personajes = BinaryTree()
-
-# arbol_personajes.insert('Freljord Ashe')
-# arbol_personajes.insert('Caitlyn')
-# arbol_personajes.insert('Jinx')
-# arbol_personajes.insert('Jhin')
-# arbol_personajes.insert('Miss Fortune')
-# arbol_personajes.insert('Darius')
-# arbol_personajes.insert('Freljord Volibear')
-# arbol_personajes.insert('Freljord Aurora')
-# arbol_personajes.insert('Aatrox')
-
-
-# arbol_personajes.proximity_search('Freljord')
-
 
 # Página 139: Fórmulas para determinar:
 

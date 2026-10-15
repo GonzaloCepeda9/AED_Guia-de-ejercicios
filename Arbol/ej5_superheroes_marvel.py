@@ -12,95 +12,125 @@ g. generar un bosque a partir de este árbol, un árbol debe contener a los supe
     II. realizar un barrido ordenado alfabéticamente de cada árbol.
 '''
 
+from TDA_list import List
 from TDA_tree import BinaryTree
-from ej5_lista_superheroes import lista_superheroes
+from ej5_lista_personajes_comic import lista_personajes_comic
 from typing import Any, Optional
-
-# --------- CARGA DE DATOS ---------
-arbol_superheroes = BinaryTree()
-arbol_ordenado_por_campo = BinaryTree()
-
-for superheroe in lista_superheroes:
-    arbol_superheroes.insert(superheroe['nombre'], superheroe)
-
-for superheroe in lista_superheroes:
-    arbol_ordenado_por_campo.insert(superheroe['nombre'], superheroe)
 
 # --------- CREACIÓN DE FUNCIONES ADICIONALES --------- #
 
-# b. listar los villanos ordenados alfabéticamente;
-def listar_villanos(arbol: BinaryTree):
-    def __listar_villanos(root):
-        if root is not None:
-            __listar_villanos(root.left)
-            if root.other_values['is_villain'] == True:
+class BinaryTreePersonajes(BinaryTree):
+
+    # b. listar los villanos ordenados alfabéticamente;
+    def listar_villanos(self):
+        def __listar_villanos(root):
+            if root is not None:
+                __listar_villanos(root.left)
+                if root.other_values['is_villain'] == True:
+                        print(f'  → {root.value}')
+                __listar_villanos(root.right)
+
+        if self.root is not None:
+            __listar_villanos(self.root)
+
+    # c. mostrar todos los superhéroes que empiezan con C;
+    def mostrar_por_inicial(self):
+        def __mostrar_por_inicial(root):
+            if root is not None:
+                __mostrar_por_inicial(root.left)
+                if root.other_values['is_villain'] is False and root.value.startswith('C'):
                     print(f'  → {root.value}')
-            __listar_villanos(root.right)
+                __mostrar_por_inicial(root.right)
 
-    if arbol.root is not None:
-        __listar_villanos(arbol.root)
+        if self.root is not None:
+            __mostrar_por_inicial(self.root)
 
-# c. mostrar todos los superhéroes que empiezan con C;
-def mostrar_por_inicial(arbol: BinaryTree):
-    def __mostrar_por_inicial(root):
-        if root is not None:
-            __mostrar_por_inicial(root.left)
-            if root.value.startswith('C'):
-                    print(f'  → {root.value}')
-            __mostrar_por_inicial(root.right)
+    # d. determinar cuántos superhéroes hay el árbol;
+    def determinar_superheroes(self):
+        def __determinar_superheroes(root, contador: int = 0):
+            if root is not None:
+                contador = __determinar_superheroes(root.left, contador)
+                if root.other_values['is_villain'] == False:
+                    contador += 1
+                contador = __determinar_superheroes(root.right, contador)
+            return contador
 
-    if arbol.root is not None:
-        __mostrar_por_inicial(arbol.root)
+        if self.root is None:
+            return 0
 
-# d. determinar cuántos superhéroes hay el árbol;
-def determinar_superheroes(arbol: BinaryTree):
-    def __determinar_superheroes(root, contador: int = 0):
-        if root is not None:
-            contador = __determinar_superheroes(root.left, contador)
-            if root.other_values['is_villain'] == False:
-                contador += 1
-            contador = __determinar_superheroes(root.right, contador)
-        return contador
+        return __determinar_superheroes(self.root)
 
-    if arbol.root is None:
-        return 0
+    # e. Doctor Strange en realidad está mal cargado. Utilice una búsqueda por proximidad para encontrarlo en el árbol y modificar su nombre;
 
-    return __determinar_superheroes(arbol.root)
+    def proximity_search(self, value: Any) -> List:
+        def __search(root, value, resultados):
+            if root is not None:
+                if root.value.startswith(value):
+                    resultados.insert_value(root)
+                __search(root.left, value, resultados)
+                __search(root.right, value, resultados)
 
-# g. generar un bosque a partir de este árbol, un árbol debe contener a los superhéroes y otro a los villanos, luego resolver las siguiente tareas:
+        resultados = List()
+        if self.root is not None:
+            __search(self.root, value, resultados)
 
-def insertar_por_campo(arbol, value: Any, other_values: Optional[Any] = None):
-    def __insertar_por_campo(root, value, other_values):
-        if root is None:
-            nodo = BinaryTree.__nodeTree(value, other_values)
-            return nodo
-        elif other_values['is_villain'] == False:
-            root.left = __insertar_por_campo(root.left, value, other_values)
-        else:
-            root.right = __insertar_por_campo(root.right, value, other_values)
-        return root
+        return resultados
 
-    arbol.root = __insertar_por_campo(arbol.root, value, other_values)
+    # f. listar los superhéroes ordenados de manera descendente;
+    def listar_superheroes_descendente(self):
+        def __listar_superheroes_descendente(root):
+            if root is not None:
+                __listar_superheroes_descendente(root.right)
+                if root.other_values['is_villain'] == False:
+                        print(f'  → {root.value}')
+                __listar_superheroes_descendente(root.left)
 
-#     I. determinar cuántos nodos tiene cada árbol;
-def determinar_superheroe_o_villano(arbol: BinaryTree):
-    def __determinar_superheroe_o_villano(root, contador_superheroes: int = 0, contador_villanos: int = 0):
-        if root is not None:
-            contador_superheroes, contador_villanos = __determinar_superheroe_o_villano(root.left, contador_superheroes, contador_villanos)
-            if root.other_values['is_villain'] == False:
-                contador_superheroes += 1
+        if self.root is not None:
+            __listar_superheroes_descendente(self.root)
+
+    # g. generar un bosque a partir de este árbol, un árbol debe contener a los superhéroes y otro a los villanos, luego resolver las siguiente tareas:
+
+    def insertar_por_campo(self, value: Any, other_values: Optional[Any] = None):
+        def __insertar_por_campo(root, value, other_values):
+            if root is None:
+                nodo = BinaryTree.__nodeTree(value, other_values)
+                return nodo
+            elif other_values['is_villain'] == False:
+                root.left = __insertar_por_campo(root.left, value, other_values)
             else:
-                contador_villanos += 1
-            contador_superheroes, contador_villanos = __determinar_superheroe_o_villano(root.right, contador_superheroes, contador_villanos)
-        return contador_superheroes, contador_villanos
+                root.right = __insertar_por_campo(root.right, value, other_values)
+            return root
 
-    if arbol.root is None:
-        return 0, 0
+        self.root = __insertar_por_campo(self.root, value, other_values)
 
-    return __determinar_superheroe_o_villano(arbol.root)
+    #     I. determinar cuántos nodos tiene cada árbol;
+    def determinar_superheroe_o_supervillano(self: BinaryTree):
+        def __determinar_superheroe_o_supervillano(root, contador_superheroes: int = 0, contador_villanos: int = 0):
+            if root is not None:
+                contador_superheroes, contador_villanos = __determinar_superheroe_o_supervillano(root.left, contador_superheroes, contador_villanos)
+                if root.other_values['is_villain'] == False:
+                    contador_superheroes += 1
+                else:
+                    contador_villanos += 1
+                contador_superheroes, contador_villanos = __determinar_superheroe_o_supervillano(root.right, contador_superheroes, contador_villanos)
+            return contador_superheroes, contador_villanos
 
-#     II. realizar un barrido ordenado alfabéticamente de cada árbol.
+        if self.root is None:
+            return 0, 0
 
+        return __determinar_superheroe_o_supervillano(self.root)
+
+    #     II. realizar un barrido ordenado alfabéticamente de cada árbol.
+
+# --------- CARGA DE DATOS ---------
+arbol_personajes = BinaryTreePersonajes()
+# arbol_ordenado_por_campo = BinaryTreePersonajes()
+
+for personaje in lista_personajes_comic:
+    arbol_personajes.insert(personaje['nombre'], personaje)
+
+# for personaje in lista_personajes_comic:
+#     arbol_ordenado_por_campo.insert(personaje['nombre'], personaje)
 
 # --------- CREACIÓN DE FUNCIONES PARA FORMATO --------- #
 class Color:
@@ -120,11 +150,11 @@ def print_seccion_extra(titulo, ancho=140, relleno=" ", color=Color.VERDE):
     print(f'{color}{f" {titulo} ".center(ancho, relleno)}{Color.RESET}')
 
 #################################################  EJECUCIÓN DE PRUEBAS DEL ENUNCIADO  #################################################
-print(f'\n{Color.CIAN}{f' EJERCICIO 5: SUPERHÉROES Y VILLANOS DE MARVEL CINEMATIC UNIVERSE (MCU) '.center(140, "=")}{Color.RESET}')
+print(f'\n{Color.CIAN}{f' EJERCICIO 5: PERSONAJES DE MARVEL CINEMATIC UNIVERSE (MCU) '.center(140, "=")}{Color.RESET}')
 
-print_seccion('Información completa de superhéroes')
+print_seccion('Información completa de personajes')
 print(f'{Color.AZUL}Lista original ordenada alfabéticamente:{Color.RESET}')
-arbol_superheroes.in_order()
+arbol_personajes.in_order()
 
 # a. además del nombre del superhéroe, en cada nodo del árbol se almacenará un campo booleano que indica si es un héroe o un villano, True y False respectivamente;
 print_seccion('a. además del nombre del superhéroe, en cada nodo del árbol se almacenará un campo booleano')
@@ -135,17 +165,17 @@ print(f'  → En el campo "other_values" de cada nodo del árbol se almacenó la
 # b. listar los villanos ordenados alfabéticamente;
 print_seccion('# b. listar los villanos ordenados alfabéticamente;')
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
-listar_villanos(arbol_superheroes)
+arbol_personajes.listar_villanos()
 
 # c. mostrar todos los superhéroes que empiezan con C;
 print_seccion('c. mostrar todos los superhéroes que empiezan con C;')
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
-mostrar_por_inicial(arbol_superheroes)
+arbol_personajes.mostrar_por_inicial()
 
 # d. determinar cuántos superhéroes hay el árbol;
-print_seccion('d. determinar cuántos superhéroes hay el árbol;')
+print_seccion('d. determinar cuántos superhéroes hay en el árbol;')
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
-cantidad = determinar_superheroes(arbol_superheroes)
+cantidad = arbol_personajes.determinar_superheroes()
 if cantidad > 0:
     print(f'  → En el árbol hay {cantidad} superhéroes.')
 else:
@@ -155,12 +185,38 @@ else:
 print_seccion('e. Doctor Strange en realidad está mal cargado. Utilice una búsqueda por proximidad')
 print_seccion_extra('para encontrarlo en el árbol y modificar su nombre;')
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
-print(f'  → Aún no desarrollado en clase.')
+
+buscado = 'Dr. Strange'
+coincidencia_buscada = 'D'
+coincidencias = arbol_personajes.proximity_search(coincidencia_buscada)
+
+if not coincidencias.is_empty():
+
+    print(f'  → Coincidencias encontradas para "{coincidencia_buscada}".')
+    for coincidencia in coincidencias:
+        print(f'    - {coincidencia.value}')
+
+    modificado = False
+    for nodo in coincidencias:
+        if nodo.value == buscado:
+            modificado = True
+            aux_other_values = nodo.other_values
+            arbol_personajes.delete('Dr. Strange')
+            arbol_personajes.insert('Doctor Strange', aux_other_values)
+            print(f'\n  → El nombre del personaje "{buscado}" ha sido modificado correctamente.')
+            print(f'{Color.AZUL}\nLista actualizada:{Color.RESET}')
+            arbol_personajes.in_order()
+            break
+
+    if modificado == False:
+        print(f'\n  → El personaje {buscado} no se encontró entre las coincidencias.')
+else:
+    print(f'\n  → No se encontraron coincidencias para "{coincidencia_buscada}".')
 
 # f. listar los superhéroes ordenados de manera descendente;
 print_seccion('f. listar los superhéroes ordenados de manera descendente;')
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
-arbol_superheroes.post_order()
+arbol_personajes.listar_superheroes_descendente()
 
 # g. generar un bosque a partir de este árbol, un árbol debe contener a los superhéroes y otro a los villanos, luego resolver las siguiente tareas:
 print_seccion('g. generar un bosque a partir de este árbol...')
@@ -169,10 +225,10 @@ print(f'  → Aún no desarrollado en clase.')
 
 #     I. determinar cuántos nodos tiene cada árbol;
 print_seccion_extra('\nI. determinar cuántos nodos tiene cada árbol;')
-cantidad_superheroes, cantidad_villanos = determinar_superheroe_o_villano(arbol_ordenado_por_campo)
+cantidad_superheroes, cantidad_villanos = arbol_personajes.determinar_superheroe_o_supervillano()
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
-print(f'  → El subárbol de superheroes contiene {cantidad_superheroes} nodos.')
-print(f'  → El subárbol de villanos contiene {cantidad_villanos} nodos.')
+print(f'  → El subárbol de superhéroes contiene {cantidad_superheroes} nodos.')
+print(f'  → El subárbol de supervillanos contiene {cantidad_villanos} nodos.')
 
 #     II. realizar un barrido ordenado alfabéticamente de cada árbol.
 print_seccion_extra('\nII. realizar un barrido ordenado alfabéticamente de cada árbol.')

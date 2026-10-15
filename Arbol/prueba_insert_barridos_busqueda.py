@@ -1,5 +1,5 @@
 from TDA_tree import BinaryTree
-from ej5_lista_superheroes import lista_superheroes
+from ej5_lista_personajes_comic import lista_personajes_comic
 
 # --------- CARGA DE DATOS --------- #
 
@@ -14,9 +14,9 @@ arbol_numeros.insert(45)
 arbol_numeros.insert(27)
 
 # Árbol con datos complejos
-arbol_superheroes = BinaryTree()
-for superheroe in lista_superheroes:
-    arbol_superheroes.insert(superheroe['nombre'], superheroe)
+arbol_personajes = BinaryTree()
+for personaje in lista_personajes_comic:
+    arbol_personajes.insert(personaje['nombre'], personaje)
 
 # --------- CREACIÓN DE FUNCIONES PARA FORMATO --------- #
 class Color:
@@ -87,27 +87,27 @@ print_seccion('Barridos')
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 
 print(f'\nBarrido inorder (hijo izquierdo → raíz → hijo derecho):')
-arbol_superheroes.in_order()
+arbol_personajes.in_order()
 
 print(f'\nBarrido postorder (hijo derecho → raíz → hijo izquierdo):')
-arbol_superheroes.post_order()
+arbol_personajes.post_order()
 
 print(f'\nBarrido preorder (nodo raíz → hijo izquierdo → hijo derecho):')
-arbol_superheroes.pre_order()
+arbol_personajes.pre_order()
 
 # Búsquedas
 print_seccion('Búsqueda por nombre del personaje')
 print(f'Árbol ordenado alfabéticamente: ')
-arbol_superheroes.in_order()
+arbol_personajes.in_order()
 print(f'{Color.AZUL}\nDatos ingresados:{Color.RESET}')
-superheroe = 'Spider-Man'
-print(f'  → {superheroe}')
+personaje = 'Spider-Man'
+print(f'  → {personaje}')
 
 print(f'{Color.VIOLETA}\nResultado:{Color.RESET}')
-buscado = arbol_superheroes.search(superheroe)
+buscado = arbol_personajes.search(personaje)
 if buscado is not None:
     print(
-        f'  → El superhéroe {superheroe} se encuentra en la lista.'
+        f'  → El superhéroe {personaje} se encuentra en la lista.'
         f'\n    - Valor del nodo: {buscado.value}'
         f'\n    - Valor a su izquierda: {buscado.left.value}'
         f'\n    - Valor a su derecha: {buscado.right.value}'
@@ -115,16 +115,16 @@ if buscado is not None:
         f'\n    - {buscado.other_values}'
     )
 else:
-    print(f'  → El superhéroe {superheroe} no se encuentra en el árbol.')
+    print(f'  → El superhéroe {personaje} no se encuentra en el árbol.')
 
 print(f'{Color.AZUL}\nDatos ingresados:{Color.RESET}')
-superheroe = 'Wolverine'
-buscado = arbol_superheroes.search(superheroe)
-print(f'  → {superheroe}')
+personaje = 'Wolverine'
+buscado = arbol_personajes.search(personaje)
+print(f'  → {personaje}')
 print(f'{Color.VIOLETA}\nResultado:{Color.RESET}')
 if buscado is not None:
     print(
-        f'  → El superhéroe {superheroe} se encuentra en la lista.'
+        f'  → El superhéroe {personaje} se encuentra en la lista.'
         f'\n    - Valor del nodo: {buscado.value}'
         f'\n    - Valor a su izquierda: {buscado.left.value}'
         f'\n    - Valor a su derecha: {buscado.right}'
@@ -132,6 +132,6 @@ if buscado is not None:
         f'\n    - {buscado.other_values}'
     )
 else:
-    print(f'  → El superhéroe {superheroe} no se encuentra en el árbol.')
+    print(f'  → El superhéroe {personaje} no se encuentra en el árbol.')
 
 print(f'\n{Color.CIAN}{f" FIN DE EJECUCIÓN DEL PROGRAMA ".center(140, "=")}{Color.RESET}')
