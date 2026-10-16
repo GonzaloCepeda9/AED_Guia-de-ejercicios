@@ -36,35 +36,58 @@ class BinaryTree:
 
         self.root = __insert(self.root, value, other_values)
 
-    def pre_order(self):
+    def in_order(self):                                     # in_order = IZQ → RAÍZ → DER (de menor a mayor)
+        def __in_order(root):
+            if root is not None:
+                __in_order(root.left)
+                print(f'  → {root.value}')
+                __in_order(root.right)
+
+        if self.root is not None:
+            __in_order(self.root)
+
+    # def in_order_inverse(self):                             # in_order_inverse = DER → RAÍZ → IZQ (de mayor a menor) || Según otras bibliografías
+    #     def __in_order_inverse(root):
+    #         if root is not None:
+    #             __in_order_inverse(root.right)
+    #             print(f'  → {root.value}')
+    #             __in_order_inverse(root.left)
+
+    #     if self.root is not None:
+    #         __in_order_inverse(self.root)
+
+    def post_order(self):                                   # DER → RAÍZ → IZQ (mayor a menor según Walter Bel) // IZQ → DER → RAÍZ (según otras bibliografías: Cormen, Weiss, Brassard-Bratley, Knuth, etc.)
+        def __post_order(root):
+            if root is not None:
+                __post_order(root.right)
+                print(f'  → {root.value}')
+                __post_order(root.left)
+
+        if self.root is not None:    
+            __post_order(self.root)
+
+    def pre_order(self):                                    # RAÍZ → IZQ → DER
             def __pre_order(root):
                 if root is not None:
-                    print(f'  → {root.value}') 
+                    print(f'  → {root.value}')
                     __pre_order(root.left)
                     __pre_order(root.right)
 
             if self.root is not None:
                 __pre_order(self.root)
 
-    def in_order(self):
-        def __in_order(root):
-            if root is not None:
-                __in_order(root.left)
-                print(f'  → {root.value}')            # Este print sería "procesar el nodo".
-                __in_order(root.right)
-
+    def by_level(self):                                     # by_level = NIVEL 1 → NIVEL 2 → ... → NIVEL n (por nivel)
+        tree_queue = Queue()
         if self.root is not None:
-            __in_order(self.root)
+            tree_queue.arrive(self.root)
 
-    def post_order(self):
-        def __post_order(root):
-            if root is not None:
-                __post_order(root.right)
-                print(f'  → {root.value}')               # Este print sería "procesar el nodo".
-                __post_order(root.left)
-
-        if self.root is not None:    
-            __post_order(self.root)
+            while tree_queue.size() > 0:
+                node = tree_queue.attention()
+                print(f'  → {node.value}') 
+                if node.left is not None:
+                    tree_queue.arrive(node.left)
+                if node.right is not None:
+                    tree_queue.arrive(node.right)
 
     def search(self, value: Any) -> __nodeTree:
         def __search(root, value):
@@ -112,47 +135,56 @@ class BinaryTree:
                 return root, replace_node
 
         def __delete(root, value):
+
+            deleted_value = None
+            deleted_other_values = None
+
             if root is None:
-                return None
+                return None, None, None
+            
             if value < root.value:
-                root.left = __delete(root.left, value)
+                root.left, deleted_value, deleted_other_values = __delete(root.left, value)
+
             elif value > root.value:
-                root.right = __delete(root.right, value)
+                root.right, deleted_value, deleted_other_values = __delete(root.right, value)
+
             else:
+
+                # Nodo encontrado: capturamos lo que se va a eliminar
+                deleted_value = root.value
+                deleted_other_values = root.other_values
+
                 # Caso 1 → El nodo no tiene hijos
                 if root.left is None and root.right is None:
-                    return None # Al devolver None, el nodo padre deja de apuntar al valor encontrado y apunta a None. Entonces, queda desconectado del árbol (al buscado ya nadie lo referencia).
+                    return None, deleted_value, deleted_other_values # Al devolver None, el nodo padre deja de apuntar al valor encontrado y apunta a None. Entonces, queda desconectado del árbol (al buscado ya nadie lo referencia).
 
                 # Caso 2 → El nodo tiene un solo hijo
                 elif root.left is None:
-                    return root.right
+                    return root.right, deleted_value, deleted_other_values
+                
                 elif root.right is None:
-                    return root.left
+                    return root.left, deleted_value, deleted_other_values
 
-                # Caso 3 → El nodo tiene hijo izquierdo e hijo derecho (llama a la función/herlper __replace)
+                # Caso 3 → El nodo tiene hijo izquierdo e hijo derecho (llama a la función/helper __replace)
                 else:
                     root.left, replace_node = __replace(root.left)
                     root.value = replace_node.value
                     root.other_values = replace_node.other_values
 
-            root = self.auto_balance(root)
-            self.update_height(root)
-            return root
+            # Rebalanceo del árbol solo si el subárbol no quedó vacío
+            if root is not None:
+                root = self.auto_balance(root)
+                self.update_height(root)
+            
+            return root, deleted_value, deleted_other_values
 
-        self.root = __delete(self.root, value)
+        deleted_value = None
+        deleted_other_values = None
 
-    def by_level(self):
-        tree_queue = Queue()
         if self.root is not None:
-            tree_queue.arrive(self.root)
+            self.root, deleted_value, deleted_other_values = __delete(self.root, value)
 
-            while tree_queue.size() > 0:
-                node = tree_queue.attention()
-                print(f'  → {node.value}') 
-                if node.left is not None:
-                    tree_queue.arrive(node.left)
-                if node.right is not None:
-                    tree_queue.arrive(node.right)
+        return deleted_value, deleted_other_values
 
     def height(self, root):
         if root is None:
@@ -223,11 +255,29 @@ class BinaryTree:
 
         __divide_tree(self.root, arbol_v, arbol_f, condition)
 
-    def in_order_height():
-        pass
+# Pasar al ejercicio específico en donde se usa.
 
-    def in_order_weight():
-        pass
+    def in_order_height(self):
+        def __in_order_height(root):
+            if root is not None:
+                __in_order_height(root.left)
+                if root.other_values['height'] > 100:
+                    print(f'  → {root.value}')            # Este print sería "procesar el nodo".
+                __in_order_height(root.right)
+
+        if self.root is not None:
+            __in_order_height(self.root)
+        
+    def in_order_weight(self):
+        def __in_order_weight(root):
+            if root is not None:
+                __in_order_weight(root.left)
+                if root.other_values['weight'] > 100:
+                    print(f'  → {root.value}')            # Este print sería "procesar el nodo".
+                __in_order_weight(root.right)
+
+        if self.root is not None:
+            __in_order_weight(self.root)
 
 # Página 139: Fórmulas para determinar:
 

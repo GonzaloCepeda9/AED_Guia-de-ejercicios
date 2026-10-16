@@ -10,12 +10,9 @@ f. contar cuántos números pares e impares hay en el árbol.
 '''
 
 from TDA_tree import BinaryTree
-from random import randint
 
 # --------- CARGA DE DATOS --------- #
 arbol_numeros = BinaryTree()
-# for _ in range(10):
-#     arbol_numeros.insert(randint(1, 20))
 
 arbol_numeros.insert(19)
 arbol_numeros.insert(7)
@@ -24,7 +21,6 @@ arbol_numeros.insert(11)
 arbol_numeros.insert(22)
 arbol_numeros.insert(27)
 arbol_numeros.insert(45)
-arbol_numeros.insert(27)
 
 # --------- CREACIÓN DE FUNCIONES ADICIONALES --------- #
 
@@ -83,22 +79,26 @@ print(f'\n{Color.CIAN}{f' EJERCICIO 1: NÚMEROS ENTEROS '.center(140, "=")}{Colo
 # a. realizar los barridos preorden, inorden, postorden y por nivel sobre el árbol generado;
 print_seccion('a. realizar los barridos preorden, inorden, postorden y por nivel sobre el árbol generado;')
 
-print(f'{Color.AZUL}Barrido inorder (hijo izquierdo → raíz → hijo derecho): {Color.RESET}')
+print(f'{Color.AZUL}Barrido "in order" (IZQ → RAÍZ → DER): {Color.RESET}')
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 arbol_numeros.in_order()
 
-print(f'{Color.AZUL}\nBarrido postorder (hijo derecho → raíz → hijo izquierdo): {Color.RESET}')
+print(f'{Color.AZUL}\nBarrido "post order" (DER → RAÍZ → IZQ): {Color.RESET}')
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 arbol_numeros.post_order()
 
-print(f'{Color.AZUL}\nBarrido preorder (nodo raíz → hijo izquierdo → hijo derecho): {Color.RESET}')
+print(f'{Color.AZUL}\nBarrido "pre order" (RAÍZ → IZQ → DER): {Color.RESET}')
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 arbol_numeros.pre_order()
 
+print(f'{Color.AZUL}\nBarrido "by level" (NIVEL 1 → NIVEL 2 → ... → NIVEL n): {Color.RESET}')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
+arbol_numeros.by_level()
+
 # b. determinar si un número está cargado en el árbol o no;
 print_seccion('b. determinar si un número está cargado en el árbol o no;')
-print(f'Árbol ordenado de menor a mayor: ')
-arbol_numeros.in_order()
+# print(f'Árbol ordenado de menor a mayor: ')
+# arbol_numeros.in_order()
 print(f'{Color.AZUL}\nDatos ingresados:{Color.RESET}')
 numero = int(input('  → Ingrese el número que desea determinar si está cargado en el árbol: '))
 
@@ -108,11 +108,55 @@ if buscado is not None:
     print(
         f'  → El nodo se encuentra en la lista.'
         f'\n    - Valor del nodo: {buscado.value}'
-        f'\n    - Valor a su izquierda: {buscado.left}'
-        f'\n    - Valor a su derecha: {buscado.right}'
+        f'\n    - Valor a su izquierda: {buscado.left.value if buscado.left else None}'
+        f'\n    - Valor a su derecha: {buscado.right.value if buscado.right else None}'
     )
 else:
     print(f'  → El número {numero} no se encuentra en el árbol.')
+
+# c. eliminar tres valores del árbol;
+print_seccion('c. eliminar tres valores del árbol;')
+print(f'{Color.AZUL}Datos ingresados:{Color.RESET}')
+nodo_a_eliminar = 45
+print(f'  → Nodo a eliminar: {nodo_a_eliminar}')
+nodo_eliminado, _ = arbol_numeros.delete(nodo_a_eliminar)
+print(f'{Color.VIOLETA}\nResultado:{Color.RESET}')
+if nodo_eliminado is not None:
+    print(f'  → El nodo {nodo_eliminado} ha sido eliminado.')
+else:
+    print(f'  → El nodo {nodo_a_eliminar} no se encuentra en el árbol.')
+print(f'{Color.AZUL}\nDatos ingresados:{Color.RESET}')
+nodo_a_eliminar = 7
+print(f'  → Nodo a eliminar: {nodo_a_eliminar}')
+nodo_eliminado, _ = arbol_numeros.delete(nodo_a_eliminar)
+print(f'{Color.VIOLETA}\nResultado:{Color.RESET}')
+if nodo_eliminado is not None:
+    print(f'  → El nodo {nodo_eliminado} ha sido eliminado.')
+else:
+    print(f'  → El nodo {nodo_a_eliminar} no se encuentra en el árbol.')
+print(f'{Color.AZUL}\nDatos ingresados:{Color.RESET}')
+nodo_a_eliminar = 27
+print(f'  → Nodo a eliminar: {nodo_a_eliminar}')
+nodo_eliminado, _ = arbol_numeros.delete(nodo_a_eliminar)
+print(f'{Color.VIOLETA}\nResultado:{Color.RESET}')
+if nodo_eliminado is not None:
+    print(f'  → El nodo {nodo_eliminado} ha sido eliminado.')
+else:
+    print(f'  → El nodo {nodo_a_eliminar} no se encuentra en el árbol.')
+
+# d. determinar la altura del subárbol izquierdo y del subárbol derecho;
+print_seccion('d. determinar la altura del subárbol izquierdo y del subárbol derecho;')
+if arbol_numeros.root is not None and arbol_numeros.root.left is not None:
+    altura_subarbol_izquierdo = arbol_numeros.height(arbol_numeros.root.left)
+else:
+    altura_subarbol_izquierdo = 0
+if arbol_numeros.root is not None and arbol_numeros.root.right is not None:
+    altura_subarbol_derecho = arbol_numeros.height(arbol_numeros.root.right)
+else:
+    altura_subarbol_derecho = 0
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
+print(f'  → Altura del subárbol izquierdo: {altura_subarbol_izquierdo}')
+print(f'  → Altura del subárbol derecho: {altura_subarbol_derecho}')
 
 # e. determinar la cantidad de ocurrencias de un elemento en el árbol;
 print_seccion('e. determinar la cantidad de ocurrencias de un elemento en el árbol;')
