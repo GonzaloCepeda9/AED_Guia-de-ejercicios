@@ -122,19 +122,15 @@ class BinaryTreePersonajes(BinaryTree):
 
     #     II. realizar un barrido ordenado alfabéticamente de cada árbol.
 
-    
+# --------- CARGA DE DATOS --------- #
 
-# --------- CARGA DE DATOS ---------
 arbol_personajes = BinaryTreePersonajes()
-# arbol_ordenado_por_campo = BinaryTreePersonajes()
 
 for personaje in lista_personajes_comic:
     arbol_personajes.insert(personaje['nombre'], personaje)
 
-# for personaje in lista_personajes_comic:
-#     arbol_ordenado_por_campo.insert(personaje['nombre'], personaje)
-
 # --------- CREACIÓN DE FUNCIONES PARA FORMATO --------- #
+
 class Color:
     RESET   = '\033[0m'
     NEGRITA = '\033[1m'
