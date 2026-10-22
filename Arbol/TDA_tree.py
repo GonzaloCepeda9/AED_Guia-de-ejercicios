@@ -278,19 +278,3 @@ class BinaryTree:
 
         if self.root is not None:
             __in_order_weight(self.root)
-
-# Página 139: Fórmulas para determinar:
-
-    # Número máximo de nodos en el nivel i de un árbol binario:
-
-        # 2^(i-1)
-
-        # Para el caso de este árbol sería:
-
-            # print(2^altura - 1)
-            
-            # print(2**(arbol_dado.root.height+1)-1)
-
-    # Número máximo de nodos en un árbol binario de altura k:
-
-        # 2^(k+1) - 1

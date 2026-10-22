@@ -22,6 +22,7 @@ from typing import Any, Optional
 class BinaryTreePersonajes(BinaryTree):
 
     # b. listar los villanos ordenados alfabéticamente;
+    
     def listar_villanos(self):
         def __listar_villanos(root):
             if root is not None:
@@ -34,6 +35,7 @@ class BinaryTreePersonajes(BinaryTree):
             __listar_villanos(self.root)
 
     # c. mostrar todos los superhéroes que empiezan con C;
+
     def mostrar_por_inicial(self):
         def __mostrar_por_inicial(root):
             if root is not None:
@@ -46,6 +48,7 @@ class BinaryTreePersonajes(BinaryTree):
             __mostrar_por_inicial(self.root)
 
     # d. determinar cuántos superhéroes hay el árbol;
+
     def determinar_superheroes(self):
         def __determinar_superheroes(root, contador: int = 0):
             if root is not None:
@@ -77,6 +80,7 @@ class BinaryTreePersonajes(BinaryTree):
         return resultados
 
     # f. listar los superhéroes ordenados de manera descendente;
+    
     def listar_superheroes_descendente(self):
         def __listar_superheroes_descendente(root):
             if root is not None:
@@ -104,6 +108,7 @@ class BinaryTreePersonajes(BinaryTree):
         self.root = __insertar_por_campo(self.root, value, other_values)
 
     #     I. determinar cuántos nodos tiene cada árbol;
+
     def determinar_superheroe_o_supervillano(self: BinaryTree):
         def __determinar_superheroe_o_supervillano(root, contador_superheroes: int = 0, contador_supervillanos: int = 0):
             if root is not None:

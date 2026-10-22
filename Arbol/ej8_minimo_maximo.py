@@ -6,6 +6,8 @@ from TDA_tree import BinaryTree
 
 class BinaryTreeMinMax(BinaryTree):
 
+    # ... obtener el mínimo nodo del árbol
+    
     def obtener_minimo(self):
 
         if self.root is None:
@@ -17,6 +19,7 @@ class BinaryTreeMinMax(BinaryTree):
                 return minimo
 
             minimo = __obtener_minimo(root.left, minimo)
+
             if root.value < minimo:
                 minimo = root.value
 
@@ -26,7 +29,9 @@ class BinaryTreeMinMax(BinaryTree):
 
         minimo = self.root.value
         return __obtener_minimo(self.root, minimo)
-    
+
+    # ... obtener el máximo
+
     def obtener_maximo(self):
 
         if self.root is None:
