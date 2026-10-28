@@ -19,20 +19,21 @@ n. muestre las criaturas capturadas por Heracles.
 
 from TDA_tree import BinaryTree
 from ej23_lista_criaturas import lista_criaturas
+from typing import Any
 
 # --------- CREACIÓN DE FUNCIONES ADICIONALES --------- #
 
 class BinaryTreeCriaturas(BinaryTree):
 
-    # def in_order_completo(self):
-    #     def __in_order_completo(root):
-    #         if root is not None:
-    #             __in_order_completo(root.left)
-    #             print(f'  → {root.value} | {root.other_values}')
-    #             __in_order_completo(root.right)
+    def in_order_completo(self):
+        def __in_order_completo(root):
+            if root is not None:
+                __in_order_completo(root.left)
+                print(f'  → {root.value} | {root.other_values}')
+                __in_order_completo(root.right)
 
-    #     if self.root is not None:
-    #         __in_order_completo(self.root)
+        if self.root is not None:
+            __in_order_completo(self.root)
 
 
     # a. listado inorden de las criaturas y quienes la derrotaron;
@@ -41,23 +42,75 @@ class BinaryTreeCriaturas(BinaryTree):
         def __listar_inorder(root):
             if root is not None:
                 __listar_inorder(root.left)
-                print(f'  → Criatura: {root.value} | Derrotada por: {root.other_values['derrotado_por']}')
+                print(f'  → Criatura: {root.value} | Derrotada por: {root.other_values['derrotada_por']}')
                 __listar_inorder(root.right)
 
         if self.root is not None:
             __listar_inorder(self.root)
 
     # b. se debe permitir cargar una breve descripción sobre cada criatura;
+    def cargar_descripcion(self, value: str, descripcion: Any):
+        posicion = self.search(value)
+        if posicion is None:
+            return False
+        else:
+            posicion.other_values['descripcion'] = descripcion
+            return True
 
-        # Corregir. Dice permitir cargar. No cargar todas al inicio. 
-
-    # c. mostrar toda la información de la criatura Talos;
+    # c. mostrar toda la información de la criatura Talos; >> Resuelto con search en ejecución.
+        
     # d. determinar los 3 héroes o dioses que derrotaron mayor cantidad de criaturas;
+    
+    
     # e. listar las criaturas derrotadas por Heracles;
+    def listar_por_vencedor(self, vencedor):
+        def __listar_por_vencedor(root, vencedor):
+            if root is not None:
+                __listar_por_vencedor(root.left, vencedor)
+                if root.other_values['derrotada_por'] == vencedor:
+                    print(f'  → {root.value}')
+                __listar_por_vencedor(root.right, vencedor)
+
+        if self.root is not None:
+            __listar_por_vencedor(self.root, vencedor)
+
+
     # f. listar las criaturas que no han sido derrotadas;
+    def listar_no_derrotadas(self):
+        def __listar_no_derrotadas(root):
+            if root is not None:
+                __listar_no_derrotadas(root.left)
+                if root.other_values['derrotada_por'] == '':
+                    print(f'  → {root.value}')
+                __listar_no_derrotadas(root.right)
+
+        if self.root is not None:
+            __listar_no_derrotadas(self.root)
+
+
     # g. además cada nodo debe tener un campo “capturada” que almacenará el nombre del héroe o dios que la capturo;
+
     # h. modifique los nodos de las criaturas Cerbero, Toro de Creta, Cierva Cerinea y Jabalí de Erimanto indicando que Heracles las atrapó;
+    def modificar_capturada_por(self, value: str, captor: Any):
+        posicion = self.search(value)
+        if posicion is None:
+            return False
+        else:
+            posicion.other_values['capturada_por'] = captor
+            return True
+
     # i. se debe permitir búsquedas por coincidencia;
+    def listar_por_coincidencia(self, coincidencia):
+        def __listar_por_coincidencia(root, coincidencia):
+            if root is not None:
+                __listar_por_coincidencia(root.left, coincidencia)
+                if root.value.startswith(coincidencia) or coincidencia in root.value:
+                    print(f'  → {root.value}')
+                __listar_por_coincidencia(root.right, coincidencia)
+
+        if self.root is not None:
+            __listar_por_coincidencia(self.root, coincidencia)
+
     # j. eliminar al Basilisco y a las Sirenas;
     # k. modificar el nodo que contiene a las Aves del Estínfalo, agregando que Heracles derroto a varias;
     # l. modifique el nombre de la criatura Ladón por Dragón Ladón;
@@ -71,7 +124,7 @@ arbol_criaturas = BinaryTreeCriaturas()
 for criatura in lista_criaturas:
     datos = {
         "nombre": criatura['nombre'],
-        "derrotado_por": criatura['derrotado_por'],
+        "derrotada_por": criatura['derrotada_por'],
         "descripcion": criatura['descripcion'],
         "capturada_por": criatura['capturada_por']
     }
@@ -104,9 +157,20 @@ print(f'\n{Color.CIAN}{f' EJERCICIO 23: CRIATURAS Y DIOSES '.center(140, "=")}{C
 # a. listado inorden de las criaturas y quienes la derrotaron;
 print_seccion('a. listado inorden de las criaturas y quienes la derrotaron;')
 print(f'{Color.AZUL}Listado in_order:{Color.RESET}')
-arbol_criaturas.listar_inorder()
+# arbol_criaturas.listar_inorder()
+arbol_criaturas.in_order_completo()
 
 # b. se debe permitir cargar una breve descripción sobre cada criatura;
+print_seccion('b. se debe permitir cargar una breve descripción sobre cada criatura;')
+criatura_buscada = 'Tifón'
+descripcion = 'Monstruo de cien cabezas.'
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
+carga = arbol_criaturas.cargar_descripcion(criatura_buscada, descripcion)
+if carga:
+    print(f'  → El campo de la criatura {criatura_buscada} fue modificado correctamente.')
+else:
+    print(f'  → No se pudo modificar el campo. {criatura_buscada} no se encuentra en el árbol.')
+arbol_criaturas.in_order_completo()
 
 # c. mostrar toda la información de la criatura Talos;
 print_seccion('c. mostrar toda la información de la criatura Talos;')
@@ -123,13 +187,111 @@ print_seccion('d. determinar los 3 héroes o dioses que derrotaron mayor cantida
 
 
 # e. listar las criaturas derrotadas por Heracles;
+print_seccion('e. listar las criaturas derrotadas por Heracles;')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
+vencedor = 'Heracles'
+arbol_criaturas.listar_por_vencedor(vencedor)
+
 # f. listar las criaturas que no han sido derrotadas;
+print_seccion('f. listar las criaturas que no han sido derrotadas;')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
+arbol_criaturas.listar_no_derrotadas()
+
+
 # g. además cada nodo debe tener un campo “capturada” que almacenará el nombre del héroe o dios que la capturo;
+print_seccion('g. además cada nodo debe tener un campo “capturada” que almacenará el nombre del héroe o dios que la capturo;')
+
 # h. modifique los nodos de las criaturas Cerbero, Toro de Creta, Cierva Cerinea y Jabalí de Erimanto indicando que Heracles las atrapó;
+print_seccion('h. modifique los nodos de las criaturas Cerbero, Toro de Creta, Cierva Cerinea y Jabalí de Erimanto indicando que Heracles las atrapó;')
+vencedor = 'Heracles'
+print(f'{Color.VIOLETA}Resultados:{Color.RESET}')
+criatura = 'Cerbero'
+modificacion = arbol_criaturas.modificar_capturada_por(criatura, vencedor)
+if modificacion:
+    print(f'  → El campo de la criatura {criatura} fue modificado correctamente.')
+else:
+    print(f'  → No se pudo modificar el campo. {criatura} no se encuentra en el árbol.')
+
+criatura = 'Toro de Creta'
+modificacion = arbol_criaturas.modificar_capturada_por(criatura, vencedor)
+if modificacion:
+    print(f'  → El campo de la criatura {criatura} fue modificado correctamente.')
+else:
+    print(f'  → No se pudo modificar el campo. {criatura} no se encuentra en el árbol.')
+
+criatura = 'Cierva Cerinea'
+modificacion = arbol_criaturas.modificar_capturada_por(criatura, vencedor)
+if modificacion:
+    print(f'  → El campo de la criatura {criatura} fue modificado correctamente.')
+else:
+    print(f'  → No se pudo modificar el campo. {criatura} no se encuentra en el árbol.')
+
+criatura = 'Jabalí de Erimanto'
+modificacion = arbol_criaturas.modificar_capturada_por(criatura, vencedor)
+if modificacion:
+    print(f'  → El campo de la criatura {criatura} fue modificado correctamente.')
+else:
+    print(f'  → No se pudo modificar el campo. {criatura} no se encuentra en el árbol.')
+
+print(f'{Color.AZUL}\nListado in_order actualizado:{Color.RESET}')
+arbol_criaturas.in_order_completo()
+
 # i. se debe permitir búsquedas por coincidencia;
+print_seccion('i. se debe permitir búsquedas por coincidencia;')
+print(f'{Color.AZUL}Coincidencia buscada:{Color.RESET}')
+coincidencia = 'Jab'
+print(f'  → {coincidencia}')
+print(f'{Color.VIOLETA}\nResultado:{Color.RESET}')
+arbol_criaturas.listar_por_coincidencia(coincidencia)
+
 # j. eliminar al Basilisco y a las Sirenas;
+print_seccion('j. eliminar al Basilisco y a las Sirenas;')
+print(f'{Color.VIOLETA}Resultados:{Color.RESET}')
+criatura_a_eliminar = 'Basilisco'
+value, other_values = arbol_criaturas.delete(criatura_a_eliminar)
+if value is not None:
+    print(f'  → La criatura {criatura_a_eliminar} fue eliminada correctamente.')
+else:
+    print(f'  → La criatura {criatura_a_eliminar} no se encuentra en el árbol.')
+
+
+criatura_a_eliminar = 'Sirenas'
+value, other_values = arbol_criaturas.delete(criatura_a_eliminar)
+if value is not None:
+    print(f'  → La criatura {criatura_a_eliminar} fue eliminada correctamente.')
+else:
+    print(f'  → La criatura {criatura_a_eliminar} no se encuentra en el árbol.')
+
 # k. modificar el nodo que contiene a las Aves del Estínfalo, agregando que Heracles derroto a varias;
+print_seccion('k. modificar el nodo que contiene a las Aves del Estínfalo, agregando que Heracles derroto a varias;')
+criatura = 'Aves del Estínfalo'
+posicion = arbol_criaturas.search(criatura)
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
+if posicion is not None:
+    descripcion_original = posicion.other_values['descripcion']
+    nueva_descripcion = f'{descripcion_original} Heracles derrotó a varias.'
+    arbol_criaturas.cargar_descripcion(criatura, nueva_descripcion)
+    print(f'  → Descripción actualizada correctamente.')
+    print(f'  → {posicion.value} | {posicion.other_values['descripcion']}')
+else:
+    print(f'  → La criatura {criatura} no se encuentra en el árbol.')
+
 # l. modifique el nombre de la criatura Ladón por Dragón Ladón;
+print_seccion('l. modifique el nombre de la criatura Ladón por Dragón Ladón;')
+criatura = 'Ladón'
+posicion = arbol_criaturas.search(criatura)
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
+if posicion is not None:
+    value, other_values = arbol_criaturas.delete(criatura)
+    new_value = 'Dragón Ladón'
+    arbol_criaturas.insert(new_value, other_values)
+    print(f'  → El nombre de la criatura fue actualizado correctamente.')
+    arbol_criaturas.in_order_completo()
+else:
+    print(f'  → La criatura {criatura} no se encuentra en el árbol.')
+
+
+
 # m. realizar un listado por nivel del árbol;
 # n. muestre las criaturas capturadas por Heracles.
 

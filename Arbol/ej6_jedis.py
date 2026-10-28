@@ -87,16 +87,16 @@ class BinaryTreeJedis(BinaryTree):
     
     # h. mostrar todos los Jedi de especie “Togruta” o “Cerean”;
 
-    def mostar_por_especie(self):
-        def __mostar_por_especie(root):
+    def mostrar_por_especie(self):
+        def __mostrar_por_especie(root):
             if root is not None:
-                __mostar_por_especie(root.left)
+                __mostrar_por_especie(root.left)
                 if root.value == 'Togruta' or root.value == 'Cerean':
                     print(f'  → {root.other_values['nombre']} | Especie: {root.value}')
-                __mostar_por_especie(root.right)
+                __mostrar_por_especie(root.right)
 
         if self.root is not None:
-            __mostar_por_especie(self.root)
+            __mostrar_por_especie(self.root)
 
     # i. listar los Jedi que comienzan con la letra A y los que contienen un “-” en su nombre.
 
@@ -245,7 +245,7 @@ arbol_jedis_nombre.listar_por_maestro(lista_nombres_jedis)
 # h. mostrar todos los Jedi de especie “Togruta” o “Cerean”;
 print_seccion('h. mostrar todos los Jedi de especie “Togruta” o “Cerean”;')
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
-arbol_jedis_especie.mostar_por_especie()
+arbol_jedis_especie.mostrar_por_especie()
 
 # i. listar los Jedi que comienzan con la letra A y los que contienen un “-” en su nombre.
 print_seccion('i. listar los Jedi que comienzan con la letra A y los que contienen un “-” en su nombre.')
