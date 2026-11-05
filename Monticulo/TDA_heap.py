@@ -22,3 +22,12 @@ class HeapMax:
             self.interchange(index, father)
             index = father
             father = (index - 1) // 2
+
+    def remove(self) -> Any:
+        last = self.size() - 1
+        self.interchange(0, last)
+        value = self.elements.pop()
+        self.sink(0)
+        return value
+
+    
