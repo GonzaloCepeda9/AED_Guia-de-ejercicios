@@ -30,4 +30,32 @@ class HeapMax:
         self.sink(0)
         return value
 
-    
+    def sink(self, index: int) -> None:
+        left_son = (2 * index) + 1
+        control = True
+        while control and left_son < self.size():
+            right_son = left_son + 1
+
+            mayor = left_son
+            if right_son < self.size():
+                if self.elements[right_son] > self.elements[mayor]:
+                    mayor = right_son
+
+            if self.elements[index] < self.elements[mayor]:
+                self.interchange(index, mayor)
+                index = mayor
+                left_son = (2 * index) + 1
+            else:
+                control = False
+
+    def heapsort(self) -> list:
+        result = []
+        while self.size() > 0:
+            result.append(self.remove())
+        return result
+
+    def arrive():
+        pass
+
+    def attention():
+        pass
