@@ -10,7 +10,7 @@ class Graph(List):
             self.edges = List()
             self.edges.add_criterion('value', Graph._order_by_value)
             self.edges.add_criterion('weight', Graph._order_by_weight)
-            self.other_values = other_values # Aún no está en uso
+            self.other_values = other_values
             self.visited = False
 
         def __str__(self):
@@ -43,19 +43,19 @@ class Graph(List):
             print(f'Vertex: {vertex}')
             vertex.edges.show()
 
-    def insert_vertex(self, value: Any) -> None:
-        node_vertex = Graph.__nodeVertex(value)
+    def insert_vertex(self, value: Any, other_values: Any = None) -> None:
+        node_vertex = Graph.__nodeVertex(value, other_values)
         self.insert_value(node_vertex)
 
     def insert_edge(self, origin_vertex: Any, destination_vertex: Any, weight: int) -> None:
-        origin = self.search('value', origin_vertex)
-        destination = self.search('value', destination_vertex)
-        if origin is not None and destination is not None:
-            node_edge = Graph.__nodeEdge(destination_vertex, weight)
-            self[origin].edges.insert_value(node_edge)                  # En el código original está con .append()
-            if not self.is_directed and origin != destination:
-                node_edge = Graph.__nodeEdge(origin_vertex, weight)
-                self[destination].edges.insert_value(node_edge)         # En el código original está con .append()
+        origin = self.search('value', origin_vertex)                                # Busco el vértice de origen para saber en la lista de quién agrego la arista.
+        destination = self.search('value', destination_vertex)                      # Busco el vértice de destino para saber en la lista de quién agrego la arista (si el grafo es no dirigido).
+        if origin is not None and destination is not None:                          # Si la búsqueda del "vértice origen NO es None" y la búsqueda del "vértice de destino NO es None", hago lo siguiente:
+            node_edge_destination = Graph.__nodeEdge(destination_vertex, weight)    # Creo la variable "node_edge" que va a ser un "nodo arista" (una clase creada dentro del grafo), y se le pasa como parámetro el nombre del vértice de origen como value, y el peso como weight.
+            self[origin].edges.insert_value(node_edge_destination)                  # Al vértice de origen buscado, en su lista de aristas, se le agrega el nuevo nodo arista creado.
+            if not self.is_directed and origin != destination:                      # Si ese vértice de origen buscado es distinto al vértice de destino buscado, y el grafo SÍ es dirigido, hago lo siguiente:
+                node_edge_origin = Graph.__nodeEdge(origin_vertex, weight)          # Creo la variable "node_edge" que va a ser un "nodo arista" (una clase creada dentro del grafo, y se le pasa como parámetro el nombre del vértice de origen como value, y el peso como weight.
+                self[destination].edges.insert_value(node_edge_origin)              # Al vértice de destino buscado, en su lista de aristas, se le agrega el nuevo nodo arista creado.
         else:
             print('No se puede insertar. Falta al menos un vértice.')   # Este mensaje no debe ir acá. Modificar luego.
 
@@ -79,6 +79,27 @@ class Graph(List):
     def mark_as_unvisited(self) -> None:
         for vertex in self:
             vertex.visited = False
+
+    def exist_path(self, origin, destination):
+        def __exist_path(graph, origin, destination):
+            result = False
+            vertex_pos = graph.search('value', origin)
+            if vertex_pos is not None:
+                if not graph[vertex_pos].visited:
+                    graph[vertex_pos].visited = True
+                    if graph[vertex_pos].value == destination:
+                        return True
+                    for edge in graph[vertex_pos].edges:
+                        destination_edge_pos = graph.search('value', edge.value)
+                        if not graph[destination_edge_pos].visited:
+                            result = __exist_path(graph, graph[destination_edge_pos].value, destination)
+                            if result:
+                                break
+            return result
+
+        self.mark_as_unvisited()
+        result = __exist_path(self, origin, destination)
+        return result
 
     def deep_sweep(self, value) -> None:
         def __deep_sweep(graph, value):
@@ -106,15 +127,17 @@ graph_letters.insert_vertex('E')
 graph_letters.insert_vertex('F')
 
 graph_letters.insert_edge('A', 'B', 7)
-graph_letters.insert_edge('A', 'D', 5)
 graph_letters.insert_edge('A', 'C', 5)
+graph_letters.insert_edge('A', 'D', 5)
 graph_letters.insert_edge('B', 'D', 4)
 graph_letters.insert_edge('B', 'E', 11)
-graph_letters.insert_edge('C', 'F', 9)
 graph_letters.insert_edge('C', 'E', 18)
+graph_letters.insert_edge('C', 'F', 9)
 graph_letters.insert_edge('D', 'C', 2)
 graph_letters.insert_edge('E', 'F', 6)
 graph_letters.insert_edge('F', 'D', 1) 
+
+print(graph_letters.exist_path('A', 'C'))
     
 print('\n--------------------------- Borrar una arista ---------------------------')
 print(f'Grafo original: ')
@@ -151,3 +174,5 @@ else:
 print(f'\n--------------------------- Barrido en profundidad ---------------------------')
 graph_letters.mark_as_unvisited()
 graph_letters.deep_sweep('A')
+
+print(graph_letters.exist_path('A', 'C'))
