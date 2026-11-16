@@ -152,15 +152,18 @@ class Graph(List):
         while no_visited.size() > 0:
             value = no_visited.attention()
             costo_nodo_actual = value[0]
+
             path.push([value[1][0], costo_nodo_actual, value[1][2]])
             edges = value[1][1].edges
-            
+
             for edge in edges:
                 pos = no_visited.search(edge.value)
+                
                 if pos is not None:
                     if costo_nodo_actual + edge.weight < no_visited.elements[pos][0]:
-                        no_visited.elements[pos][1][2] = value[1][0]
+                        no_visited.elements[pos][1][2] = value[1][0]                        
                         no_visited.change_priority(pos, costo_nodo_actual + edge.weight)
+                        
         return path
 
     def kruskal(self, origin_vertex):

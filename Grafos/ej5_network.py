@@ -135,7 +135,6 @@ for element in notebook:
     print(f'  → {" >> ".join(camino_completo)} | Costo total: {peso_total}')
     
 
-
 # d. encontrar el árbol de expansión mínima;
 print_seccion('d. encontrar el árbol de expansión mínima;')
 
