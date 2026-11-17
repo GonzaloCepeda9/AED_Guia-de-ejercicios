@@ -1,0 +1,24 @@
+# Reconstrucción del camino
+while path.size() > 0:
+    value = path.pop()
+    # print(f'\nValue sacado de la pila: {value}')
+    if value[0] == destination:
+        # print(f'\nValue[0] (nombre del vértice): {value[0]}')
+        # print(f'Destination: {destination}')
+        if peso_total is None:
+            # print(f'\nPeso total actual: {peso_total}')
+            peso_total = value[1]
+            # print(f'Peso total actualizado: {peso_total}')
+        # print(f'\nCamino completo actual: {camino_completo}')
+        camino_completo.append(value[0])
+        # print(f'Camino completo actualizado: {camino_completo}')
+
+        # print(f'\nDestination actual: {destination}')
+        destination = value[2]
+        # print(f'Destination actualizado: {destination}')
+
+# print(f'\nCamino completo antes del reverse: {camino_completo}')
+camino_completo.reverse()
+# print(f'Camino completo después del reverse: {camino_completo}')
+
+# print(f'\nResultado final:  → {" >> ".join(camino_completo)} | Costo total: {peso_total}')

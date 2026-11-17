@@ -171,14 +171,14 @@ class Graph(List):
             for index, tree in enumerate(forest):
                 if value in tree:
                     return index
-
+                
         forest = []
         edges = HeapMin()
         for vertex in self:
             forest.append(vertex.value)
             for edge in vertex.edges:
                 edges.arrive([vertex.value, edge.value], edge.weight)
-
+        
         while len(forest) > 1 and edges.size() > 0:
             edge = edges.attention()
             origin = search_in_forest(forest, edge[1][0])
@@ -192,18 +192,16 @@ class Graph(List):
                         vertex_destination = forest.pop(destination)
                         vertex_origin = forest.pop(origin)
 
+
                     if '-' not in vertex_origin and '-' not in vertex_destination:
                         forest.append(f'{vertex_origin}-{vertex_destination}-{edge[0]}')
-
                     elif '-' not in vertex_destination:
-                        forest.append(vertex_origin + ';' + f'{edge[1][0]}-{vertex_destination}-{edge[0]}')
-
+                        forest.append(vertex_origin+';'+f'{edge[1][0]}-{vertex_destination}-{edge[0]}')
                     elif '-' not in vertex_origin:
-                        forest.append(vertex_destination + ';' + f'{edge[1][1]}-{vertex_origin}-{edge[0]}')
-
+                        forest.append(vertex_destination+';'+f'{vertex_origin}-{edge[1][1]}-{edge[0]}')
                     else:
-                        forest.append(vertex_destination + ';' + f'{vertex_origin}-{edge[1][1]-edge[0]}')
-
+                        forest.append(vertex_origin+';'+vertex_destination+';'+f'{edge[1][0]}-{edge[1][1]}-{edge[0]}')
+        
         from_vertex = search_in_forest(forest, origin_vertex)
 
         if from_vertex is not None:

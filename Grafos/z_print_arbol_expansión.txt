@@ -1,0 +1,25 @@
+# d. encontrar el árbol de expansión mínima;
+print_seccion('d. encontrar el árbol de expansión mínima;')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
+
+# Llamamos a Kruskal. Como es un grafo conexo, cualquier nodo que le pasemos nos devuelve todo el árbol.
+# Usamos 'Switch 1' por poner uno, pero podría ser cualquier otro.
+expansion_tree = graph_network.kruskal('Switch 1')
+
+print(f'\n{Color.AZUL}Árbol de expansión mínimo: {Color.RESET}')
+
+# Ahora procesamos el string para separar las aristas y sumar sus pesos
+peso_total = 0
+cantidad_aristas = 0
+
+# El string viene con formato "NodoA-NodoB-Peso;NodoC-NodoD-Peso;..."
+# Primero separamos por ';' para obtener cada arista individual
+for edge_str in expansion_tree.split(';'):
+    # Luego separamos por '-' para obtener origen, destino y peso
+    origen, destino, peso = edge_str.split('-')
+    
+    print(f'  → Arista: {origen} — {destino} | Peso: {peso}')
+    
+    # Sumamos el peso (casteamos a int porque viene como texto)
+    peso_total += int(peso)
+    cantidad_aristas += 1

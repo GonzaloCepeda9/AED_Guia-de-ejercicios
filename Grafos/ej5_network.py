@@ -129,36 +129,152 @@ for element in notebook:
                 peso_total = value[1]
             camino_completo.append(value[0])
             destination = value[2]
-
     camino_completo.reverse()
 
-    print(f'  → {" >> ".join(camino_completo)} | Costo total: {peso_total}')
+    print(f'  → {" --> ".join(camino_completo)} | Costo total: {peso_total}')
     
 
 # d. encontrar el árbol de expansión mínima;
 print_seccion('d. encontrar el árbol de expansión mínima;')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 
+# Llamamos a Kruskal. Como es un grafo conexo, cualquier nodo que le pasemos nos devuelve todo el árbol.
+# Usamos 'Switch 1' por poner uno, pero podría ser cualquier otro.
+expansion_tree = graph_network.kruskal('Switch 1')
+
+print(f'\n{Color.AZUL}Árbol de expansión mínimo: {Color.RESET}')
+
+# Ahora procesamos el string para separar las aristas y sumar sus pesos
+peso_total = 0
+cantidad_aristas = 0
+
+# El string viene con formato "NodoA-NodoB-Peso;NodoC-NodoD-Peso;..."
+# Primero separamos por ';' para obtener cada arista individual
+for edge_str in expansion_tree.split(';'):
+    # Luego separamos por '-' para obtener origen, destino y peso
+    origen, destino, peso = edge_str.split('-')
+    
+    print(f'  → Arista: {origen} — {destino} | Peso: {peso}')
+    
+    # Sumamos el peso (casteamos a int porque viene como texto)
+    peso_total += int(peso)
+    cantidad_aristas += 1
+
+print(f'\n  Cantidad de aristas en el árbol: {cantidad_aristas}.')
+print(f'\n  Peso total del árbol: {peso_total}.')
 
 
 # e. determinar desde que pc (no notebook) es el camino más corto hasta el servidor “Guaraní”;
 print_seccion('e. determinar desde que pc (no notebook) es el camino más corto hasta el servidor “Guaraní”;')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 
+pcs = ['Ubuntu', 'Mint', 'Manjaro', 'Fedora', 'Parrot']
+destino = 'Guaraní'
+
+mejor_pc = None
+mejor_costo = float('inf')
+mejor_camino = []
+
+for pc in pcs:
+    # Calculamos las distancias desde esta PC a todos los nodos
+    path = graph_network.dijkstra(pc)
+    
+    # Reconstruimos el camino hacia Guaraní
+    destino_actual = destino
+    costo_actual = None
+    camino_actual = []
+    
+    while path.size() > 0:
+        value = path.pop()
+        if value[0] == destino_actual:
+            if costo_actual is None:
+                costo_actual = value[1]
+            camino_actual.append(value[0])
+            destino_actual = value[2]
+            
+    camino_actual.reverse()
+    
+    # Comparamos si este costo es menor al que teníamos guardado
+    if costo_actual < mejor_costo:
+        mejor_costo = costo_actual
+        mejor_pc = pc
+        mejor_camino = camino_actual
+
+print(f'\n  → La PC con el camino más corto a Guaraní es: {mejor_pc}')
+print(f'\n  Camino: {" --> ".join(mejor_camino)}')
+print(f'\n  Costo total: {mejor_costo}')
 
 
 # f. indicar desde que computadora del switch 01 es el camino más corto al servidor “MongoDB”;
 print_seccion('f. indicar desde que computadora del switch 01 es el camino más corto al servidor “MongoDB”;')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 
+# Las computadoras conectadas directamente al Switch 1
+computadoras_switch1 = ['Debian', 'Ubuntu', 'Mint']
+destino_mongodb = 'MongoDB'
 
+mejor_pc = None
+mejor_costo = float('inf')
+mejor_camino = []
+
+for pc in computadoras_switch1:
+    path = graph_network.dijkstra(pc)
+    
+    destino_actual = destino_mongodb
+    costo_actual = None
+    camino_actual = []
+    
+    while path.size() > 0:
+        value = path.pop()
+        if value[0] == destino_actual:
+            if costo_actual is None:
+                costo_actual = value[1]
+            camino_actual.append(value[0])
+            destino_actual = value[2]
+            
+    camino_actual.reverse()
+    
+    # Comparamos si este costo es menor al que teníamos guardado
+    if costo_actual < mejor_costo:
+        mejor_costo = costo_actual
+        mejor_pc = pc
+        mejor_camino = camino_actual
+
+print(f'\n  → La computadora del Switch 1 con el camino más corto a MongoDB es: {mejor_pc}')
+print(f'\n  Camino: {" --> ".join(mejor_camino)}')
+print(f'\n  Costo total: {mejor_costo}')
 
 # g. cambiar la conexión de la impresora al router 02 y vuelva a resolver el punto b;
 print_seccion('g. cambiar la conexión de la impresora al router 02 y vuelva a resolver el punto b;')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 
+# 1. Desconectamos la impresora del Switch 1
+# Usamos delete_edge: (key_value, origin, destination)
+graph_network.delete_edge('value', 'Switch 1', 'Impresora')
+
+# 2. Conectamos la impresora al Router 2 (manteniendo mismo peso)
+graph_network.insert_edge('Router 2', 'Impresora', 22)
+
+# 3. Volvemos a resolver el punto b
+notebook = ['Red Hat', 'Debian', 'Arch']
+
+for element in notebook:
+    print(f'\n{Color.AZUL}Barrido en profundidad desde {element}: {Color.RESET}')
+    # No hace falta llamar a mark_as_unvisited() porque deep_sweep ya lo hace por dentro
+    graph_network.deep_sweep(element)
+    
+    print(f'\n{Color.AZUL}Barrido en amplitud desde {element}: {Color.RESET}')
+    # Lo mismo para amplitude_sweep
+    graph_network.amplitude_sweep(element)
 
 
 # h. debe utilizar un grafo no dirigido.
 print_seccion('h. debe utilizar un grafo no dirigido.')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 
-
+if not graph_network.is_directed:
+    print('  → El grafo es NO dirigido.')
+else:
+    print('  → El grafo es DIRIGIDO. Debe cambiarse a NO dirigido.')
 
 print(f'\n{Color.CIAN}{f" FIN DE EJECUCIÓN DEL PROGRAMA ".center(140, "=")}{Color.RESET}')
-
