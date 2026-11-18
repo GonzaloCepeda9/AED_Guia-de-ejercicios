@@ -1,9 +1,9 @@
 # Estructura de dato Grafo
 
-from TDA_list import List
-from TDA_queue import Queue
-from TDA_heap import HeapMin
-from TDA_stack import Stack
+from ED_list import List
+from ED_queue import Queue
+from ED_heap import HeapMin
+from ED_stack import Stack
 from typing import Any, Optional
 
 class Graph(List):

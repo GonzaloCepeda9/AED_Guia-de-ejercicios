@@ -11,18 +11,12 @@ g. cambiar la conexión de la impresora al router 02 y vuelva a resolver el punt
 h. debe utilizar un grafo no dirigido.
 '''
 
-from TDA_graph import Graph
-from TDA_heap import HeapMin
-from TDA_list import List
-from TDA_queue import Queue
-from TDA_stack import Stack
+from ED_graph import Graph
 
 # --------- CREACIÓN DE FUNCIONES ADICIONALES --------- #
 
 
 # --------- CARGA DE DATOS --------- #
-
-# a. cada nodo además del nombre del equipo deberá almacenar su tipo: pc, notebook, servidor, router, switch, impresora;
 
 graph_network = Graph(is_directed=False)
 
@@ -97,6 +91,16 @@ def print_seccion_extra(titulo, ancho=140, relleno=" ", color=Color.VERDE):
 
 #################################################  EJECUCIÓN DE PRUEBAS DEL ENUNCIADO  #################################################
 print(f'\n{Color.CIAN}{f' EJERCICIO 5: RED DE TRABAJO '.center(140, "=")}{Color.RESET}')
+
+# a. cada nodo además del nombre del equipo deberá almacenar su tipo: pc, notebook, servidor, router, switch, impresora;
+print_seccion('a. cada nodo además del nombre del equipo deberá almacenar su tipo: pc, notebook, servidor, router, switch, impresora;')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
+graph_network[1].value
+
+
+
+
+
 
 
 # b. realizar un barrido en profundidad y amplitud partiendo desde la tres notebook: Red Hat, Debian, Arch;

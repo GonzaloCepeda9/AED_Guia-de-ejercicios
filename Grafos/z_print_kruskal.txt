@@ -1,0 +1,38 @@
+# expansion_tree = graph_star_wars.modified_kruskal('C-3PO')
+
+# print(f'\n{Color.AZUL}Árbol de expansión: {Color.RESET}')
+# print(f'\n  Tipo de dato del valor devuelto: ')
+# print(f'  → {type(expansion_tree)}')
+# print(f'\n  Aristas en formato string: ')
+# print(f'  → {expansion_tree}')
+
+# edges = expansion_tree.split(';')
+# print(f'\n  Cantidad de aristas obtenidas luego de la separación: ')
+# print(f'  → {len(edges)}')
+# print(f'\n  Aristas del árbol de expansión: ')
+# for edge in edges:
+#     print(f'  → {edge}')
+
+# print(f'\n  Campos de cada arista del árbol de expansión: ')
+# for edge in edges:
+#     campos = edge.split('|')
+#     print(f'  → {campos}')
+
+# print(f'\n  Lista final de aristas: ')
+# edges_list = List()
+# for edge in edges:
+#     origin, destination, weight = edge.split('|')
+#     edges_list.insert_value((origin, destination, int(weight)))
+
+# for edge in edges_list:
+#     print(f'  → {edge}')
+
+# suma = 0
+# for edge in edges_list:
+#     suma = suma + edge[2]
+
+# print(f'\n  Peso total del árbol de expansión: ')
+# print(f'  → {suma}')
+
+# print(f'\n  Cantidad de aristas del árbol de expansión: ')
+# print(f'  → {edges_list.size()}')
