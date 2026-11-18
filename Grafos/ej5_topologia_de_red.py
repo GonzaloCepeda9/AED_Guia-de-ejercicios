@@ -1,6 +1,6 @@
-# Red
+# 5. Topología de red en la universidad
 '''
-5. Cargar el esquema de red de la siguiente figura en un grafo e implementar los algoritmos necesarios para resolver las tareas, listadas a continuación:
+Cargar el esquema de red de la siguiente figura en un grafo e implementar los algoritmos necesarios para resolver las tareas, listadas a continuación:
 a. cada nodo además del nombre del equipo deberá almacenar su tipo: pc, notebook, servidor, router, switch, impresora;
 b. realizar un barrido en profundidad y amplitud partiendo desde la tres notebook: Red Hat, Debian, Arch;
 c. encontrar el camino más corto para enviar a imprimir un documento desde la pc: Manjaro, Red Hat, Fedora hasta la impresora;
@@ -90,18 +90,12 @@ def print_seccion_extra(titulo, ancho=140, relleno=" ", color=Color.VERDE):
     print(f'{color}{f" {titulo} ".center(ancho, relleno)}{Color.RESET}')
 
 #################################################  EJECUCIÓN DE PRUEBAS DEL ENUNCIADO  #################################################
-print(f'\n{Color.CIAN}{f' EJERCICIO 5: RED DE TRABAJO '.center(140, "=")}{Color.RESET}')
+print(f'\n{Color.CIAN}{f' EJERCICIO 5: TOPOLOGÍA DE RED EN LA UNIVERSIDAD '.center(140, "=")}{Color.RESET}')
 
 # a. cada nodo además del nombre del equipo deberá almacenar su tipo: pc, notebook, servidor, router, switch, impresora;
 print_seccion('a. cada nodo además del nombre del equipo deberá almacenar su tipo: pc, notebook, servidor, router, switch, impresora;')
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 graph_network[1].value
-
-
-
-
-
-
 
 # b. realizar un barrido en profundidad y amplitud partiendo desde la tres notebook: Red Hat, Debian, Arch;
 print_seccion('b. realizar un barrido en profundidad y amplitud partiendo desde la tres notebook: Red Hat, Debian, Arch;')
@@ -146,7 +140,7 @@ print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 # Usamos 'Switch 1' por poner uno, pero podría ser cualquier otro.
 expansion_tree = graph_network.kruskal('Switch 1')
 
-print(f'\n{Color.AZUL}Árbol de expansión mínimo: {Color.RESET}')
+print(f'\n{Color.AZUL}Árbol de expansión mínima: {Color.RESET}')
 
 # Ahora procesamos el string para separar las aristas y sumar sus pesos
 peso_total = 0
