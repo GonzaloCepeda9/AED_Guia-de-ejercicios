@@ -12,7 +12,7 @@ h. listar los superhéroes que comienzan con la letra B, M y S;
 i. determinar cuántos superhéroes hay de cada casa de comic.
 '''
 
-from TDA_list import List
+from ED_list import List
 from ej6_class_superheroe import Superheroe
 
 # --------- CREACIÓN DE LISTA --------- #

@@ -1,4 +1,4 @@
-from TDA_list import List
+from ED_list import List
 
 class Alumno:
     def __init__(self, nombre: str, apellido: str, legajo: int):

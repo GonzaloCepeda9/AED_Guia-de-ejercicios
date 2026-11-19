@@ -10,8 +10,8 @@ g. indicar los Jedi que utilizaron sable de luz amarillo o violeta;
 h. indicar los nombre de los padawans de Qui-Gon Jin y Mace Windu, si los tuvieron.
 """
 
-from jedi import Jedi
-from TDA_list import List
+from ED_list import List
+from ej22_class_jedi import Jedi
 
 
 # --------- CARGA DE DATOS --------- #

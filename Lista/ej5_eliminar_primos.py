@@ -4,7 +4,7 @@ Un número entero positivo p es un número primo si y solo si p > 1 y tiene exac
 Esos dos divisores son, necesariamente, el 1 y el propio p.
 '''
 
-from TDA_list import List
+from ED_list import List
 from modulo_agregar_elementos_aleatorios import agregar_numeros
 
 def eliminar_primos(lista: List):

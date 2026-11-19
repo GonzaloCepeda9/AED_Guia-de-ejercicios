@@ -1,6 +1,6 @@
 # 1. Diseñar un algoritmo que permita contar la cantidad de nodos de una lista.
 
-from TDA_list import List
+from ED_list import List
 from modulo_agregar_elementos_aleatorios import agregar_numeros
 
 #################################################  Ejecución de pruebas del enunciado  #################################################

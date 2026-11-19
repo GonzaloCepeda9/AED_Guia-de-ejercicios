@@ -1,4 +1,4 @@
-from TDA_list import List
+from ED_list import List
 
 class Entrenador_Pokemon:
     def __init__(self, nombre: str, torneos_ganados: int, batallas_perdidas: int, batallas_ganadas: int):

@@ -6,8 +6,8 @@ c. obtener todas las canciones de la banda Arctic Monkeys;
 d. mostrar los nombres de las bandas o artistas que solo son de una palabra.
 '''
 
-from cancion import Cancion
-from TDA_list import List
+from ED_list import List
+from ej10_class_cancion import Cancion
 
 # --------- CARGA DE DATOS --------- #
 

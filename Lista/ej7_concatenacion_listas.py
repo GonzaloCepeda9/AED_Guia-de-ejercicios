@@ -7,7 +7,7 @@ c. contar cuántos elementos repetidos hay entre dos listas, es decir la interse
 d. eliminar todos los nodos de una lista de a uno a la vez mostrando su contenido.
 '''
 
-from TDA_list import List
+from ED_list import List
 from modulo_agregar_elementos_aleatorios import agregar_numeros
 
 lista1 = List()

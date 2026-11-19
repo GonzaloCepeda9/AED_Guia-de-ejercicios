@@ -1,6 +1,6 @@
 # 4. Implementar un algoritmo que inserte un nodo en la i-ésima posición de una lista.
 
-from TDA_list import List
+from ED_list import List
 from modulo_agregar_elementos_aleatorios import agregar_numeros
 from typing import Any
 

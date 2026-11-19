@@ -17,8 +17,8 @@ j. debe modificar el TDA para implementar lista de lista.
 '''
 
 from alumno import Alumno
-from parcial import Parcial
-from TDA_list import List
+from ej9_class_parcial import Parcial
+from ED_list import List
 
 lista_alumnos = List()
 

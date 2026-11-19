@@ -1,6 +1,6 @@
 # 3. Dada una lista de números enteros, implementar un algoritmo para dividir dicha lista en dos, una que contenga los números pares y otra para los números impares.
 
-from TDA_list import List
+from ED_list import List
 from modulo_agregar_elementos_aleatorios import agregar_numeros
 
 def separar_pares_impares(lista: List):

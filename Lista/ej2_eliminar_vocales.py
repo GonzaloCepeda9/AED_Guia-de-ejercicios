@@ -1,6 +1,6 @@
 # 2. Diseñar un algoritmo que elimine todas las vocales que se encuentren en una lista de caracteres.
 
-from TDA_list import List
+from ED_list import List
 from modulo_agregar_elementos_aleatorios import agregar_mayusculas
 
 def eliminar_vocales(lista: List):

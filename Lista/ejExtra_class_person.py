@@ -1,4 +1,4 @@
-from TDA_list import List
+from ED_list import List
 
 class Person:
 

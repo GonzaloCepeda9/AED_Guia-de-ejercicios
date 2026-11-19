@@ -1,5 +1,5 @@
-from TDA_list import List
-from person import Person
+from ED_list import List
+from ejExtra_class_person import Person
 
 # --------- CARGA DE DATOS --------- #
 

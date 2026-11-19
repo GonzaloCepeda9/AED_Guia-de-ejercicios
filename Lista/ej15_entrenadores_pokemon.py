@@ -14,7 +14,7 @@ j. determinar los entrenadores que tengan uno de los siguientes Pokémons: Tyran
 k. determinar si un entrenador “X” tiene al Pokémon “Y”, tanto el nombre del entrenador como del Pokémon deben ser ingresados; además si el entrenador tiene al Pokémon se deberán mostrar los datos de ambos;
 '''
 
-from TDA_list import List
+from ED_list import List
 from ej15_class_entrenador_pokemon import Entrenador_Pokemon
 from ej15_class_pokemon import Pokemon
 
