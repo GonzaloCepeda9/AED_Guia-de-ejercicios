@@ -1,6 +1,6 @@
 # 6. Contar la cantidad de ocurrencias de un determinado elemento en una cola, sin utilizar ninguna estructura auxiliar.
 
-from TDA_queue import Queue
+from ED_queue import Queue
 from modulo_agregar_elementos_aleatorios import agregar_numeros
 
 def contar_ocurrencias(queue: Queue, buscado):

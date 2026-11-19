@@ -10,7 +10,7 @@ Contar elementos negativos
     Realizar un ciclo que vaya aumentando en 1 cada vez que la condición de negatividad se cumpla. 
 '''
 
-from TDA_queue import Queue
+from ED_queue import Queue
 from modulo_agregar_elementos_aleatorios import agregar_numeros
 
 def calcular_rango(queue: Queue):

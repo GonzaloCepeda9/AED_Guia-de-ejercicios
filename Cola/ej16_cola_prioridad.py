@@ -10,8 +10,7 @@ f. cargue dos documentos de empleados y uno de gerente.
 g. imprima todos los documentos de la cola de impresión.
 '''
 
-from TDA_heap import HeapMax
-from TDA_heap import HeapMin
+from ED_heap import HeapMax
 
 cola_impresion = HeapMax()
 

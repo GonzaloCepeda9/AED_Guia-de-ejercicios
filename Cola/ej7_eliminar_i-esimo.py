@@ -1,6 +1,6 @@
 # 7. Eliminar el i-ésimo elemento después del frente de la cola.
 
-from TDA_queue import Queue
+from ED_queue import Queue
 from modulo_agregar_elementos_aleatorios import agregar_numeros
 
 def eliminar_elemento(queue: Queue, posicion: int):

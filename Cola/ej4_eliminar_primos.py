@@ -1,6 +1,6 @@
 # 4. Dada una cola de números cargados aleatoriamente, eliminar de ella todos los que no sean primos.
 
-from TDA_queue import Queue
+from ED_queue import Queue
 from modulo_agregar_elementos_aleatorios import agregar_numeros
 
 def eliminar_primos(queue: Queue):

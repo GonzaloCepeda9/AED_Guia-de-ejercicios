@@ -1,6 +1,6 @@
 # 8. Realizar un algoritmo que mantenga ordenado los elementos agregados a una cola, utilizando solo una cola como estructura auxiliar.
 
-from TDA_queue import Queue
+from ED_queue import Queue
 from typing import Any
 
 def agregar_ordenado(queue: Queue, elemento: Any):
