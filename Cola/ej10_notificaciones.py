@@ -8,7 +8,7 @@ c. utilizar una pila para almacenar temporáneamente las notificaciones producid
 
 from ED_queue import Queue
 from ED_stack import Stack
-from notificacion import Notification
+from ej10_class_notificacion import Notification
 
 # a. escribir una función que elimine de la cola todas las notificaciones de Facebook;
 def eliminar_por_app(queue: Queue, app: str):

@@ -9,8 +9,8 @@ e. mostrar todos datos de los superhéroes o personaje cuyos nombres comienzan c
 f. determinar si el personaje Carol Danvers se encuentra en la cola e indicar su nombre de superhéroes.
 """
 
-from TDA_queue import Queue
-from personaje import Personaje
+from ED_queue import Queue
+from ej22_class_personaje import Personaje
 
 # a. determinar el nombre del personaje de la superhéroe Capitana Marvel;
 def determinar_nombre_personaje(queue: Queue, superheroe: str):
