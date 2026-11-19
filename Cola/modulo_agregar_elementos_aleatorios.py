@@ -1,5 +1,5 @@
-from TDA_queue import Queue
-from TDA_stack import Stack
+from ED_queue import Queue
+from ED_stack import Stack
 from random import randint
 
 def agregar_mayusculas(estructura: Stack | Queue):

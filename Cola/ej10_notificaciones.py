@@ -6,8 +6,8 @@ b. escribir una función que muestre todas las notificaciones de Twitter, cuyo m
 c. utilizar una pila para almacenar temporáneamente las notificaciones producidas entre las 11:43 y las 15:57, y determinar cuántas son.
 '''
 
-from TDA_queue import Queue
-from TDA_stack import Stack
+from ED_queue import Queue
+from ED_stack import Stack
 from notificacion import Notification
 
 # a. escribir una función que elimine de la cola todas las notificaciones de Facebook;

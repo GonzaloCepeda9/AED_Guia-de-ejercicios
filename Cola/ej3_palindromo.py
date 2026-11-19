@@ -1,7 +1,7 @@
 # 3. Dada una secuencia de caracteres utilizando operaciones de cola y pila determinar si es un palíndromo.
 
-from TDA_queue import Queue
-from TDA_stack import Stack
+from ED_queue import Queue
+from ED_stack import Stack
 
 def determinar_palindromo(secuencia: str):
     queue = Queue()

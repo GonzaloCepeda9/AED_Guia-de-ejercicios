@@ -1,7 +1,7 @@
 # 5. Utilizando operaciones de cola y pila, invertir el contenido de una pila.
 
-from TDA_queue import Queue
-from TDA_stack import Stack
+from ED_queue import Queue
+from ED_stack import Stack
 from modulo_agregar_elementos_aleatorios import agregar_numeros
 
 def invertir_pila(stack: Stack):

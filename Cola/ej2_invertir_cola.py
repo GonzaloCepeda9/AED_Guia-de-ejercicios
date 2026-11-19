@@ -1,7 +1,7 @@
 # 2. Utilizando operaciones de cola y pila, invertir el contenido de una cola.
 
-from TDA_queue import Queue
-from TDA_stack import Stack
+from ED_queue import Queue
+from ED_stack import Stack
 from modulo_agregar_elementos_aleatorios import agregar_mayusculas
 
 def invertir_cola(queue: Queue):

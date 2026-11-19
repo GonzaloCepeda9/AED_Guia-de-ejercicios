@@ -1,6 +1,6 @@
 # 1. Eliminar de una cola de caracteres todas las vocales que aparecen
 
-from TDA_queue import Queue
+from ED_queue import Queue
 from modulo_agregar_elementos_aleatorios import agregar_mayusculas
 
 def eliminar_vocales(queue: Queue):
