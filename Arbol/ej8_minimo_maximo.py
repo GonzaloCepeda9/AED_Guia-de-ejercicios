@@ -1,53 +1,40 @@
 # 8. Desarrollar un algoritmo que implemente dos funciones, una para obtener el mínimo nodo del árbol y la segunda para obtener el máximo.
 
-from TDA_tree import BinaryTree
+from ED_tree import BinaryTree
 
 # --------- CREACIÓN DE FUNCIONES ADICIONALES --------- #
 
 class BinaryTreeMinMax(BinaryTree):
 
-    # ... obtener el mínimo nodo del árbol
-    
+    # ... obtener el mínimo nodo del árboL
     def obtener_minimo(self):
-
         if self.root is None:
             return None
-
+        
         def __obtener_minimo(root, minimo):
-
             if root is None:
                 return minimo
-
             minimo = __obtener_minimo(root.left, minimo)
-
             if root.value < minimo:
                 minimo = root.value
-
             minimo = __obtener_minimo(root.right, minimo)
-
             return minimo
 
         minimo = self.root.value
         return __obtener_minimo(self.root, minimo)
 
     # ... obtener el máximo
-
     def obtener_maximo(self):
-
         if self.root is None:
             return None
 
         def __obtener_maximo(root, maximo):
-
             if root is None:
                 return maximo
-
             maximo = __obtener_maximo(root.left, maximo)
             if root.value > maximo:
                 maximo = root.value
-
             maximo = __obtener_maximo(root.right, maximo)
-
             return maximo
 
         maximo = self.root.value

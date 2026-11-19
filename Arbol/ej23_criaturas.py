@@ -17,7 +17,7 @@ m. realizar un listado por nivel del árbol;
 n. muestre las criaturas capturadas por Heracles.
 '''
 
-from TDA_tree import BinaryTree
+from ED_tree import BinaryTree
 from ej23_lista_criaturas import lista_criaturas
 from typing import Any
 

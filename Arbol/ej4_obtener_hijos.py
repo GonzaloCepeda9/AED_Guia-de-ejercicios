@@ -1,6 +1,6 @@
 # 4. Implementar un algoritmo que contemple dos funciones, la primera que devuelva el hijo derecho de un nodo y la segunda que devuelva el hijo izquierdo.
 
-from TDA_tree import BinaryTree
+from ED_tree import BinaryTree
 
 # --------- CREACIÓN DE FUNCIONES ADICIONALES --------- #
 

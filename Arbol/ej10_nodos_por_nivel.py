@@ -7,7 +7,7 @@ a. determinar si el nivel del árbol está completo;
 b. ¿cuántos nodos faltan para completar dicho nivel?
 '''
 
-from TDA_tree import BinaryTree
+from ED_tree import BinaryTree
 
 # --------- CREACIÓN DE FUNCIONES ADICIONALES --------- #
 
@@ -18,15 +18,12 @@ class BinaryTreeContarNodos(BinaryTree):
         def __contar_nodos_nivel(root, nivel_actual):
             if root is None:
                 return 0
-
             if nivel_actual == nivel_buscado:
                 return 1
-
             return (
                 __contar_nodos_nivel(root.left, nivel_actual + 1)
                 + __contar_nodos_nivel(root.right, nivel_actual + 1)
             )
-
         if self.root is None or nivel_buscado < 1:
             return 0
 
@@ -70,7 +67,7 @@ arbol_numeros.in_order()
 
 # Para calcular el número máximo de nodos en un nivel de un árbol, se hace directamente con la fórmula.
 print_seccion('Calcular el número de nodos de un nivel del árbol –a partir de un nivel ingresado–')
-print(f'{Color.AZUL}\nDatos ingresados:{Color.RESET}')
+print(f'{Color.AZUL}Datos ingresados:{Color.RESET}')
 nivel = 3
 print(f'  → Nivel: {nivel}')
 print(f'{Color.VIOLETA}\nResultado:{Color.RESET}')
@@ -79,13 +76,13 @@ print(f'  → Número máximo de nodos en el nivel {nivel} de un árbol: {cantid
 
 # Para calcular el número de nodos en un nivel de un árbol específico, utilizamos la función.
 print_seccion('Contar los nodos que hay en dicho nivel –dado que podría no estar completo–')
-print(f'{Color.VIOLETA}\nResultado:{Color.RESET}')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 cantidad_nodos_arbol = arbol_numeros.contar_nodos_nivel(nivel)
 print(f'  → Número de nodos en el nivel {nivel} del árbol dado: {cantidad_nodos_arbol}')
 
 # a. determinar si el nivel del árbol está completo;
 print_seccion('a. determinar si el nivel del árbol está completo;')
-print(f'{Color.VIOLETA}\nResultado:{Color.RESET}')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 if cantidad_max_nodos == cantidad_nodos_arbol:
     print(f'  → El nivel {nivel} del árbol está completo.')
 else:
@@ -93,7 +90,7 @@ else:
 
 # b. ¿cuántos nodos faltan para completar dicho nivel?
 print_seccion('b. ¿cuántos nodos faltan para completar dicho nivel?')
-print(f'{Color.VIOLETA}\nResultado:{Color.RESET}')
+print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 nodos_faltantes = cantidad_max_nodos - cantidad_nodos_arbol
 if nodos_faltantes == 0:
     print(f'  → No falta ningún nodo para completar el nivel.')

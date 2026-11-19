@@ -1,5 +1,5 @@
-from TDA_tree import BinaryTree
-from ej5_lista_personajes_comic import lista_personajes_comic
+from ED_tree import BinaryTree
+from ej5_lista_personajes_MCU import lista_personajes_comic
 
 # --------- CARGA DE DATOS --------- #
 

@@ -12,9 +12,9 @@ g. generar un bosque a partir de este árbol, un árbol debe contener a los supe
     II. realizar un barrido ordenado alfabéticamente de cada árbol.
 '''
 
-from TDA_list import List
-from TDA_tree import BinaryTree
-from ej5_lista_personajes_comic import lista_personajes_comic
+from ED_list import List
+from ED_tree import BinaryTree
+from ej5_lista_personajes_MCU import lista_personajes_MCU
 from typing import Any, Optional
 
 # --------- CREACIÓN DE FUNCIONES ADICIONALES --------- #
@@ -110,6 +110,7 @@ class BinaryTreePersonajes(BinaryTree):
     #     I. determinar cuántos nodos tiene cada árbol;
 
     def determinar_superheroe_o_supervillano(self: BinaryTree):
+        
         def __determinar_superheroe_o_supervillano(root, contador_superheroes: int = 0, contador_supervillanos: int = 0):
             if root is not None:
                 contador_superheroes, contador_supervillanos = __determinar_superheroe_o_supervillano(root.left, contador_superheroes, contador_supervillanos)
@@ -131,7 +132,7 @@ class BinaryTreePersonajes(BinaryTree):
 
 arbol_personajes = BinaryTreePersonajes()
 
-for personaje in lista_personajes_comic:
+for personaje in lista_personajes_MCU:
     arbol_personajes.insert(personaje['nombre'], personaje)
 
 # --------- CREACIÓN DE FUNCIONES PARA FORMATO --------- #

@@ -1,4 +1,4 @@
-from TDA_queue import Queue
+from ED_queue import Queue
 from typing import Any, Optional
 
 class BinaryTree:
@@ -135,34 +135,56 @@ class BinaryTree:
                 return root, replace_node
 
         def __delete(root, value):
+
+            deleted_value = None
+            deleted_other_values = None
+
             if root is None:
-                return None
+                return None, None, None
+            
             if value < root.value:
-                root.left = __delete(root.left, value)
+                root.left, deleted_value, deleted_other_values = __delete(root.left, value)
+
             elif value > root.value:
-                root.right = __delete(root.right, value)
+                root.right, deleted_value, deleted_other_values = __delete(root.right, value)
+
             else:
+
+                # Nodo encontrado: capturamos lo que se va a eliminar
+                deleted_value = root.value
+                deleted_other_values = root.other_values
+
                 # Caso 1 → El nodo no tiene hijos
                 if root.left is None and root.right is None:
-                    return None # Al devolver None, el nodo padre deja de apuntar al valor encontrado y apunta a None. Entonces, queda desconectado del árbol (al buscado ya nadie lo referencia).
+                    return None, deleted_value, deleted_other_values # Al devolver None, el nodo padre deja de apuntar al valor encontrado y apunta a None. Entonces, queda desconectado del árbol (al buscado ya nadie lo referencia).
 
                 # Caso 2 → El nodo tiene un solo hijo
                 elif root.left is None:
-                    return root.right
+                    return root.right, deleted_value, deleted_other_values
+                
                 elif root.right is None:
-                    return root.left
+                    return root.left, deleted_value, deleted_other_values
 
-                # Caso 3 → El nodo tiene hijo izquierdo e hijo derecho (llama a la función/herlper __replace)
+                # Caso 3 → El nodo tiene hijo izquierdo e hijo derecho (llama a la función/helper __replace)
                 else:
                     root.left, replace_node = __replace(root.left)
                     root.value = replace_node.value
                     root.other_values = replace_node.other_values
 
-            root = self.auto_balance(root)
-            self.update_height(root)
-            return root
+            # Rebalanceo del árbol solo si el subárbol no quedó vacío
+            if root is not None:
+                root = self.auto_balance(root)
+                self.update_height(root)
+            
+            return root, deleted_value, deleted_other_values
 
-        self.root = __delete(self.root, value)
+        deleted_value = None
+        deleted_other_values = None
+
+        if self.root is not None:
+            self.root, deleted_value, deleted_other_values = __delete(self.root, value)
+
+        return deleted_value, deleted_other_values
 
     def height(self, root):
         if root is None:
@@ -230,6 +252,7 @@ class BinaryTree:
                     arbol_f.insert(root.value, root.other_values)
                 __divide_tree(root.left, arbol_v, arbol_f, condition)
                 __divide_tree(root.right, arbol_v, arbol_f, condition)
+            # return arbol_v, arbol_f
 
         __divide_tree(self.root, arbol_v, arbol_f, condition)
 
@@ -256,19 +279,3 @@ class BinaryTree:
 
         if self.root is not None:
             __in_order_weight(self.root)
-
-# Página 139: Fórmulas para determinar:
-
-    # Número máximo de nodos en el nivel i de un árbol binario:
-
-        # 2^(i-1)
-
-        # Para el caso de este árbol sería:
-
-            # print(2^altura - 1)
-            
-            # print(2**(arbol_dado.root.height+1)-1)
-
-    # Número máximo de nodos en un árbol binario de altura k:
-
-        # 2^(k+1) - 1

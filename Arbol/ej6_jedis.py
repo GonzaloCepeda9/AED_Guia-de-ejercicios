@@ -12,9 +12,9 @@ h. mostrar todos los Jedi de especie “Togruta” o “Cerean”;
 i. listar los Jedi que comienzan con la letra A y los que contienen un “-” en su nombre.
 '''
 
-from TDA_tree import BinaryTree
-from TDA_queue import Queue
-from TDA_list import List
+from ED_tree import BinaryTree
+from ED_queue import Queue
+from ED_list import List
 from ej6_lista_jedis import lista_jedis
 
 # --------- CREACIÓN DE FUNCIONES ADICIONALES --------- #
@@ -178,10 +178,6 @@ arbol_jedis_nombre.in_order()
 print(f'{Color.AZUL}\nBarrido in_order por ranking:{Color.RESET}')
 arbol_jedis_ranking.in_order()
 # arbol_jedis_ranking.in_order_completo()
-
-# print(f'{Color.AZUL}\nÁrbol ordenado por especie:{Color.RESET}')
-# arbol_jedis_especie.in_order()
-# arbol_jedis_especie.in_order_completo()
 
 # c. realizar un barrido por nivel de los árboles por ranking y especie;
 print_seccion('c. realizar un barrido por nivel de los árboles por ranking y especie;')

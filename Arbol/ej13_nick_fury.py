@@ -18,8 +18,7 @@ m. Thor tiene el poder para destruir ejércitos completos;
 n. no se debe utilizar árbol balanceado.
 '''
 
-# a. cada nodo hoja del árbol debe ser un superhéroe y en cada nodo intermedio inclusive el
-# raíz debe haber una pregunta;
+# a. cada nodo hoja del árbol debe ser un superhéroe y en cada nodo intermedio inclusive el raíz debe haber una pregunta;
 # b. si la respuesta es sí, se debe desplazar hacia el subárbol izquierdo, si es no al subárbol derecho;
 # c. desarrollar una función que determine el superhéroes para una misión;
 # d. los Guardianas de la Galaxia son ideales para misiones intergalácticas en equipo;

@@ -1,5 +1,5 @@
-from TDA_tree import BinaryTree
-from ej5_lista_personajes_comic import lista_personajes_comic
+from ED_tree import BinaryTree
+from ej5_lista_personajes_MCU import lista_personajes_MCU
 
 # --------- CARGA DE DATOS --------- #
 
@@ -14,9 +14,9 @@ arbol_numeros.insert(40)
 arbol_numeros.insert(10)
 
 # Árbol con datos complejos
-arbol_superheroes = BinaryTree()
-for superheroe in lista_personajes_comic:
-    arbol_superheroes.insert(superheroe['nombre'], superheroe)
+arbol_personajes = BinaryTree()
+for superheroe in lista_personajes_MCU:
+    arbol_personajes.insert(superheroe['nombre'], superheroe)
 
 
 # --------- CREACIÓN DE FUNCIONES PARA FORMATO --------- #
@@ -42,71 +42,74 @@ print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 print(f'\n  Barrido inorder (hijo izquierdo → raíz → hijo derecho):')
 arbol_numeros.in_order()
 
-print(f'\n  Barrido postorder (hijo derecho → raíz → hijo izquierdo):')
-arbol_numeros.post_order()
+# print(f'\n  Barrido postorder (hijo derecho → raíz → hijo izquierdo):')
+# arbol_numeros.post_order()
 
-print(f'\n  Barrido preorder (nodo raíz → hijo izquierdo → hijo derecho):')
-arbol_numeros.pre_order()
+# print(f'\n  Barrido preorder (nodo raíz → hijo izquierdo → hijo derecho):')
+# arbol_numeros.pre_order()
 
 # # Caso 1 → El nodo no tiene hijos
 # nodo_a_eliminar = 40
 # print(f'\nÁrbol resultante luego de borrar {nodo_a_eliminar}')
-# arbol.delete(nodo_a_eliminar)
-# arbol.in_order()
+# arbol_numeros.delete(nodo_a_eliminar)
+# arbol_numeros.in_order()
 
 
 # # Caso 2 → El nodo tiene un solo hijo
 # nodo_a_eliminar = 20
 # print(f'\nÁrbol resultante luego de borrar {nodo_a_eliminar}')
-# arbol.delete(nodo_a_eliminar)
-# arbol.in_order()
+# arbol_numeros.delete(nodo_a_eliminar)
+# arbol_numeros.in_order()
 
 
-# Caso 3 → El nodo tiene hijo izquierdo e hijo derecho (llama a la función/herlper __replace)
+# # Caso 3 → El nodo tiene hijo izquierdo e hijo derecho (llama a la función/herlper __replace)
 
-# # 3A → El mayor del subárbol izquierdo es la raíz del subárbol izquierdo
+# #     3A → El mayor del subárbol izquierdo es la raíz del subárbol izquierdo
 # nodo_a_eliminar = 30
 # print(f'\nÁrbol resultante luego de borrar {nodo_a_eliminar}')
-# arbol.delete(nodo_a_eliminar)
-# arbol.in_order()
+# arbol_numeros.delete(nodo_a_eliminar)
+# arbol_numeros.in_order()
 
 
-# # 3B → El mayor del subárbol izquierdo NO es la raíz del subárbol izquierdo (debe buscar el último nodo de la derecha)
+# #     3B → El mayor del subárbol izquierdo NO es la raíz del subárbol izquierdo (debe buscar el último nodo de la derecha)
 # nodo_a_eliminar = 50
 # print(f'\nÁrbol resultante luego de borrar {nodo_a_eliminar}')
-# arbol.delete(nodo_a_eliminar)
-# arbol.in_order()
+# arbol_numeros.delete(nodo_a_eliminar)
+# arbol_numeros.in_order()
 
 #########################################  EJECUCIÓN DE PRUEBAS DE ÁRBOL CON DATOS COMPLEJOS  ##########################################
 print(f'\n{Color.CIAN}{f' PRUEBA DE ÁRBOL CON DATOS COMPLEJOS '.center(140, "=")}{Color.RESET}')
+
 # Barridos 
 print_seccion('Barridos')
 print(f'{Color.VIOLETA}Resultado:{Color.RESET}')
 
 print(f'\nBarrido inorder (hijo izquierdo → raíz → hijo derecho):')
-arbol_superheroes.in_order()
+arbol_personajes.in_order()
 
 print(f'\nBarrido postorder (hijo derecho → raíz → hijo izquierdo):')
-arbol_superheroes.post_order()
+arbol_personajes.post_order()
 
 print(f'\nBarrido preorder (nodo raíz → hijo izquierdo → hijo derecho):')
-arbol_superheroes.pre_order()
+arbol_personajes.pre_order()
 
 # División
 print_seccion('División del árbol en superhéroes y villanos')
 print(f'Árbol completo ordenado alfabéticamente: ')
-arbol_superheroes.in_order()
+arbol_personajes.in_order()
 
 print(f'{Color.AZUL}\nDatos ingresados:{Color.RESET}')
 arbol_supervillanos = BinaryTree()
-arbol_heroes = BinaryTree()
+arbol_superheroes = BinaryTree()
 condition = 'is_villain'
 print(f'  → Condición para división: {condition}')
 
 print(f'{Color.VIOLETA}\nResultado:{Color.RESET}')
+arbol_personajes.divide_tree(arbol_supervillanos, arbol_superheroes, condition)
 print(f'\nÁrbol con villanos: ')
 arbol_supervillanos.in_order()
 print(f'\nÁrbol con héroes: ')
 arbol_superheroes.in_order()
 
-arbol_superheroes.divide_tree(arbol_supervillanos, arbol_heroes, condition)
+
+print(f'\n{Color.CIAN}{f" FIN DE EJECUCIÓN DEL PROGRAMA ".center(140, "=")}{Color.RESET}')

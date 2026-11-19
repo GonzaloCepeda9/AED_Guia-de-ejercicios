@@ -1,11 +1,11 @@
-from TDA_tree import BinaryTree
+from ED_tree import BinaryTree
 
 class BinaryTreeMinMax(BinaryTree):
 
     def obtener_minimo(self):
 
         if self.root is None:  # Comprueba si el árbol completo está vacío.
-            return None        # Si está vacío, termina y retorna None.
+            return None        # Si está vacío, retorna None y termina.
 
         def __obtener_minimo(root, minimo):
             # Función recursiva interna. Recibe el nodo que se va a evaluar

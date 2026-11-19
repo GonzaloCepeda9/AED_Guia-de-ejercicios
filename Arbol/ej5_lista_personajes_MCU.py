@@ -1,4 +1,4 @@
-lista_personajes_comic = [
+lista_personajes_MCU = [
 
     {
         "nombre": "Spider-Man",

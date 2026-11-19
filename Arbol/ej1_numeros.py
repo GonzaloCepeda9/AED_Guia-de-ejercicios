@@ -9,7 +9,7 @@ e. determinar la cantidad de ocurrencias de un elemento en el árbol;
 f. contar cuántos números pares e impares hay en el árbol.
 '''
 
-from TDA_tree import BinaryTree
+from ED_tree import BinaryTree
 
 # --------- CARGA DE DATOS --------- #
 arbol_numeros = BinaryTree()
