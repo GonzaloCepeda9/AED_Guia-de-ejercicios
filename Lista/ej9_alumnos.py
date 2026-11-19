@@ -16,9 +16,9 @@ i. mostrar todos los alumnos que rindieron en el año 2020;
 j. debe modificar el TDA para implementar lista de lista.
 '''
 
-from alumno import Alumno
-from ej9_class_parcial import Parcial
 from ED_list import List
+from ej9_class_alumno import Alumno
+from ej9_class_parcial import Parcial
 
 lista_alumnos = List()
 
