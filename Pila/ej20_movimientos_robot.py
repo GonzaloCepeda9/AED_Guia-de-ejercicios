@@ -4,7 +4,7 @@ Realizar un algoritmo que registre los movimientos de un robot, los datos que se
 Luego desarrolle otro algoritmo que genere la secuencia de movimientos necesarios para hacer volver al robot a su lugar de partida, retornando por el mismo camino que fue.
 """
 
-from TDA_stack import Stack
+from ED_stack import Stack
 
 movimientos_robot = Stack()
 

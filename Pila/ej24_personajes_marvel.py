@@ -7,8 +7,8 @@ Dada una pila de personajes de Marvel Cinematic Universe (MCU), de los cuales se
     d. mostrar todos los personajes cuyos nombre empiezan con C, D y G
 """
 
-from TDA_stack import Stack
-from personaje import Personaje
+from ED_stack import Stack
+from ej24_class_personaje import Personaje
 
 pila_personajes = Stack()
 

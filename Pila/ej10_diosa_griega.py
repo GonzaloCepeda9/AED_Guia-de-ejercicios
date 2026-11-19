@@ -1,6 +1,6 @@
 # 10. Insertar el nombre de la diosa griega Atenea en la i-ésima posición debajo de la cima de una pila con nombres de dioses griegos.
 
-from TDA_stack import Stack
+from ED_stack import Stack
 
 def insertar_nombre(stack: Stack, diosa: str, posicion: int):
 

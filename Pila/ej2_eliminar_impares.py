@@ -1,6 +1,6 @@
 # 2. Eliminar de una pila todos los elementos impares, es decir que en la misma solo queden números pares.
 
-from TDA_stack import Stack
+from ED_stack import Stack
 from random import randint
 
 def eliminar_impares(stack):

@@ -1,6 +1,6 @@
 # 6. Leer una palabra y visualizarla en forma inversa.
 
-from TDA_stack import Stack
+from ED_stack import Stack
 
 stack = Stack()
 stack_aux = Stack()

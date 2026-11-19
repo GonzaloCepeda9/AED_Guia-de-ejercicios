@@ -6,7 +6,7 @@ Dada una pila de cartas de las cuales se conoce su número y palo (que represent
     c. ordenar una de las cuatro pilas (espada, basto, copa u oro) de manera creciente.
 '''
 
-from TDA_stack import Stack
+from ED_stack import Stack
 import random
 
 # b. separar la pila mazo en cuatro pilas una por cada palo;

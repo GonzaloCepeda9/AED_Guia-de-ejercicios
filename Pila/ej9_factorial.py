@@ -1,6 +1,6 @@
 # 9. Resolver el problema del factorial de un número utilizando una pila.
 
-from TDA_stack import Stack
+from ED_stack import Stack
 
 def calcular_factorial(stack: Stack, numero: int):
     for _ in range(numero):

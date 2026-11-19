@@ -15,7 +15,7 @@ cartas de baraja española), resolver las siguientes actividades:
     c. ordenar una de las cuatro pilas (espada, basto, copa u oro) de manera creciente.
 '''
 
-from TDA_stack import Stack
+from ED_stack import Stack
 from random import randint
 
 pila_mazo = Stack()

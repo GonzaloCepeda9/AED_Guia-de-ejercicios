@@ -1,6 +1,6 @@
 # 1. Determinar el número de ocurrencias de un determinado elemento en una pila.
 
-from TDA_stack import Stack
+from ED_stack import Stack
 from random import randint
 
 stack = Stack()

@@ -1,6 +1,6 @@
 # 7. Eliminar el i-ésimo elemento debajo de la cima de una pila de palabras.
 
-from TDA_stack import Stack
+from ED_stack import Stack
 
 def eliminar_iesimo(stack: Stack, elemento: int):
     for i in range (stack.size()):

@@ -1,6 +1,6 @@
 # 3. Reemplazar todas las ocurrencias de un determinado elemento en una pila.
 
-from TDA_stack import Stack
+from ED_stack import Stack
 from random import randint
 
 def reemplazar_ocurrencias(stack, num_a_reemplazar, num_nuevo):

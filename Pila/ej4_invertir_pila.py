@@ -1,6 +1,6 @@
 # 4. Invertir el contenido de una pila, solo puede utilizar una pila auxiliar como estructura extra.
 
-from TDA_stack import Stack
+from ED_stack import Stack
 from random import randint
 
 def invertir_pila(stack: Stack):

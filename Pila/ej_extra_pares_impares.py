@@ -1,6 +1,6 @@
 # Extra: Dada una pila de números aleatorios, separarlos en dos pilas nuevas, una con los pares y otra con los impares.
 
-from TDA_stack import Stack
+from ED_stack import Stack
 from random import randint
 
 stack = Stack()

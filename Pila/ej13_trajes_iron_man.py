@@ -9,8 +9,8 @@ Dada una pila con los trajes de Iron Man utilizados en las películas de Marvel 
     f. mostrar los nombres de los trajes utilizados en las películas “Spider-Man: Homecoming (2017)” y “Captain America: Civil War (2016)”.
 """
 
-from TDA_stack import Stack
-from traje import Traje
+from ED_stack import Stack
+from ej13_class_traje import Traje
 
 pila_trajes = Stack()
 
